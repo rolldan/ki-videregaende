@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interaktivt læreverk i Matematikk 2P-Y (Vg3 påbygging til generell studiekompetanse) med praktiske yrkesfaglige eksempler, utforskere og Python.">
+  <title>Matematikk 2P-Y · Interaktivt læreverk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314212d'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='800' font-size='11'%3E2PY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/matte2py.css">
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="topplinje">
+    <div class="topplinje-indre">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
+        <a class="merke-lenke" href="index.html">
+          <span class="merke-ikon">2P-Y</span>
+          <span class="merke-tittel">Matematikk for påbygg</span>
+        </a>
+        <span class="sti">· <a href="../index.html">Akershusskolen KI &amp; fagressurser</a></span>
+      </div>
+      <div class="topp-verktoy">
+        <a class="topp-pille" href="python-lab.html">▶ Python-lab</a>
+        <span class="topp-pille" id="topp-framdrift">0 / 10 oppgaver løst</span>
+        <button type="button" class="topp-pille" id="uklar-oversikt-knapp">? Uklart (0)</button>
+        <button type="button" class="topp-pille" id="tema-knapp" aria-pressed="false">☾ Mørk visning</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="hovedinnhold" class="ramme">
+    <section class="forside-topp">
+      <p class="overtittel">MATEMATIKK 2P-Y · VG3 PÅBYGGING ETTER YRKESFAG · LK20 (MAT06-04)</p>
+      <h1>Læreverk i matematikk 2P-Y</h1>
+      <p class="ingress">
+        Praktisk matematikk bygget rundt yrkesfaglig erfaring, økonomi, statistikk, modellering og Python.
+        Strukturert etter emnene i NDLA 2P-Y med trinnvise eksempler, interaktive grafer og umiddelbar oppgavesjekk.
+      </p>
+
+      <ul class="nokkeltall">
+        <li><b>6</b>hovedkapitler (hele pensum)</li>
+        <li><b>18</b>deltemaer fra NDLA 2P-Y</li>
+        <li><b>3</b>fullt utbygde interaktive moduler i prototypen</li>
+        <li><b>Pyodide</b>kjørbar Python rett i nettleseren</li>
+      </ul>
+
+      <div class="framdrift-kort" aria-label="Din framdrift">
+        <div class="framdrift-info">
+          <div class="framdrift-overskrift">
+            <strong>Din framdrift i prototypen</strong>
+            <span id="framdrift-tekst">Ingen oppgaver registrert ennå – start med Prosent og vekstfaktor eller Lineære modeller.</span>
+          </div>
+          <div class="framdrift-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div class="framdrift-fyll" id="framdrift-fyll"></div>
+          </div>
+        </div>
+        <div class="framdrift-knapper">
+          <a class="knapp knapp-liten" href="prosent-vekst.html">Start Kap. 1.2 →</a>
+          <a class="knapp knapp-sek knapp-liten" href="lineare-modeller.html">Start Kap. 2.2 →</a>
+          <button type="button" class="knapp knapp-sek knapp-liten" id="nullstill-framdrift">Nullstill</button>
+        </div>
+      </div>
+
+      <nav class="kapittel-piller" aria-label="Hopp til kapittel">
+        <a class="pille-k1" href="#kap-1"><span>1</span>Tall og algebra</a>
+        <a class="pille-k2" href="#kap-2"><span>2</span>Funksjoner og modellering</a>
+        <a class="pille-k3" href="#kap-3"><span>3</span>Statistikk</a>
+        <a class="pille-k4" href="#kap-4"><span>4</span>Arbeid med datasett</a>
+        <a class="pille-k5" href="#kap-5"><span>5</span>Algoritmer og Python</a>
+        <a class="pille-k6" href="#kap-6"><span>6</span>Eksamensøving</a>
+        <a class="pille-reg" href="#register"><span>A–Å</span>Begrepsregister</a>
+      </nav>
+
+      <div class="sok-boks">
+        <label for="pensum-sok">Søk i 2P-Y-pensum, formler og yrkeseksempler</label>
+        <div class="sok-felt-pakke">
+          <input id="pensum-sok" type="search" placeholder="Prøv f.eks. vekstfaktor, prosentpoeng, stigningstall, timepris, median, halveringsmetoden…" autocomplete="off">
+        </div>
+        <p class="sok-info" id="sok-info"></p>
+        <div class="sok-treff" id="sok-treff"></div>
+      </div>
+    </section>
+
+    <!-- KAPITTEL 1 -->
+    <section class="kap k1" id="kap-1">
+      <div class="kap-nr" aria-hidden="true">1</div>
+      <div class="kap-innhold">
+        <p class="kap-etikett">KAPITTEL 1 · KOMPETANSEMÅL KM457, KM458, KM463</p>
+        <h2>Tall og algebra</h2>
+        <p class="kap-ingress">
+          Proporsjonale størrelser på arbeidsplassen, sikker regning med prosent, prosentpoeng og vekstfaktor ved gjentatte endringer, samt potenser, rotuttrykk og tall på standardform.
+        </p>
+        <p class="kap-meta"><b>Bygger på:</b> Praktisk regning fra Vg1/Vg2 yrkesfag (1P-Y) – varehandel, blandingsforhold, måleenheter og overslagsregning.</p>
+
+        <div class="resliste">
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">1.1 Proporsjonalitet og koordinatsystemet</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Koordinatsystemet i praksis</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Proporsjonale størrelser ($\frac{y}{x}=k$)</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Omvendt proporsjonalitet ($x \cdot y = k$)</span></li>
+              <li><span class="del-merke"><span class="dn">4</span>Proporsjonalt eller omvendt?</span></li>
+            </ol>
+            <details class="smakebit">
+              <summary>Se yrkesfaglig smakebit og nøkkelformler</summary>
+              <div class="smakebit-innhold">
+                <div><strong>Direkte proporsjonalitet:</strong> Materialkostnad $K(x) = 185x$ kr for $x$ løpemeter trekkerør – grafen er ei rett linje gjennom origo $(0, 0)$.</div>
+                <div><strong>Omvendt proporsjonalitet:</strong> Et maleoppdrag krever $48$ arbeidstimer totalt. Med $x$ malere tar jobben $T(x) = \frac{48}{x}$ timer.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="res">
+            <div class="res-topp">
+              <a class="res-tittel" href="prosent-vekst.html">1.2 Prosent, prosentpoeng og vekstfaktor</a>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status klar">★ Full interaktiv modul</span>
+            </div>
+            <ol class="deler">
+              <li><a href="prosent-vekst.html#vekstfaktor"><span class="dn">1</span>Fra prosent til vekstfaktor</a></li>
+              <li><a href="prosent-vekst.html#prosentpoeng"><span class="dn">2</span>Prosent vs. prosentpoeng</a></li>
+              <li><a href="prosent-vekst.html#gjentatt-endring"><span class="dn">3</span>Gjentatt vekst og verditap ($V_0 \cdot v^n$)</a></li>
+              <li><a href="prosent-vekst.html#utforsker"><span class="dn">4</span>Interaktiv spare- og verditapsutforsker</a></li>
+              <li><a href="prosent-vekst.html#oppgaver"><span class="dn">5</span>4 egenvurderingsoppgaver + Python</a></li>
+            </ol>
+            <div class="res-bunn">
+              <span>Yrkeseksempler: Verktøyrabatt med mva., renteøkning på boliglån, verditap på varebil og BSU-sparing.</span>
+              <a href="prosent-vekst.html">Åpne modulen →</a>
+            </div>
+          </article>
+
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">1.3 Potenser, standardform og rotuttrykk</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Potensregler ($a^m \cdot a^n$)</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Tierpotenser og standardform ($\pm a \cdot 10^n$)</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Kvadratrøtter og $n$-te-røtter ($\sqrt[n]{a}$)</span></li>
+              <li><span class="del-merke"><span class="dn">4</span>Finne årlig vekstfaktor baklengs</span></li>
+            </ol>
+            <details class="smakebit">
+              <summary>Se yrkesfaglig smakebit og nøkkelformler</summary>
+              <div class="smakebit-innhold">
+                <div><strong>Tall på standardform:</strong> Norges årlige kraftproduksjon ca. $1{,}56 \cdot 10^{11}\text{ kWh}$, eller tykkelse på lakkfilm $4{,}5 \cdot 10^{-5}\text{ m}$.</div>
+                <div><strong>$n$-te-rot i økonomi:</strong> Hvis en maskin faller fra $400\,000\text{ kr}$ til $250\,000\text{ kr}$ på $4$ år, er årlig vekstfaktor $v = \sqrt[4]{\frac{250\,000}{400\,000}} \approx 0{,}889$ ($-11{,}1\,\%$ per år).</div>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAPITTEL 2 -->
+    <section class="kap k2" id="kap-2">
+      <div class="kap-nr" aria-hidden="true">2</div>
+      <div class="kap-innhold">
+        <p class="kap-etikett">KAPITTEL 2 · KOMPETANSEMÅL KM459, KM460, KM461, KM462</p>
+        <h2>Funksjoner og modellering</h2>
+        <p class="kap-ingress">
+          Hvordan vi beskriver praktiske sammenhenger med funksjoner, sammenligner pristilbud med rette linjer, finner modeller fra måledata med regresjon og vurderer hvor lenge en modell er gyldig.
+        </p>
+        <p class="kap-meta"><b>Bygger på:</b> Proporsjonalitet og vekstfaktor fra Kapittel 1.</p>
+
+        <div class="resliste">
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">2.1 Funksjonsbegrepet, definisjons- og verdimengde</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Intervaller $[a, b]$ og $\langle a, b\rangle$</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Hva er en funksjon $f(x)$?</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Definisjonsmengde $D_f$ og verdimengde $V_f$</span></li>
+              <li><span class="del-merke"><span class="dn">4</span>Funksjoner i GeoGebra og Python</span></li>
+            </ol>
+            <details class="smakebit">
+              <summary>Se yrkesfaglig smakebit og nøkkelformler</summary>
+              <div class="smakebit-innhold">
+                <div><strong>Praktisk definisjonsmengde:</strong> For temperaturen på et kjølerom gjennom ett døgn er $D_T = [0, 24]$ timer, og verdimengden kan være $V_T = [2{,}1,\, 4{,}8]\;^\circ\text{C}$.</div>
+              </div>
+            </details>
+          </article>
+
+          <article class="res">
+            <div class="res-topp">
+              <a class="res-tittel" href="lineare-modeller.html">2.2 Lineære funksjoner, skjæring og modellering</a>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status klar">★ Full interaktiv modul</span>
+            </div>
+            <ol class="deler">
+              <li><a href="lineare-modeller.html#stigningstall"><span class="dn">1</span>Stigningstall $a$ og konstantledd $b$</a></li>
+              <li><a href="lineare-modeller.html#to-punkter"><span class="dn">2</span>Finne likningen ut fra to målepunkter</a></li>
+              <li><a href="lineare-modeller.html#skjaering"><span class="dn">3</span>Skjæringspunkt: Hvilket pristilbud lønner seg?</a></li>
+              <li><a href="lineare-modeller.html#utforsker"><span class="dn">4</span>Interaktiv prissammenligner (2 firmaer)</a></li>
+              <li><a href="lineare-modeller.html#oppgaver"><span class="dn">5</span>4 egenvurderingsoppgaver</a></li>
+            </ol>
+            <div class="res-bunn">
+              <span>Yrkeseksempler: Elektrikeroppdrag (oppmøtepris + timepris), varebilutleie, batteritapping og lineær regresjon.</span>
+              <a href="lineare-modeller.html">Åpne modulen →</a>
+            </div>
+          </article>
+
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">2.3 Ikke-lineære funksjoner, vekstfart og modellers gyldighet</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Andregradsfunksjoner og polynomfunksjoner</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Eksponentialfunksjoner $a \cdot b^x$ og potensfunksjoner $a \cdot x^b$</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Gjennomsnittlig og momentan vekstfart</span></li>
+              <li><span class="del-merke"><span class="dn">4</span>Halveringsmetoden og modellers gyldighet</span></li>
+            </ol>
+            <details class="smakebit">
+              <summary>Se yrkesfaglig smakebit og nøkkelformler</summary>
+              <div class="smakebit-innhold">
+                <div><strong>Gjennomsnittlig vekstfart:</strong> $\frac{f(x_2)-f(x_1)}{x_2-x_1}$ er stigningstallet til sekanten mellom to tidspunkter; momentan vekstfart er stigningstallet til tangenten akkurat i ett tidspunkt.</div>
+                <div><strong>Prøv allerede nå:</strong> Halveringsmetoden for ikke-lineære likninger kan kjøres live i <a href="python-lab.html#maler">Python-laben →</a></div>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAPITTEL 3 -->
+    <section class="kap k3" id="kap-3">
+      <div class="kap-nr" aria-hidden="true">3</div>
+      <div class="kap-innhold">
+        <p class="kap-etikett">KAPITTEL 3 · KOMPETANSEMÅL KM454, KM455, KM456 · DEMOKRATI OG MEDBORGERSKAP</p>
+        <h2>Statistikk</h2>
+        <p class="kap-ingress">
+          Ordne rådata i tabeller, velge riktig sentralmål og spredningsmål når noen verdier skiller seg kraftig ut, lage korrekte histogrammer for gruppert datamateriale og gjennomskue misvisende grafer i media.
+        </p>
+
+        <div class="resliste">
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">3.1 Innsamling, frekvenstabeller og relativ frekvens</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Utvalg og feilkilder i undersøkelser</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Frekvens og relativ frekvens</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Kumulativ frekvens</span></li>
+            </ol>
+          </article>
+
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">3.2 Sentralmål og spredningsmål – kritisk vurdering</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Gjennomsnitt $\bar{x}$, median og typetall</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Variasjonsbredde og kvartilbredde ($Q_3 - Q_1$)</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Standardavvik $s$</span></li>
+              <li><span class="del-merke"><span class="dn">4</span>Hvilket mål gir et ærlig bilde?</span></li>
+            </ol>
+            <details class="smakebit">
+              <summary>Se yrkesfaglig smakebit (og kjør beregningen i Python-laben)</summary>
+              <div class="smakebit-innhold">
+                <div><strong>Lønn i liten håndverksbedrift:</strong> Lærlinger, fagarbeidere og daglig leder har svært ulik lønn. Daglig leders høye lønn drar opp <em>gjennomsnittet</em>, mens <em>medianen</em> og <em>kvartilbredden</em> beskriver den typiske ansatte mye mer presist. <a href="python-lab.html#maler">Test datasettet i Python-laben →</a></div>
+              </div>
+            </details>
+          </article>
+
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">3.3 Gruppert datamateriale og histogram</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Klasseinndeling og klassemidtpunkt</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Histogram ved ulik klassebredde ($h = \frac{f}{b}$)</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Gjennomsnitt og standardavvik i grupperte data</span></li>
+            </ol>
+            <details class="smakebit">
+              <summary>Se den klassiske eksamensfella i 2P-Y</summary>
+              <div class="smakebit-innhold">
+                <div><strong>Huskeregel for histogram:</strong> I et histogram er det <em>arealet</em> av søyla som viser frekvensen. Når klassene har ulik bredde $b$, må du alltid regne ut søylehøyden $h = \frac{\text{frekvens}}{\text{klassebredde}}$ først!</div>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAPITTEL 4 -->
+    <section class="kap k4" id="kap-4">
+      <div class="kap-nr" aria-hidden="true">4</div>
+      <div class="kap-innhold">
+        <p class="kap-etikett">KAPITTEL 4 · KOMPETANSEMÅL KM454, KM461, KM462</p>
+        <h2>Arbeid med datasett</h2>
+        <p class="kap-ingress">
+          Hente inn, rense, sammenstille og visualisere reelle datasett fra SSB, strømbørsen, yrkesliv og lokalmiljø ved hjelp av regneark og Python – samt planlegge eget modelleringsprosjekt.
+        </p>
+
+        <div class="resliste">
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">4.1 Tabeller, grafer og reelle datasett i regneark og Python</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Fra CSV-fil / SSB-tabell til strukturert oversikt</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Numeriske tabeller og plotting</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Selvstendig utforskingsoppgave i samfunnsfaglig tema</span></li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAPITTEL 5 -->
+    <section class="kap k5" id="kap-5">
+      <div class="kap-nr" aria-hidden="true">5</div>
+      <div class="kap-innhold">
+        <p class="kap-etikett">KAPITTEL 5 · DIGITAL FERDIGHET OG ALGORITMISK TENKNING</p>
+        <h2>Algoritmer og programmering (Python)</h2>
+        <p class="kap-ingress">
+          Ikke programmering for programmeringens skyld, men Python som praktisk regneverktøy i 2P-Y: simulere spareplaner måned for måned med løkker, analysere lister med målinger og finne skjæring/nullpunkt med algoritmer.
+        </p>
+
+        <div class="resliste">
+          <article class="res">
+            <div class="res-topp">
+              <a class="res-tittel" href="python-lab.html">5.1 Interaktiv Python-lab for 2P-Y (Pyodide)</a>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status klar">★ Full interaktiv modul</span>
+            </div>
+            <ol class="deler">
+              <li><a href="python-lab.html#byggesteiner"><span class="dn">1</span>De 5 byggesteinene du trenger i 2P-Y</a></li>
+              <li><a href="python-lab.html#maler"><span class="dn">2</span>Kjørbar editor: Vekstfaktor, lønnsstatistikk &amp; halveringsmetoden</a></li>
+              <li><a href="python-lab.html#les-koden"><span class="dn">3</span>Del 1-trening: Les og tolk Python-kode uten PC</a></li>
+              <li><a href="python-lab.html#oppgaver"><span class="dn">4</span>2 egenvurderingsoppgaver</a></li>
+            </ol>
+            <div class="res-bunn">
+              <span>Kjører ekte Python 3.12 i nettleseren uten installasjon eller innlogging.</span>
+              <a href="python-lab.html">Åpne Python-laben →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAPITTEL 6 -->
+    <section class="kap k6" id="kap-6">
+      <div class="kap-nr" aria-hidden="true">6</div>
+      <div class="kap-innhold">
+        <p class="kap-etikett">KAPITTEL 6 · EKSAMENSTRENING SENTRALT GITT SKRIFTLIG OG LOKAL MUNTLIG-PRAKTISK</p>
+        <h2>Eksamensøving og formeloversikt</h2>
+        <p class="kap-ingress">
+           målrettet trening til todelt skriftlig eksamen i 2P-Y: Del 1 (uten hjelpemidler – tallforståelse, tolke grafer, tabeller og kort Python-kode) og Del 2 (med GeoGebra, regneark og Python).
+        </p>
+
+        <div class="resliste">
+          <article class="res">
+            <div class="res-topp">
+              <span class="res-tittel">6.1 Eksamensstrategi Del 1 vs. Del 2 og sjekkliste</span>
+              <span class="leder" aria-hidden="true"></span>
+              <span class="res-status skisse">Struktur &amp; smakebit</span>
+            </div>
+            <ol class="deler">
+              <li><span class="del-merke"><span class="dn">1</span>Typiske Del 1-oppgaver uten kalkulator</span></li>
+              <li><span class="del-merke"><span class="dn">2</span>Slik dokumenterer du GeoGebra, regneark og Python på Del 2</span></li>
+              <li><span class="del-merke"><span class="dn">3</span>Muntlig-praktisk eksamen med forberedelsesdel</span></li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STIKKORDREGISTER -->
+    <section class="register-seksjon" id="register">
+      <p class="overtittel">A–Å · SENTRALE BEGREPER I 2P-Y</p>
+      <h2 style="font-family:var(--f-display);margin:0.15rem 0 0.4rem">Hurtigregister med formler</h2>
+      <div class="register-rutenett">
+        <article class="reg-kort">
+          <b>Vekstfaktor ($v$)</b>
+          <p>Tallet vi ganger med ved prosentvis endring $p\,\%$: $v = 1 \pm \frac{p}{100}$.</p>
+          <a href="prosent-vekst.html#vekstfaktor">Gå til Kap. 1.2 →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Prosentpoeng</b>
+          <p>Differansen mellom to prosentsatser målt direkte i prosentenheter.</p>
+          <a href="prosent-vekst.html#prosentpoeng">Gå til Kap. 1.2 →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Stigningstall ($a$)</b>
+          <p>Endring i $y$ når $x$ øker med $1$: $a = \frac{y_2 - y_1}{x_2 - x_1}$.</p>
+          <a href="lineare-modeller.html#stigningstall">Gå til Kap. 2.2 →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Konstantledd ($b$)</b>
+          <p>Startverdien $f(0)$ der grafen skjærer andreaksen ($y$-aksen).</p>
+          <a href="lineare-modeller.html#stigningstall">Gå til Kap. 2.2 →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Skjæringspunkt</b>
+          <p>Der to modeller gir lik verdi: løs likningen $f(x) = g(x)$.</p>
+          <a href="lineare-modeller.html#skjaering">Gå til Kap. 2.2 →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Median og kvartilbredde</b>
+          <p>Robuste mål for midtpunkt og spredning når ekstremverdier trekker i snittet.</p>
+          <a href="python-lab.html#maler">Prøv i Python-lab →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Histogramhøyde</b>
+          <p>Ved grupperte data med ulik klassebredde: $\text{høyde} = \frac{\text{frekvens}}{\text{klassebredde}}$.</p>
+          <a href="#kap-3">Se Kap. 3.3 →</a>
+        </article>
+        <article class="reg-kort">
+          <b>Halveringsmetoden</b>
+          <p>Algoritme som finner nullpunkt ved å halvere et intervall der funksjonen skifter fortegn.</p>
+          <a href="python-lab.html#maler">Kjør i Python-lab →</a>
+        </article>
+      </div>
+    </section>
+
+    <footer class="fotnote">
+      <div>
+        <strong>Matematikk 2P-Y · Prototype på interaktivt læreverk</strong><br>
+        Utviklet med utgangspunkt i Udir LK20 (<code>MAT06-04</code>) og emnestrukturen til NDLA 2P-Y.
+      </div>
+      <div>
+        <a href="../index.html">← Tilbake til KI i videregående</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal for «Uklart for meg» -->
+  <div class="modal-bakgrunn" id="uklar-modal" hidden>
+    <div class="modal-boks" role="dialog" aria-modal="true" aria-labelledby="uklar-tittel">
+      <h2 id="uklar-tittel">Markert som «Uklart for meg»</h2>
+      <p style="margin:0;color:var(--demp);font-size:0.92rem">
+        Lagres kun i din egen nettleser. Bruk listen til å huske hva du vil spørre læreren eller medelever om i neste økt.
+      </p>
+      <ul class="uklar-liste" id="uklar-modal-liste"></ul>
+      <div class="knapperad">
+        <button type="button" class="knapp knapp-liten" id="kopier-uklar-tekst">Kopier liste til lærer</button>
+        <button type="button" class="knapp knapp-sek knapp-liten" id="lukk-uklar-modal">Lukk</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function () {
+      const INDEKS = [
+        { tittel: "Fra prosent til vekstfaktor", hvor: "Kapittel 1.2 · Prosent og vekstfaktor", url: "prosent-vekst.html#vekstfaktor", stikkord: "prosent vekstfaktor rabatt prisøkning mva moms promille" },
+        { tittel: "Prosent mot prosentpoeng", hvor: "Kapittel 1.2 · Prosent og vekstfaktor", url: "prosent-vekst.html#prosentpoeng", stikkord: "prosentpoeng rente boliglån meningsmåling relativ endring" },
+        { tittel: "Gjentatt vekst, sparing og verditap", hvor: "Kapittel 1.2 · Prosent og vekstfaktor", url: "prosent-vekst.html#gjentatt-endring", stikkord: "eksponentiell vekst rentesrente bsu lån varebil verditap potens" },
+        { tittel: "Interaktiv spare- og verditapsutforsker", hvor: "Kapittel 1.2 · Utforsker", url: "prosent-vekst.html#utforsker", stikkord: "glider graf simulering sparing verditap" },
+        { tittel: "Proporsjonalitet og omvendt proporsjonalitet", hvor: "Kapittel 1.1 · Tall og algebra", url: "#kap-1", stikkord: "proporsjonal omvendt arbeidstimer koordinatsystem" },
+        { tittel: "Potenser, tierpotenser, standardform og n-te-røtter", hvor: "Kapittel 1.3 · Tall og algebra", url: "#kap-1", stikkord: "potens standardform kvadratrot rotuttrykk" },
+        { tittel: "Stigningstall og konstantledd i praktiske modeller", hvor: "Kapittel 2.2 · Lineære modeller", url: "lineare-modeller.html#stigningstall", stikkord: "lineær funksjon stigningstall konstantledd timepris fastpris oppmøte" },
+        { tittel: "Finne likningen til ei rett linje fra to punkter", hvor: "Kapittel 2.2 · Lineære modeller", url: "lineare-modeller.html#to-punkter", stikkord: "topunktsformel ettpunktsformel stigningstall delta" },
+        { tittel: "Skjæringspunkt – sammenligne to pristilbud", hvor: "Kapittel 2.2 · Lineære modeller", url: "lineare-modeller.html#skjaering", stikkord: "skjæringspunkt nullpunkt likning pristilbud elektriker varebil" },
+        { tittel: "Sentralmål, spredningsmål og histogram", hvor: "Kapittel 3 · Statistikk", url: "#kap-3", stikkord: "gjennomsnitt median typetall kvartilbredde standardavvik variasjonsbredde histogram klassebredde" },
+        { tittel: "Python-lab: while-løkke, lister, statistikk og halveringsmetoden", hvor: "Kapittel 5 · Python-lab (Pyodide)", url: "python-lab.html", stikkord: "python kode programmering while for liste funksjon halveringsmetoden datasett" }
+      ];
+
+      const felt = document.getElementById("pensum-sok");
+      const info = document.getElementById("sok-info");
+      const boks = document.getElementById("sok-treff");
+      if (!felt || !info || !boks) return;
+
+      felt.addEventListener("input", () => {
+        const q = felt.value.trim().toLowerCase();
+        if (!q) {
+          info.textContent = "";
+          boks.innerHTML = "";
+          return;
+        }
+        const treff = INDEKS.filter((rad) =>
+          (rad.tittel + " " + rad.hvor + " " + rad.stikkord).toLowerCase().includes(q)
+        );
+        info.textContent = treff.length === 0 ? `Ingen treff for «${felt.value}».` : `${treff.length} treff i læreverket:`;
+        boks.innerHTML = treff
+          .map(
+            (t) =>
+              `<a class="treff-kort" href="${t.url}"><span class="tt">${t.tittel}</span><span class="hvor">${t.hvor}</span></a>`
+          )
+          .join("");
+      });
+    })();
+  </script>
+</body>
+</html>
