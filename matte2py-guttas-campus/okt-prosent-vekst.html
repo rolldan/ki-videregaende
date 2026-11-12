@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guttas Campus-økt i Matematikk 2P-Y Kapittel 1.2: Prosent, prosentpoeng, vekstfaktor, yrkeseksempler, trinnvis mestringsløype og Python.">
+  <title>Økt 1: Prosent og vekstfaktor · Guttas Campus 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2438'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fbbf24' font-family='sans-serif' font-weight='800' font-size='11'%3EGC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/campus.css">
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="camp-topp">
+    <div class="camp-topp-indre">
+      <a class="merke" href="index.html">
+        <span class="merke-emblem">GC · 2P-Y</span>
+        <span class="merke-tekst">
+          <strong>Guttas Campus · Matematikk 2P-Y</strong>
+          <small>Økt 1 · Kapittel 1.2 Prosent, prosentpoeng og vekstfaktor</small>
+        </span>
+      </a>
+      <nav class="topp-nav" aria-label="Hovedmeny">
+        <a class="topp-lenke" href="index.html">Hovedbase</a>
+        <a class="topp-lenke aktiv" href="okt-prosent-vekst.html">Økt 1: Prosent &amp; vekst</a>
+        <a class="topp-lenke" href="okt-funksjoner-statistikk.html">Økt 2: Modeller &amp; statistikk</a>
+        <a class="topp-lenke" href="python-lab.html">▶ Python-verksted</a>
+        <a class="topp-lenke oppgaveark-cta" href="oppgaveark.html?emne=prosent">🖨 Oppgaveark (1.2)</a>
+        <button type="button" class="topp-knapp" data-mentor-knapp aria-pressed="false">Mentormodus</button>
+        <button type="button" class="topp-knapp" id="tema-knapp" aria-pressed="false">☾ Mørk</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="hovedinnhold" class="ramme">
+    <section class="camp-hero" style="padding:1.35rem 1.6rem">
+      <p class="overtittel">KAPITTEL 1.2 · KOMPETANSEMÅL KM457 · DEL 1 &amp; DEL 2</p>
+      <h1>Økt 1: Prosent, prosentpoeng og vekstfaktor</h1>
+      <p class="ingress" style="margin-bottom:0.9rem">
+        <strong>Øktmål:</strong> Regne sikkert med vekstfaktor ved rabatt, mva., sparing og verditap ($V_n = V_0 \cdot v^n$), regne baklengs til førpris, og skille tydelig mellom prosent og prosentpoeng.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:center">
+        <span class="topp-lenke styrke-pille" data-aktiv-styrke-tips>Viljestyrke («Gi aldri opp»)</span>
+        <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=prosent&niva=komplett">🖨 Skriv ut A4-øktark til denne økta</a>
+      </div>
+    </section>
+
+    <nav class="okt-flyt" aria-label="Øktens fire faser">
+      <a href="#oppvarming" class="aktiv">1. Oppvarming (hoderegning)</a>
+      <a href="#teori">2. Yrkeseksempel &amp; KaTeX</a>
+      <a href="#mestringsloype">3. Mestringsløype (Trinn 1–3 + Python)</a>
+      <a href="#oppsummering">4. Oppsummering &amp; Loggbok</a>
+    </nav>
+
+    <aside class="mentor-boks">
+      <div class="mentor-tittel">★ Mentortips for Økt 1 (Prosent &amp; vekstfaktor)</div>
+      <ul>
+        <li><strong>Typisk snublestein:</strong> Mange legger sammen prosenter direkte ($10\,\%$ rabatt og $25\,\%$ mva. er <em>ikke</em> $+15\,\%$, men $0{,}90 \cdot 1{,}25 = 1{,}125$, altså $+12{,}5\,\%$).</li>
+        <li><strong>Førpris-fella:</strong> Ved baklengsregning må vi <em>dele</em> på vekstfaktoren ($V_0 = \frac{V_{\text{ny}}}{v}$), aldri legge rabattprosenten på salgsprisen.</li>
+        <li><strong>Samtalestarter («Best sammen»):</strong> Be to elever forklare for hverandre hvorfor en renteøkning fra $2\,\%$ til $4\,\%$ er $2$ prosentpoeng, men $100\,\%$ høyere rentekostnad.</li>
+      </ul>
+    </aside>
+
+    <!-- DEL 1: OPPVARMING -->
+    <section class="fag-seksjon" id="oppvarming" data-oppvarming="prosent">
+      <div class="panel-topp">
+        <div>
+          <span class="seksjon-steg-merke">Del 1 av 4 · Aktivering uten kalkulator</span>
+          <h2>Oppvarming: 5 raske i hodet</h2>
+          <p style="margin:0.2rem 0 0;color:var(--demp);font-size:0.93rem">
+            Varm opp med raske Del 1-tall før vi går løs på lengre oppgaver. Både komma og punktum fungerer (f.eks. <code>1,20</code>).
+          </p>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.6rem">
+          <strong data-oppv-teller style="font-size:0.9rem;color:var(--gronn)">0 / 5 klare</strong>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-oppv-ny>↻ Nye oppvarmingstall</button>
+        </div>
+      </div>
+      <div class="oppvarming-grid"></div>
+    </section>
+
+    <!-- DEL 2: KORT KONKRET GJENNOMGANG -->
+    <section class="fag-seksjon" id="teori">
+      <span class="seksjon-steg-merke">Del 2 av 4 · Konkret gjennomgang med yrkeseksempel</span>
+      <h2>Vekstfaktor og prosentpoeng – verktøyet som alltid virker</h2>
+
+      <div class="regelboks">
+        <strong>Hovedregel – Vekstfaktor ($v$), gjentatt endring og førpris:</strong>
+        <p style="margin:0.4rem 0">
+          Ved <strong>økning</strong> på $p\,\%$: $\displaystyle v = 1 + \frac{p}{100}$ &emsp;|&emsp;
+          Ved <strong>nedgang (rabatt/verditap)</strong> på $p\,\%$: $\displaystyle v = 1 - \frac{p}{100}$
+        </p>
+        <p style="margin:0.35rem 0 0">
+          Etter $n$ like prosentendringer fra startverdi $V_0$:
+          $$V_n = V_0 \cdot v^n \qquad \text{og baklengs til førpris:} \qquad V_0 = \frac{V_{\text{ny}}}{v}$$
+        </p>
+      </div>
+
+      <div class="advarselboks">
+        <strong>Prosent vs. prosentpoeng (klassisk eksamensspørsmål):</strong>
+        Øker boliglånsrenta fra $3{,}0\,\%$ til $4{,}5\,\%$, er differansen $4{,}5 - 3{,}0 = \mathbf{1{,}5\text{ prosentpoeng}}$.
+        Den <em>prosentvise</em> økningen i selve renta regnes alltid i forhold til startverdien: $\frac{1{,}5}{3{,}0} = 0{,}50 = \mathbf{50\,\%}$.
+      </div>
+
+      <div class="eksempel-boks" data-eksempel>
+        <div class="panel-topp" style="margin-bottom:0.4rem">
+          <div>
+            <span class="etikett">Yrkeseksempel · Tømrerbedrift &amp; kalkyleregning</span>
+            <h3 style="margin:0.3rem 0 0">Arbeidsbilen taper seg $15\,\%$ i verdi hvert år</h3>
+          </div>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
+            <button type="button" class="knapp knapp-liten" data-steg-neste>Neste steg</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-steg-alle>Vis alle</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-steg-nullstill>Nullstill</button>
+          </div>
+        </div>
+        <p style="margin:0.25rem 0 0.6rem">
+          En tømrerbedrift kjøper en elektrisk kassebil til $520\,000\text{ kr}$. Verdien faller med $15\,\%$ per år.
+          Hva er bilen verdt etter $4$ år, og hvor mange prosent har verdien falt totalt?
+        </p>
+        <div class="steg-liste">
+          <div class="steg-rad vist">
+            <div><strong>Steg 1 (Finn årlig vekstfaktor):</strong><br>$$v = 1 - \frac{15}{100} = 0{,}85$$</div>
+            <div class="steg-forklaring">Siden verdien synker med $15\,\%$, er $85\,\%$ ($0{,}85$) av verdien igjen etter hvert år.</div>
+          </div>
+          <div class="steg-rad">
+            <div><strong>Steg 2 (Verdi etter $n = 4$ år):</strong><br>$$V_4 = 520\,000 \cdot 0{,}85^4 \approx 271\,443\text{ kr}$$</div>
+            <div class="steg-forklaring">Startverdien ganges med $0{,}85$ fire ganger.</div>
+          </div>
+          <div class="steg-rad">
+            <div><strong>Steg 3 (Samlet prosentvis verditap):</strong><br>$$v_{\text{total}} = 0{,}85^4 \approx 0{,}522 \implies 1 - 0{,}522 = 47{,}8\,\%$$</div>
+            <div class="steg-forklaring">Samlet verditap er $47{,}8\,\%$ (ikke $4 \cdot 15\,\% = 60\,\%$, fordi kronebeløpet krymper hvert år).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interaktiv SVG-utforsker -->
+      <div class="utforsker-boks" id="vekst-utforsker">
+        <span class="etikett">Nysgjerrighet · «Prøv, se og lær»</span>
+        <h3 style="margin:0.35rem 0 0.6rem">Interaktiv graf: Fondssparing (vekst) vs. arbeidsbil (verditap) over 10 år</h3>
+        <div class="glider-grid">
+          <div class="glider-felt">
+            <label for="glider-start">Startbeløp $V_0$: <span id="vis-start">250 000 kr</span></label>
+            <input type="range" id="glider-start" min="100000" max="500000" step="25000" value="250000">
+          </div>
+          <div class="glider-felt">
+            <label for="glider-sparing">Årlig spareavkastning: <span id="vis-sparing">+8 % (v = 1,08)</span></label>
+            <input type="range" id="glider-sparing" min="2" max="14" step="1" value="8">
+          </div>
+          <div class="glider-felt">
+            <label for="glider-tap">Årlig verditap bil: <span id="vis-tap">−15 % (v = 0,85)</span></label>
+            <input type="range" id="glider-tap" min="5" max="28" step="1" value="15">
+          </div>
+        </div>
+        <svg id="vekst-svg" class="graf-svg" viewBox="0 0 680 240" role="img" aria-label="Graf over sparing og verditap"></svg>
+        <p id="vekst-avlesning" style="margin:0.55rem 0 0;font-size:0.9rem;font-weight:700"></p>
+      </div>
+    </section>
+
+    <!-- DEL 3: TRINNVIS MESTRINGSLØYPE -->
+    <section class="fag-seksjon" id="mestringsloype">
+      <span class="seksjon-steg-merke">Del 3 av 4 · Trinnvis mestringsløype</span>
+      <h2>Mestringsløype: Trinn 1 til Trinn 3</h2>
+      <p style="margin:0.25rem 0 0.8rem;color:var(--demp)">
+        Bruk kladdeark ved siden av skjermen. Hver løste oppgave oppdaterer Måltrappa di automatisk.
+      </p>
+
+      <!-- TRINN 1 -->
+      <div class="trinn-header">
+        <span class="trinn-merke trinn-1">Trinn 1 · Grunnleggende mengdetrening</span>
+        <small style="color:var(--demp)">Trygghet på vekstfaktor ved rabatt og lønnsøkning</small>
+      </div>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-p1" data-maal-id="m1" data-type="tall" data-fasit="1445" data-toleranse="1"
+        data-rett-melding="✓ Riktig! 1 700 · 0,85 = 1 445 kr. Vekstfaktor gjør rabattregning rask og treffsikker."
+        data-feil-melding="Ikke helt på plass ennå. Ved 15 % rabatt er vekstfaktoren 1 − 0,15 = 0,85. Gang 1 700 med 0,85.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 1.1</strong> · Elektrikerverktøy · Selvkontroll («Tell til 10»)</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">En spenningstester koster $1\,700\text{ kr}$ ordinært. Som lærling får du $15\,\%$ rabatt. Hva betaler du i kroner?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Pris etter rabatt" placeholder="Svar i kr…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel">Finn vekstfaktoren $v = 1 - 0{,}15 = 0{,}85$, og regn ut $1\,700 \cdot 0{,}85$.</div>
+        <div class="hjelp-panel losning-panel">$$v = 1 - \frac{15}{100} = 0{,}85 \implies 1\,700 \cdot 0{,}85 = 1\,445\text{ kr}$$</div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-p2" data-maal-id="m1" data-type="tall" data-fasit="27300" data-toleranse="1"
+        data-rett-melding="✓ Riktig! 26 000 · 1,05 = 27 300 kr i ny månedslønn."
+        data-feil-melding="Ikke riktig ennå. 5 % økning gir vekstfaktor v = 1,05 (pass på at 1,5 ville vært 50 %!). Gang 26 000 med 1,05.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 1.2</strong> · Lønnsoppgjør helsefagarbeider</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">En lærling i helsearbeiderfaget tjener $26\,000\text{ kr}$ i måneden og går opp $5\,\%$ i lønnsoppgjøret. Hva blir den nye månedslønna?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Ny månedslønn" placeholder="Svar i kr…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel">Ved $5\,\%$ økning er $v = 1 + \frac{5}{100} = 1{,}05$.</div>
+        <div class="hjelp-panel losning-panel">$$26\,000 \cdot 1{,}05 = 27\,300\text{ kr}$$</div>
+      </article>
+
+      <!-- TRINN 2 -->
+      <div class="trinn-header">
+        <span class="trinn-merke trinn-2">Trinn 2 · Påbygg-nivå i yrkeskontekst</span>
+        <small style="color:var(--demp)">Prosentpoeng og sammensatte endringer (rabatt + mva.)</small>
+      </div>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-p3" data-maal-id="m2" data-type="flervalg" data-fasit="b"
+        data-rett-melding="✓ Spot on! Differansen er 1,0 prosentpoeng, mens relativ økning fra 4,0 % er 1,0 / 4,0 = 25 %.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 2.1</strong> · Boliglån &amp; mediekritikk (Del 1)</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">Renta på et billån øker fra $4{,}0\,\%$ til $5{,}0\,\%$. Hvilken påstand er matematisk riktig?</p>
+        <div class="flervalg-liste">
+          <label class="flervalg-rad">
+            <input type="radio" name="p3" value="a" data-forklaring="Ikke helt ennå: Fra 4 % til 5 % er 1 prosentpoeng, men i prosent må du dele endringen (1) på startverdien (4).">
+            <span>Renta har økt med $1\,\%$ og $1$ prosentpoeng.</span>
+          </label>
+          <label class="flervalg-rad">
+            <input type="radio" name="p3" value="b">
+            <span>Renta har økt med $1{,}0$ prosentpoeng, som tilsvarer en økning på $25\,\%$.</span>
+          </label>
+          <label class="flervalg-rad">
+            <input type="radio" name="p3" value="c" data-forklaring="Du delte på ny verdi (5) i stedet for gammel verdi (4). Relativ endring regnes alltid ut fra startverdien!">
+            <span>Renta har økt med $1{,}0$ prosentpoeng, som tilsvarer en økning på $20\,\%$.</span>
+          </label>
+        </div>
+        <div class="svar-rad">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">$$\text{Prosentpoeng} = 5{,}0 - 4{,}0 = 1{,}0 \qquad \text{Prosentvis økning} = \frac{5{,}0 - 4{,}0}{4{,}0} = \frac{1}{4} = 25\,\%$$</div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-p4" data-maal-id="m3" data-type="tall" data-fasit="18000" data-toleranse="2"
+        data-rett-melding="✓ Riktig! 16 000 · 0,90 · 1,25 = 18 000 kr. Flere vekstfaktorer ganges rett sammen."
+        data-feil-melding="Ikke riktig ennå. Gang først 16 000 med 0,90 (10 % rabatt), og gang svaret med 1,25 (25 % mva.).">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 2.2</strong> · Grossistrabatt og merverdiavgift (mva.)</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">En varmepumpe har listepris $16\,000\text{ kr}$ ekskl. mva. Installatøren får $10\,\%$ grossistrabatt, og til slutt legges det på $25\,\%$ mva. Hva blir sluttprisen inkl. mva.?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Sluttpris inkl. mva." placeholder="Svar i kr…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel">Bruk to vekstfaktorer etter hverandre: $v_1 = 0{,}90$ og $v_2 = 1{,}25$.</div>
+        <div class="hjelp-panel losning-panel">$$\text{Sluttpris} = 16\,000 \cdot 0{,}90 \cdot 1{,}25 = 14\,400 \cdot 1{,}25 = 18\,000\text{ kr}$$</div>
+      </article>
+
+      <!-- TRINN 3 -->
+      <div class="trinn-header">
+        <span class="trinn-merke trinn-3">Trinn 3 · Eksamensutfordring &amp; Python</span>
+        <small style="color:var(--demp)">Viljestyrke («Gi aldri opp») – baklengsregning og sparemodell</small>
+      </div>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-p5" data-maal-id="m3" data-type="tall" data-fasit="24500" data-toleranse="2"
+        data-rett-melding="✓ Sterkt! 19 600 / 0,80 = 24 500 kr. Du unngikk førpris-fella!"
+        data-feil-melding="Ikke helt ennå! Husk at rabatten ble regnet av den ukjente førprisen V₀: V₀ · 0,80 = 19 600. Del 19 600 på 0,80.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 3.1</strong> · Eksamensklassiker (Del 1): Finn førprisen</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">En proff-tilhenger selges på kampanje med $20\,\%$ rabatt. Kampanjeprisen du betaler er $19\,600\text{ kr}$. Hva var den opprinnelige prisen før rabatten?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Opprinnelig pris" placeholder="Førpris i kr…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel">Sett opp likningen $V_0 \cdot 0{,}80 = 19\,600$ og løs for $V_0$.</div>
+        <div class="hjelp-panel losning-panel">$$V_0 = \frac{19\,600}{0{,}80} = \frac{196\,000}{8} = 24\,500\text{ kr}$$</div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-p6" data-maal-id="m7" data-type="tall" data-fasit="5" data-toleranse="0"
+        data-rett-melding="✓ Riktig! Etter 5 år står det ca. 140 208 kr på kontoen, så målet på 120 000 kr nås etter 5 år."
+        data-feil-melding="Ikke helt ennå – kjør Python-koden rett under og les av hvilket år saldoen passerer 120 000 kr!">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 3.2</strong> · Del 2 med Python: BSU-sparemål med fast årlig innskudd</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0 0 0.6rem">
+          Du har $40\,000\text{ kr}$ på BSU-konto med $6{,}5\,\%$ årlig rente ($v = 1{,}065$). På slutten av hvert år setter du i tillegg inn $15\,000\text{ kr}$ fra lærlinglønna.
+          Kjør Python-modellen under: <strong>Etter hvor mange hele år passerer saldoen $120\,000\text{ kr}$?</strong>
+        </p>
+
+        <div class="python-lab" data-python-lab>
+          <div class="python-topp">
+            <strong>Python 3.12 · BSU-simulering med while-løkke</strong>
+            <span class="python-status">Trykk «Kjør Python-kode» for å laste Pyodide</span>
+          </div>
+          <textarea class="python-editor" aria-label="Python-kode for BSU-sparing">saldo = 40000
+vekstfaktor = 1.065
+innskudd = 15000
+aar = 0
+
+while saldo < 120000:
+    aar = aar + 1
+    saldo = saldo * vekstfaktor + innskudd
+    print(f"Etter {aar} år: {saldo:.2f} kr")
+
+print(f"\nSparemålet på 120 000 kr nås etter {aar} år!")</textarea>
+          <div class="python-knapper">
+            <button type="button" class="knapp knapp-liten" data-python-kjor>▶ Kjør Python-kode</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-python-nullstill>Tilbakestill kode</button>
+          </div>
+          <pre class="python-utskrift">Klikk «▶ Kjør Python-kode» for å simulere spareplanen år for år.</pre>
+        </div>
+
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="numeric" aria-label="Antall år" placeholder="Antall år…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis forklaring</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">Etter 4 år er saldoen $117\,566{,}27\text{ kr}$ (like under målet). Etter <strong>5 år</strong> passerer den målet med $140\,208{,}08\text{ kr}$.</div>
+      </article>
+    </section>
+
+    <!-- DEL 4: OPPSUMMERING OG LOGGBOK -->
+    <section class="fag-seksjon" id="oppsummering">
+      <span class="seksjon-steg-merke">Del 4 av 4 · Oppsummering og refleksjon</span>
+      <h2>Sjekk ut av Økt 1</h2>
+      <div class="regelboks">
+        <strong>3 nøkkelpunkter du tar med deg videre:</strong>
+        <ol style="margin:0.4rem 0 0;padding-left:1.2rem">
+          <li>Vekstfaktor samler hele prosentregningen i én multiplikasjon: $v = 1 \pm \frac{p}{100}$.</li>
+          <li>Gjentatte endringer ganges: $V_n = V_0 \cdot v^n$. Skal du tilbake til førpris, <em>deler</em> du på $v$.</li>
+          <li>Forskjellen mellom to prosentsatser oppgis i <strong>prosentpoeng</strong>; relativ endring regnes ut fra startverdien.</li>
+        </ol>
+      </div>
+
+      <form class="loggbok-skjema" data-loggbok-skjema="Økt 1: Prosent og vekstfaktor">
+        <h3 style="margin:0.2rem 0 0">Loggbok-refleksjon (Guttas Campus utsjekk)</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem">
+          <div>
+            <label for="logg-styrke-1" style="font-weight:700;font-size:0.86rem">Hvilken karakterstyrke brukte du mest i dag?</label>
+            <select id="logg-styrke-1" name="styrke"></select>
+          </div>
+          <div>
+            <label for="logg-mestring-1" style="font-weight:700;font-size:0.86rem">Hvor trygg kjenner du deg på vekstfaktor nå?</label>
+            <select id="logg-mestring-1" name="mestring">
+              <option value="trygg">Trygg – klar for eksamensoppgaver!</option>
+              <option value="paa-vei" selected>På god vei – vil mengdetrene litt mer på oppgaveark</option>
+              <option value="enna">Ikke helt der ennå – tar en runde med mentor/lærer</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="logg-notat-1" style="font-weight:700;font-size:0.86rem">Kort notat til deg selv (hva husker du til neste gang?):</label>
+          <textarea id="logg-notat-1" name="notat" rows="2" placeholder="F.eks. Husk å dele på vekstfaktoren (0,80) når jeg skal finne førpris!"></textarea>
+        </div>
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;align-items:center">
+          <button type="submit" class="knapp knapp-gronn knapp-liten">Lagre i loggboka</button>
+          <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=prosent">🖨 Skriv ut mengdetreningsark (1.2)</a>
+          <a class="knapp knapp-liten" href="okt-funksjoner-statistikk.html">Gå videre til Økt 2 →</a>
+        </div>
+        <div data-loggbok-status aria-live="polite"></div>
+      </form>
+    </section>
+
+    <footer class="bunnfot">
+      <span><a href="index.html">← Tilbake til Hovedbasen</a></span>
+      <span>Neste: <a href="okt-funksjoner-statistikk.html">Økt 2: Lineære modeller &amp; statistikk →</a></span>
+    </footer>
+  </main>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="js/campus-data.js"></script>
+  <script defer src="js/campus-core.js"></script>
+  <script defer src="js/python-lab.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sStart = document.getElementById("glider-start");
+      const sSpar = document.getElementById("glider-sparing");
+      const sTap = document.getElementById("glider-tap");
+      const svg = document.getElementById("vekst-svg");
+      const avlesning = document.getElementById("vekst-avlesning");
+      if (!sStart || !svg) return;
+
+      function fmtKr(n) {
+        return Math.round(n).toLocaleString("nb-NO") + " kr";
+      }
+
+      function tegn() {
+        const v0 = Number(sStart.value);
+        const pSpar = Number(sSpar.value);
+        const pTap = Number(sTap.value);
+        const vfSpar = 1 + pSpar / 100;
+        const vfTap = 1 - pTap / 100;
+
+        document.getElementById("vis-start").textContent = fmtKr(v0);
+        document.getElementById("vis-sparing").textContent = `+${pSpar} % (v = ${vfSpar.toFixed(2).replace(".", ",")})`;
+        document.getElementById("vis-tap").textContent = `−${pTap} % (v = ${vfTap.toFixed(2).replace(".", ",")})`;
+
+        const maksY = Math.max(v0 * Math.pow(vfSpar, 10), 600000) * 1.06;
+        const x0 = 62, x1 = 655, y0 = 205, y1 = 22;
+        const tilX = (aar) => x0 + (aar / 10) * (x1 - x0);
+        const tilY = (verdi) => y0 - (verdi / maksY) * (y0 - y1);
+
+        let rutenett = "";
+        for (let a = 0; a <= 10; a += 2) {
+          const x = tilX(a);
+          rutenett += `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y0}" stroke="#cbd5e1" stroke-dasharray="3 3"/>`;
+          rutenett += `<text x="${x}" y="${y0 + 18}" text-anchor="middle" font-size="11" fill="#64748b">${a} år</text>`;
+        }
+        for (let trinn = 0; trinn <= 4; trinn++) {
+          const v = (maksY / 4) * trinn;
+          const y = tilY(v);
+          rutenett += `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#e2e8f0"/>`;
+          rutenett += `<text x="${x0 - 6}" y="${y + 4}" text-anchor="end" font-size="10.5" fill="#64748b">${Math.round(v / 1000)}k</text>`;
+        }
+
+        const sparPkt = [], tapPkt = [];
+        for (let a = 0; a <= 10; a++) {
+          sparPkt.push(`${tilX(a).toFixed(1)},${tilY(v0 * Math.pow(vfSpar, a)).toFixed(1)}`);
+          tapPkt.push(`${tilX(a).toFixed(1)},${tilY(v0 * Math.pow(vfTap, a)).toFixed(1)}`);
+        }
+
+        const spar5 = v0 * Math.pow(vfSpar, 5);
+        const tap5 = v0 * Math.pow(vfTap, 5);
+
+        svg.innerHTML = `
+          ${rutenett}
+          <polyline fill="none" stroke="#0f766e" stroke-width="3.2" points="${sparPkt.join(" ")}"/>
+          <polyline fill="none" stroke="#c8640a" stroke-width="3.2" points="${tapPkt.join(" ")}"/>
+          <circle cx="${tilX(5)}" cy="${tilY(spar5)}" r="5" fill="#0f766e"/>
+          <circle cx="${tilX(5)}" cy="${tilY(tap5)}" r="5" fill="#c8640a"/>
+          <text x="${tilX(10) - 6}" y="${tilY(v0 * Math.pow(vfSpar, 10)) - 8}" text-anchor="end" font-size="11.5" font-weight="700" fill="#0f766e">Sparing</text>
+          <text x="${tilX(10) - 6}" y="${tilY(v0 * Math.pow(vfTap, 10)) - 8}" text-anchor="end" font-size="11.5" font-weight="700" fill="#c8640a">Arbeidsbil</text>
+        `;
+        avlesning.textContent = `Etter 5 år: Sparebeløp = ${fmtKr(spar5)} · Bilverdi = ${fmtKr(tap5)} (forskjell: ${fmtKr(spar5 - tap5)}).`;
+      }
+
+      [sStart, sSpar, sTap].forEach((el) => el.addEventListener("input", tegn));
+      tegn();
+    });
+  </script>
+</body>
+</html>

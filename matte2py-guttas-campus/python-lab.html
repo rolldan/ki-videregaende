@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guttas Campus Python-verksted for Matematikk 2P-Y med kjørbar Pyodide i nettleseren, ferdige eksamensmaler og kodeutfordringer.">
+  <title>Python-verksted (Pyodide) · Guttas Campus 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2438'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fbbf24' font-family='sans-serif' font-weight='800' font-size='11'%3EGC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/campus.css">
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="camp-topp">
+    <div class="camp-topp-indre">
+      <a class="merke" href="index.html">
+        <span class="merke-emblem">GC · 2P-Y</span>
+        <span class="merke-tekst">
+          <strong>Guttas Campus · Matematikk 2P-Y</strong>
+          <small>Kapittel 4 &amp; 5 · Python-verksted og datasett i nettleseren</small>
+        </span>
+      </a>
+      <nav class="topp-nav" aria-label="Hovedmeny">
+        <a class="topp-lenke" href="index.html">Hovedbase</a>
+        <a class="topp-lenke" href="okt-prosent-vekst.html">Økt 1: Prosent &amp; vekst</a>
+        <a class="topp-lenke" href="okt-funksjoner-statistikk.html">Økt 2: Modeller &amp; statistikk</a>
+        <a class="topp-lenke aktiv" href="python-lab.html">▶ Python-verksted</a>
+        <a class="topp-lenke oppgaveark-cta" href="oppgaveark.html?emne=python">🖨 Kode-oppgaveark</a>
+        <button type="button" class="topp-knapp" data-mentor-knapp aria-pressed="false">Mentormodus</button>
+        <button type="button" class="topp-knapp" id="tema-knapp" aria-pressed="false">☾ Mørk</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="hovedinnhold" class="ramme">
+    <section class="camp-hero" style="padding:1.35rem 1.6rem">
+      <p class="overtittel">KAPITTEL 4 &amp; 5 · ALGORITMER, DATASETT OG SIMULERING · PYODIDE</p>
+      <h1>Python-verkstedet: «Prøv, se og lær»</h1>
+      <p class="ingress" style="margin-bottom:0.85rem">
+        I 2P-Y bruker vi Python som et praktisk verktøy for å simulere lån og sparing, analysere datasett og løse likninger numerisk.
+        Koden kjører med ekte Python 3.12 direkte i nettleseren din – helt uten installasjon.
+      </p>
+      <span class="topp-lenke styrke-pille" data-aktiv-styrke-tips>Nysgjerrighet («Prøv, se og lær»)</span>
+    </section>
+
+    <aside class="mentor-boks">
+      <div class="mentor-tittel">★ Mentortips i Python-verkstedet</div>
+      <p>
+        På eksamen Del 1 får elevene ofte en kort kodeblokk på 6–8 linjer og skal forklare hva som skrives ut, eller finne en logisk feil (f.eks. innrykk eller <code>&lt;</code> vs. <code>&gt;</code> i <code>while</code>-løkka). På Del 2 kan de lime inn og tilpasse disse fire grunnmalene!
+      </p>
+    </aside>
+
+    <section class="fag-seksjon">
+      <span class="seksjon-steg-merke">Interaktiv sandkasse · 4 ferdige 2P-Y-maler</span>
+      <h2>Velg en mal, endre tallene og kjør koden</h2>
+
+      <div class="python-lab" data-python-lab>
+        <div class="python-topp">
+          <strong>Python 3.12 (Pyodide WebAssembly) · Snarvei: Ctrl+Enter</strong>
+          <span class="python-status">Klar til å laste Python ved første kjøring</span>
+        </div>
+        <div class="mal-knapper" role="group" aria-label="Velg 2P-Y Python-mal">
+          <button type="button" class="mal-knapp aktiv" data-mal-kode="mal-laan">1. Nedbetaling av billån (while)</button>
+          <button type="button" class="mal-knapp" data-mal-kode="mal-tilbud">2. Sammenlign pristilbud (for)</button>
+          <button type="button" class="mal-knapp" data-mal-kode="mal-statistikk">3. Datasett: lønn &amp; kvartiler</button>
+          <button type="button" class="mal-knapp" data-mal-kode="mal-halvering">4. Halveringsmetoden (nullpunkt)</button>
+        </div>
+        <textarea class="python-editor" aria-label="Python-editor">laan = 180000
+rente_vf = 1.005     # 0,5 % rente per måned
+terminbelop = 4200   # fast innbetaling per måned
+mnd = 0
+totalt_betalt = 0
+
+while laan > 0:
+    mnd += 1
+    laan = laan * rente_vf - terminbelop
+    if laan < 0:
+        totalt_betalt += terminbelop + laan
+        laan = 0
+    else:
+        totalt_betalt += terminbelop
+
+print(f"Lånet er nedbetalt etter {mnd} måneder ({mnd/12:.1f} år).")
+print(f"Totalt innbetalt: {totalt_betalt:,.0f} kr")</textarea>
+        <div class="python-knapper">
+          <button type="button" class="knapp knapp-liten" data-python-kjor>▶ Kjør Python-kode</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-python-nullstill>Tilbakestill mal</button>
+        </div>
+        <pre class="python-utskrift">Klikk «▶ Kjør Python-kode» for å kjøre valgt 2P-Y-program.</pre>
+      </div>
+
+      <!-- Skjulte maler -->
+      <script type="text/plain" id="mal-laan">
+laan = 180000
+rente_vf = 1.005     # 0,5 % rente per måned
+terminbelop = 4200   # fast innbetaling per måned
+mnd = 0
+totalt_betalt = 0
+
+while laan > 0:
+    mnd += 1
+    laan = laan * rente_vf - terminbelop
+    if laan < 0:
+        totalt_betalt += terminbelop + laan
+        laan = 0
+    else:
+        totalt_betalt += terminbelop
+
+print(f"Lånet er nedbetalt etter {mnd} måneder ({mnd/12:.1f} år).")
+print(f"Totalt innbetalt: {totalt_betalt:,.0f} kr")
+      </script>
+
+      <script type="text/plain" id="mal-tilbud">
+print("Timer | Firma A (kr) | Firma B (kr) | Billigst")
+print("-" * 48)
+for timer in range(1, 11):
+    pris_a = 850 * timer + 1500
+    pris_b = 1150 * timer
+    best = "Lik pris!" if pris_a == pris_b else ("Firma A" if pris_a < pris_b else "Firma B")
+    print(f"{timer:5d} | {pris_a:12d} | {pris_b:12d} | {best}")
+      </script>
+
+      <script type="text/plain" id="mal-statistikk">
+import statistics as stat
+
+# Timelønn (kr) for 11 unge arbeidstakere + 1 konsulent
+lonn = [215, 220, 225, 230, 235, 240, 240, 245, 250, 260, 275, 890]
+sortert = sorted(lonn)
+
+snitt = stat.mean(sortert)
+median = stat.median(sortert)
+kvartiler = stat.quantiles(sortert, n=4)
+kvartilbredde = kvartiler[2] - kvartiler[0]
+
+print(f"Antall observasjoner: {len(sortert)}")
+print(f"Gjennomsnitt:         {snitt:.2f} kr/t")
+print(f"Median:               {median:.2f} kr/t")
+print(f"Kvartilbredde Q3-Q1:  {kvartilbredde:.2f} kr/t")
+      </script>
+
+      <script type="text/plain" id="mal-halvering">
+# Når er verdien av arbeidsmaskinen V(x) = 450000 * 0.84**x lik 200 000 kr?
+def f(x):
+    return 450000 * (0.84 ** x) - 200000
+
+venstre = 0.0
+hoyre = 15.0
+
+for steg in range(30):
+    midt = (venstre + hoyre) / 2
+    if f(venstre) * f(midt) <= 0:
+        hoyre = midt
+    else:
+        venstre = midt
+
+print(f"Maskinen passerer 200 000 kr etter x ≈ {midt:.2f} år.")
+      </script>
+    </section>
+
+    <section class="fag-seksjon">
+      <span class="seksjon-steg-merke">Mestringsoppgaver i kodeforståelse og simulering</span>
+      <h2>Test deg selv (Del 1 &amp; Del 2)</h2>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-py1" data-maal-id="m7" data-type="tall" data-fasit="4" data-toleranse="0"
+        data-rett-melding="✓ Riktig! Løkka kjører for 100 -> 150 (1), 225 (2), 337,5 (3) og passerer 400 på runde 4 (506,25)."
+        data-feil-melding="Ikke helt ennå. Følg variabelen verdi runde for runde: runde 1 gir 150, runde 2 gir 225, runde 3 gir 337,5…">
+        <div class="oppgave-topp">
+          <span><strong>Kodeoppgave 1 (Del 1 uten hjelpemidler)</strong> · Spor en <code>while</code>-løkke i hodet</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0 0 0.5rem">Hvilket tall skriver dette Python-programmet ut til slutt?</p>
+        <pre style="background:#0f172a;color:#f8fafc;padding:0.75rem;border-radius:6px;font-family:var(--f-kode);font-size:0.86rem">verdi = 100
+steg = 0
+while verdi < 400:
+    verdi = verdi * 1.5
+    steg = steg + 1
+print(steg)</pre>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="numeric" aria-label="Utskrift fra programmet" placeholder="Utskrift…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis sporingstabell</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">
+          Start: $\text{verdi} = 100, \text{steg} = 0$<br>
+          1. runde: $100 \cdot 1{,}5 = 150$ ($\text{steg}=1$)<br>
+          2. runde: $150 \cdot 1{,}5 = 225$ ($\text{steg}=2$)<br>
+          3. runde: $225 \cdot 1{,}5 = 337{,}5$ ($\text{steg}=3$)<br>
+          4. runde: $337{,}5 \cdot 1{,}5 = 506{,}25 \ge 400 \implies$ løkka stopper og skriver ut $\mathbf{4}$.
+        </div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-py2" data-maal-id="m7" data-type="tall" data-fasit="49" data-toleranse="0"
+        data-rett-melding="✓ Helt riktig! Med 4 200 kr/mnd og 0,5 % månedsrente er billånet på 180 000 kr nedbetalt på 49 måneder."
+        data-feil-melding="Kjør Mal 1 («1. Nedbetaling av billån») i kodeboksen over, så skriver programmet ut det nøyaktige månedstallet!">
+        <div class="oppgave-topp">
+          <span><strong>Kodeoppgave 2 (Del 2 med Pyodide)</strong> · Kjør og les av lånesimuleringen</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">Kjør <strong>Mal 1 (Nedbetaling av billån)</strong> i kodeboksen lenger opp uten å endre starttallene ($180\,000\text{ kr}$, månedsrente $0{,}5\,\%$, terminbeløp $4\,200\text{ kr}$). Hvor mange <strong>måneder</strong> tar det før billånet er helt nedbetalt?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="numeric" aria-label="Antall måneder" placeholder="Måneder…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <footer class="bunnfot">
+      <span><a href="okt-funksjoner-statistikk.html">← Økt 2: Lineære modeller &amp; statistikk</a></span>
+      <span>Neste: <a href="oppgaveark.html">🖨 Oppgaveark-generatoren (A4) →</a></span>
+    </footer>
+  </main>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="js/campus-data.js"></script>
+  <script defer src="js/campus-core.js"></script>
+  <script defer src="js/python-lab.js"></script>
+</body>
+</html>
