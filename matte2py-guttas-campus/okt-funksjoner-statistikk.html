@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guttas Campus-økt i Matematikk 2P-Y Kapittel 2.2 og 3.2: Lineære funksjoner, break-even, sentralmål og spredningsmål i yrkeslivet.">
+  <title>Økt 2: Lineære modeller og statistikk · Guttas Campus 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2438'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fbbf24' font-family='sans-serif' font-weight='800' font-size='11'%3EGC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/campus.css">
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="camp-topp">
+    <div class="camp-topp-indre">
+      <a class="merke" href="index.html">
+        <span class="merke-emblem">GC · 2P-Y</span>
+        <span class="merke-tekst">
+          <strong>Guttas Campus · Matematikk 2P-Y</strong>
+          <small>Økt 2 · Kap. 2.2 Lineære modeller &amp; Kap. 3.2 Statistikk</small>
+        </span>
+      </a>
+      <nav class="topp-nav" aria-label="Hovedmeny">
+        <a class="topp-lenke" href="index.html">Hovedbase</a>
+        <a class="topp-lenke" href="okt-prosent-vekst.html">Økt 1: Prosent &amp; vekst</a>
+        <a class="topp-lenke aktiv" href="okt-funksjoner-statistikk.html">Økt 2: Modeller &amp; statistikk</a>
+        <a class="topp-lenke" href="python-lab.html">▶ Python-verksted</a>
+        <a class="topp-lenke oppgaveark-cta" href="oppgaveark.html?emne=funksjoner">🖨 Oppgaveark (2.2/3.2)</a>
+        <button type="button" class="topp-knapp" data-mentor-knapp aria-pressed="false">Mentormodus</button>
+        <button type="button" class="topp-knapp" id="tema-knapp" aria-pressed="false">☾ Mørk</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="hovedinnhold" class="ramme">
+    <section class="camp-hero" style="padding:1.35rem 1.6rem">
+      <p class="overtittel">KAPITTEL 2.2 &amp; 3.2 · KOMPETANSEMÅL KM455, KM460, KM461, KM462</p>
+      <h1>Økt 2: Lineære funksjoner, pristilbud og kritisk statistikk</h1>
+      <p class="ingress" style="margin-bottom:0.9rem">
+        <strong>Øktmål:</strong> Stille opp og tolke lineære modeller $f(x)=ax+b$ fra yrkeslivet, finne skjæringspunkt mellom pristilbud, og vurdere gjennomsnitt, median og kvartilbredde kritisk.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:center">
+        <span class="topp-lenke styrke-pille" data-aktiv-styrke-tips>Nysgjerrighet («Prøv, se og lær»)</span>
+        <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=funksjoner">🖨 Skriv ut ark: Lineære modeller</a>
+        <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=statistikk">🖨 Skriv ut ark: Statistikk</a>
+      </div>
+    </section>
+
+    <nav class="okt-flyt" aria-label="Øktens faser">
+      <a href="#oppvarming" class="aktiv">1. Oppvarming</a>
+      <a href="#teori">2A. Lineære modeller ($ax+b$)</a>
+      <a href="#statistikk-del">2B. Lønnsstatistikk &amp; median</a>
+      <a href="#mestringsloype">3. Mestringsløype (Trinn 1–3)</a>
+      <a href="#oppsummering">4. Oppsummering &amp; Loggbok</a>
+    </nav>
+
+    <aside class="mentor-boks">
+      <div class="mentor-tittel">★ Mentortips for Økt 2 (Funksjoner &amp; statistikk)</div>
+      <ul>
+        <li><strong>Koble til elevenes fagbrev:</strong> Spør elevene hva en utrykning eller fast oppmøtepris koster i bransjen deres ($b$), og hva timeprisen er ($a$). Da sitter $f(x) = ax + b$ umiddelbart!</li>
+        <li><strong>Kildekritikk i statistikk (Demokrati og medborgerskap):</strong> Bruk lederlønn-glideren i seksjon 2B og la elevene se hvordan <em>én</em> ekstremverdi flytter gjennomsnittet mens medianen står støtt.</li>
+      </ul>
+    </aside>
+
+    <!-- DEL 1: OPPVARMING -->
+    <section class="fag-seksjon" id="oppvarming" data-oppvarming="funksjoner">
+      <div class="panel-topp">
+        <div>
+          <span class="seksjon-steg-merke">Del 1 av 4 · Aktivering uten kalkulator</span>
+          <h2>Oppvarming: 5 raske om linjer og sentralmål</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.6rem">
+          <strong data-oppv-teller style="font-size:0.9rem;color:var(--gronn)">0 / 5 klare</strong>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-oppv-ny>↻ Nye oppvarmingstall</button>
+        </div>
+      </div>
+      <div class="oppvarming-grid"></div>
+    </section>
+
+    <!-- DEL 2A: LINEÆRE MODELLER -->
+    <section class="fag-seksjon" id="teori">
+      <span class="seksjon-steg-merke">Del 2A · Lineære funksjoner i arbeidslivet</span>
+      <h2>Fastpris, timepris og skjæringspunkt: $f(x) = ax + b$</h2>
+
+      <div class="regelboks">
+        <strong>Oppbygging av en lineær modell $f(x) = ax + b$:</strong>
+        <ul style="margin:0.4rem 0 0;padding-left:1.2rem">
+          <li><strong>Konstantleddet $b = f(0)$:</strong> Startverdien der grafen krysser $y$-aksen (f.eks. fast oppmøtepris eller nypris).</li>
+          <li><strong>Stigningstallet $a$:</strong> Endring i $y$ når $x$ øker med $1$ enhet (f.eks. timepris eller årlig verditap). Ut fra to punkter $(x_1, y_1)$ og $(x_2, y_2)$:
+            $$a = \frac{y_2 - y_1}{x_2 - x_1}$$
+          </li>
+        </ul>
+      </div>
+
+      <div class="eksempel-boks" data-eksempel>
+        <div class="panel-topp" style="margin-bottom:0.4rem">
+          <div>
+            <span class="etikett">Yrkeseksempel · Elektroinstallasjon</span>
+            <h3 style="margin:0.3rem 0 0">Når lønner Firma A seg fremfor Firma B?</h3>
+          </div>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap">
+            <button type="button" class="knapp knapp-liten" data-steg-neste>Neste steg</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-steg-alle>Vis alle</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-steg-nullstill>Nullstill</button>
+          </div>
+        </div>
+        <p style="margin:0.25rem 0 0.6rem">
+          <strong>Elektro A</strong> tar $1\,500\text{ kr}$ i fast oppmøte og $850\text{ kr/time}$.
+          <strong>Elektro B</strong> tar $0\text{ kr}$ i oppmøte, men $1\,150\text{ kr/time}$. Ved hvor mange timer $x$ koster de like mye?
+        </p>
+        <div class="steg-liste">
+          <div class="steg-rad vist">
+            <div><strong>Steg 1 (Sett opp funksjonsuttrykkene):</strong><br>$$A(x) = 850x + 1\,500 \quad \text{og} \quad B(x) = 1\,150x$$</div>
+            <div class="steg-forklaring">$x$ er antall arbeidstimer ($D_f = [0, \rightarrow\rangle$ i praktiske oppdrag).</div>
+          </div>
+          <div class="steg-rad">
+            <div><strong>Steg 2 (Sett $A(x) = B(x)$ ved skjæring):</strong><br>$$850x + 1\,500 = 1\,150x \implies 300x = 1\,500 \implies x = 5$$</div>
+            <div class="steg-forklaring">Ved nøyaktig $5$ timer er prisen lik hos begge: $B(5) = 1\,150 \cdot 5 = 5\,750\text{ kr}$.</div>
+          </div>
+          <div class="steg-rad">
+            <div><strong>Steg 3 (Praktisk konklusjon):</strong><br>Under $5\text{ t} \implies \text{velg B}$ &emsp;|&emsp; Over $5\text{ t} \implies \text{velg A}$</div>
+            <div class="steg-forklaring">Småoppdrag lønner seg uten oppmøtegebyr, mens større jobber lønner seg med lavere timepris.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interaktiv graf for to pristilbud -->
+      <div class="utforsker-boks">
+        <span class="etikett">Interaktiv modellutforsker</span>
+        <h3 style="margin:0.35rem 0 0.6rem">Dra i prisene og se skjæringspunktet flytte seg</h3>
+        <div class="glider-grid">
+          <div class="glider-felt">
+            <label for="fa-b">Firma A oppmøte ($b_A$): <span id="vis-fa-b">1 500 kr</span></label>
+            <input type="range" id="fa-b" min="500" max="3000" step="250" value="1500">
+          </div>
+          <div class="glider-felt">
+            <label for="fa-a">Firma A timepris ($a_A$): <span id="vis-fa-a">850 kr/t</span></label>
+            <input type="range" id="fa-a" min="600" max="1100" step="50" value="850">
+          </div>
+          <div class="glider-felt">
+            <label for="fb-a">Firma B timepris ($a_B$, $b_B=0$): <span id="vis-fb-a">1 150 kr/t</span></label>
+            <input type="range" id="fb-a" min="900" max="1500" step="50" value="1150">
+          </div>
+        </div>
+        <svg id="tilbud-svg" class="graf-svg" viewBox="0 0 680 230" role="img" aria-label="Graf for to lineære pristilbud"></svg>
+        <p id="tilbud-avlesning" style="margin:0.55rem 0 0;font-size:0.9rem;font-weight:700"></p>
+      </div>
+    </section>
+
+    <!-- DEL 2B: STATISTIKK -->
+    <section class="fag-seksjon" id="statistikk-del">
+      <span class="seksjon-steg-merke">Del 2B · Statistikk, sentralmål og spredning (Kap. 3.2)</span>
+      <h2>Gjennomsnitt vs. median – og kvartilbredde ($Q_3 - Q_1$)</h2>
+
+      <div class="regelboks">
+        <strong>Når bruker vi hvilket mål? (Kompetansemål KM455):</strong>
+        <ul style="margin:0.4rem 0 0;padding-left:1.2rem">
+          <li><strong>Gjennomsnitt ($\bar{x}$):</strong> Summen av alle verdier delt på antall verdier $n$. Påvirkes sterkt av <em>ekstremverdier</em> (uteliggere).</li>
+          <li><strong>Median:</strong> Verdien i midten når tallene er sortert stigende (snittet av de to midterste ved partall $n$). Robust mot ekstremverdier!</li>
+          <li><strong>Variasjonsbredde:</strong> $\text{Største verdi} - \text{Minste verdi}$.</li>
+          <li><strong>Kvartilbredde ($Q_3 - Q_1$):</strong> Viser bredden til de <strong>midterste $50\,\%$</strong> av datamaterialet (der $Q_1$ er medianen i nedre halvdel og $Q_3$ er medianen i øvre halvdel).</li>
+        </ul>
+      </div>
+
+      <!-- Interaktiv lønnsutforsker -->
+      <div class="utforsker-boks">
+        <span class="etikett">Utforsk skjevfordeling · Lønn i håndverksbedrift</span>
+        <h3 style="margin:0.35rem 0 0.5rem">Se hva som skjer når daglig leder tar ut høy bonus</h3>
+        <p style="margin:0 0 0.65rem;font-size:0.9rem;color:var(--demp)">
+          6 ansatte i bedriften har årslønn (i tusen kr): <code>340, 480, 510, 520, 540, 560</code>, pluss daglig leder som du styrer med glideren:
+        </p>
+        <div class="glider-felt" style="max-width:460px;margin-bottom:0.75rem">
+          <label for="leder-lonn">Daglig leders årslønn: <span id="vis-leder-lonn">1 650 000 kr</span></label>
+          <input type="range" id="leder-lonn" min="600" max="3200" step="50" value="1650">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.65rem">
+          <div class="oppv-kort"><strong>Medianlønn</strong><div id="stat-median" style="font-size:1.2rem;font-weight:800;color:var(--gronn)">520 000 kr</div><small>Midterste av de 7 ansatte</small></div>
+          <div class="oppv-kort"><strong>Gjennomsnittslønn</strong><div id="stat-snitt" style="font-size:1.2rem;font-weight:800;color:var(--gull)">657 143 kr</div><small>Dras opp av toppverdien</small></div>
+          <div class="oppv-kort"><strong>Kvartilbredde ($Q_3 - Q_1$)</strong><div id="stat-kvartil" style="font-size:1.2rem;font-weight:800">80 000 kr</div><small>$Q_3 = 560\text{k}, Q_1 = 480\text{k}$</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEL 3: TRINNVIS MESTRINGSLØYPE -->
+    <section class="fag-seksjon" id="mestringsloype">
+      <span class="seksjon-steg-merke">Del 3 av 4 · Trinnvis mestringsløype</span>
+      <h2>Mestringsløype: Lineære modeller og statistikk</h2>
+
+      <!-- TRINN 1 -->
+      <div class="trinn-header">
+        <span class="trinn-merke trinn-1">Trinn 1 · Grunnleggende mengdetrening</span>
+        <small style="color:var(--demp)">Funksjonsverdi og median</small>
+      </div>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-f1" data-maal-id="m4" data-type="tall" data-fasit="4700" data-toleranse="1"
+        data-rett-melding="✓ Riktig! K(4) = 900 · 4 + 1 100 = 4 700 kr."
+        data-feil-melding="Ikke riktig ennå. Sett inn x = 4 timer: regn ut 900 · 4 først, og legg deretter til 1 100 kr i oppmøte.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 1.1</strong> · Prismodell for rørlegger</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">En rørlegger bruker prismodellen $K(x) = 900x + 1\,100$, der $x$ er antall timer. Hva koster et oppdrag som varer i $4$ timer?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Pris for 4 timer" placeholder="Svar i kr…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">$$K(4) = 900 \cdot 4 + 1\,100 = 3\,600 + 1\,100 = 4\,700\text{ kr}$$</div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-f2" data-maal-id="m5" data-type="tall" data-fasit="4" data-toleranse="0.01"
+        data-rett-melding="✓ Riktig! Tallene er sortert, og det 4. tallet av 7 i rekka er 4."
+        data-feil-melding="Ikke helt ennå. Med 7 sorterte tall står medianen på plass nr. 4 i rekka.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 1.2</strong> · Finn medianen (Del 1)</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">Antall fraværsdager for $7$ ansatte i et arbeidslag var: $1,\; 2,\; 2,\; 4,\; 6,\; 9,\; 18$. Hva er <strong>medianen</strong>?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Median" placeholder="Median…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">Tallene er allerede sortert stigende. Midterste verdi (nr. 4 av 7) er $\mathbf{4}$.</div>
+      </article>
+
+      <!-- TRINN 2 -->
+      <div class="trinn-header">
+        <span class="trinn-merke trinn-2">Trinn 2 · Påbygg-nivå i yrkeskontekst</span>
+        <small style="color:var(--demp)">Topunktsformel og kritisk valg av sentralmål</small>
+      </div>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-f3" data-maal-id="m4" data-type="tall" data-fasit="-30000" data-toleranse="1"
+        data-rett-melding="✓ Helt riktig! Stigningstallet a = −30 000 forteller at gravemaskinen synker med 30 000 kr i verdi per år."
+        data-feil-melding="Ikke helt ennå. Bruk a = (290 000 − 380 000) / (4 − 1). Husk minustegnet siden verdien synker!">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 2.1</strong> · Lineært verditap på minigraver</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">En minigraver har verdi $380\,000\text{ kr}$ etter $1$ år og $290\,000\text{ kr}$ etter $4$ år. Vi modellerer verdien lineært. Finn stigningstallet $a$ (husk fortegn!).</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Stigningstall a" placeholder="f.eks. -25000">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel">Sett punktene $(1, 380\,000)$ og $(4, 290\,000)$ inn i $a = \frac{y_2 - y_1}{x_2 - x_1}$.</div>
+        <div class="hjelp-panel losning-panel">$$a = \frac{290\,000 - 380\,000}{4 - 1} = \frac{-90\,000}{3} = -30\,000\text{ kr/år}$$</div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-f4" data-maal-id="m5" data-type="flervalg" data-fasit="a"
+        data-rett-melding="✓ Riktig! Medianen lar seg ikke vippe av pinnen av én enkelt ekstremverdi.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 2.2</strong> · Kritisk vurdering av lønnsstatistikk (KM455)</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">I en bedrift tjener 6 fagarbeidere mellom $480\,000\text{ kr}$ og $550\,000\text{ kr}$, mens eieren tar ut $2\,400\,000\text{ kr}$. Hvilket sentralmål beskriver best en typisk lønn i bedriften?</p>
+        <div class="flervalg-liste">
+          <label class="flervalg-rad">
+            <input type="radio" name="f4" value="a">
+            <span><strong>Medianen</strong>, fordi eierens svært høye lønn trekker opp gjennomsnittet slik at snittet blir høyere enn det alle de 6 fagarbeiderne faktisk tjener.</span>
+          </label>
+          <label class="flervalg-rad">
+            <input type="radio" name="f4" value="b" data-forklaring="Gjennomsnittet blir ca. 790 000 kr – altså langt over samtlige vanlige ansatte. Da gir medianen et ærligere bilde av en typisk lønn.">
+            <span><strong>Gjennomsnittet</strong>, fordi det alltid er mest nøyaktig når alle tallene tas med i summen.</span>
+          </label>
+          <label class="flervalg-rad">
+            <input type="radio" name="f4" value="c" data-forklaring="Variasjonsbredde er et spredningsmål (største minus minste), ikke et sentralmål.">
+            <span><strong>Variasjonsbredden</strong>, fordi den viser avstanden opp til eierens lønn.</span>
+          </label>
+        </div>
+        <div class="svar-rad">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+      </article>
+
+      <!-- TRINN 3 -->
+      <div class="trinn-header">
+        <span class="trinn-merke trinn-3">Trinn 3 · Eksamensutfordring</span>
+        <small style="color:var(--demp)">Skjæringspunkt (break-even) og kvartilbredde</small>
+      </div>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-f5" data-maal-id="m6" data-type="tall" data-fasit="8" data-toleranse="0.05"
+        data-rett-melding="✓ Riktig! Ved x = 8 timer koster begge firmaene 8 800 kr."
+        data-feil-melding="Ikke riktig ennå. Sett 800x + 2 400 = 1 100x, samle x på én side (300x = 2 400) og del på 300.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 3.1</strong> · Skjæringspunkt mellom to maskinutleiere</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">Utleier A tar $2\,400\text{ kr}$ i fast frakt og $800\text{ kr/time}$ ($A(x) = 800x + 2\,400$). Utleier B har gratis frakt og tar $1\,100\text{ kr/time}$ ($B(x) = 1\,100x$). Ved hvor mange timer $x$ koster de like mye?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Antall timer ved lik pris" placeholder="Timer x…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">$$800x + 2\,400 = 1\,100x \implies 2\,400 = 300x \implies x = \frac{2\,400}{300} = 8\text{ timer}$$</div>
+      </article>
+
+      <article class="oppgave-kort" data-oppgave-id="gc-f6" data-maal-id="m5" data-type="tall" data-fasit="7.5" data-toleranse="0.05"
+        data-rett-melding="✓ Eksamenstempo! Q₁ = 20,5 og Q₃ = 28,0 gir kvartilbredde Q₃ − Q₁ = 7,5."
+        data-feil-melding="Ikke helt ennå. Del de 8 tallene i 4 nedre (18, 20, 21, 23) og 4 øvre (25, 27, 29, 35). Finn medianen i hver halvdel og trekk Q₁ fra Q₃.">
+        <div class="oppgave-topp">
+          <span><strong>Oppgave 3.2</strong> · Kvartilbredde $Q_3 - Q_1$ på Del 1</span>
+          <span class="oppgave-status">Ikke løst ennå</span>
+        </div>
+        <p style="margin:0">Brukstid (i minutter) på 8 batteripakker er målt til: $18,\; 20,\; 21,\; 23,\; 25,\; 27,\; 29,\; 35$. Regn ut <strong>kvartilbredden</strong> ($Q_3 - Q_1$).</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" inputmode="decimal" aria-label="Kvartilbredde" placeholder="Q3 − Q1…">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Vis utregningssteg</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">
+          Nedre halvdel: $18, 20, 21, 23 \implies Q_1 = \frac{20+21}{2} = 20{,}5$.<br>
+          Øvre halvdel: $25, 27, 29, 35 \implies Q_3 = \frac{27+29}{2} = 28$.<br>
+          $$\text{Kvartilbredde} = Q_3 - Q_1 = 28 - 20{,}5 = 7{,}5$$
+        </div>
+      </article>
+    </section>
+
+    <!-- DEL 4: OPPSUMMERING OG LOGGBOK -->
+    <section class="fag-seksjon" id="oppsummering">
+      <span class="seksjon-steg-merke">Del 4 av 4 · Oppsummering og refleksjon</span>
+      <h2>Sjekk ut av Økt 2</h2>
+      <form class="loggbok-skjema" data-loggbok-skjema="Økt 2: Lineære modeller og statistikk">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem">
+          <div>
+            <label for="logg-styrke-2" style="font-weight:700;font-size:0.86rem">Hvilken karakterstyrke brukte du mest i økta?</label>
+            <select id="logg-styrke-2" name="styrke"></select>
+          </div>
+          <div>
+            <label for="logg-mestring-2" style="font-weight:700;font-size:0.86rem">Egenvurdering etter økta:</label>
+            <select id="logg-mestring-2" name="mestring">
+              <option value="trygg">Trygg på både lineære modeller og median/kvartilbredde</option>
+              <option value="paa-vei" selected>På god vei – vil skrive ut et oppgaveark for mengdetrening</option>
+              <option value="enna">Ikke helt i mål ennå – spør mentor om gjennomgang</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="logg-notat-2" style="font-weight:700;font-size:0.86rem">Hva er det viktigste du tar med deg fra Økt 2?</label>
+          <textarea id="logg-notat-2" name="notat" rows="2" placeholder="F.eks. Median påvirkes ikke av ekstremverdier, og skjæringspunkt finnes ved A(x) = B(x)."></textarea>
+        </div>
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;align-items:center">
+          <button type="submit" class="knapp knapp-gronn knapp-liten">Lagre i loggboka</button>
+          <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=funksjoner">🖨 Skriv ut oppgaveark</a>
+          <a class="knapp knapp-liten" href="python-lab.html">Neste: Python-verksted →</a>
+        </div>
+        <div data-loggbok-status aria-live="polite"></div>
+      </form>
+    </section>
+
+    <footer class="bunnfot">
+      <span><a href="okt-prosent-vekst.html">← Økt 1: Prosent &amp; vekstfaktor</a></span>
+      <span>Neste: <a href="python-lab.html">▶ Python-verksted (Pyodide) →</a></span>
+    </footer>
+  </main>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="js/campus-data.js"></script>
+  <script defer src="js/campus-core.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sFaB = document.getElementById("fa-b");
+      const sFaA = document.getElementById("fa-a");
+      const sFbA = document.getElementById("fb-a");
+      const svg = document.getElementById("tilbud-svg");
+      const tekst = document.getElementById("tilbud-avlesning");
+
+      function tegnTilbud() {
+        if (!svg) return;
+        const bA = Number(sFaB.value);
+        const aA = Number(sFaA.value);
+        const aB = Number(sFbA.value);
+
+        document.getElementById("vis-fa-b").textContent = bA.toLocaleString("nb-NO") + " kr";
+        document.getElementById("vis-fa-a").textContent = aA.toLocaleString("nb-NO") + " kr/t";
+        document.getElementById("vis-fb-a").textContent = aB.toLocaleString("nb-NO") + " kr/t";
+
+        const maksT = 12;
+        const maksKr = Math.max(aA * maksT + bA, aB * maksT, 12000) * 1.08;
+        const x0 = 60, x1 = 655, y0 = 198, y1 = 20;
+        const tx = (t) => x0 + (t / maksT) * (x1 - x0);
+        const ty = (kr) => y0 - (kr / maksKr) * (y0 - y1);
+
+        let grid = "";
+        for (let t = 0; t <= maksT; t += 2) {
+          grid += `<line x1="${tx(t)}" y1="${y1}" x2="${tx(t)}" y2="${y0}" stroke="#cbd5e1" stroke-dasharray="3 3"/>`;
+          grid += `<text x="${tx(t)}" y="${y0 + 17}" text-anchor="middle" font-size="11" fill="#64748b">${t} t</text>`;
+        }
+        for (let i = 0; i <= 4; i++) {
+          const v = (maksKr / 4) * i;
+          grid += `<line x1="${x0}" y1="${ty(v)}" x2="${x1}" y2="${ty(v)}" stroke="#e2e8f0"/>`;
+          grid += `<text x="${x0 - 6}" y="${ty(v) + 4}" text-anchor="end" font-size="10.5" fill="#64748b">${(v / 1000).toFixed(0)}k</text>`;
+        }
+
+        let kryssMarkup = "";
+        if (aB > aA) {
+          const xK = bA / (aB - aA);
+          const yK = aB * xK;
+          if (xK <= maksT) {
+            kryssMarkup = `<circle cx="${tx(xK)}" cy="${ty(yK)}" r="5.5" fill="#dc2626"/>`;
+          }
+          tekst.textContent = `Skjæringspunkt (lik pris): x = ${xK.toFixed(1).replace(".", ",")} timer (${Math.round(yK).toLocaleString("nb-NO")} kr). Over dette er Firma A billigst.`;
+        } else {
+          tekst.textContent = "Firma B har like lav eller lavere timepris OG 0 kr i oppmøte – da er Firma B billigst uansett timall!";
+        }
+
+        svg.innerHTML = `
+          ${grid}
+          <line x1="${tx(0)}" y1="${ty(bA)}" x2="${tx(maksT)}" y2="${ty(aA * maksT + bA)}" stroke="#1a569e" stroke-width="3.2"/>
+          <line x1="${tx(0)}" y1="${ty(0)}" x2="${tx(maksT)}" y2="${ty(aB * maksT)}" stroke="#0f766e" stroke-width="3.2"/>
+          ${kryssMarkup}
+          <text x="${tx(maksT) - 6}" y="${ty(aA * maksT + bA) - 7}" text-anchor="end" font-size="11.5" font-weight="700" fill="#1a569e">Firma A</text>
+          <text x="${tx(maksT) - 6}" y="${ty(aB * maksT) - 7}" text-anchor="end" font-size="11.5" font-weight="700" fill="#0f766e">Firma B</text>
+        `;
+      }
+
+      [sFaB, sFaA, sFbA].forEach((el) => el && el.addEventListener("input", tegnTilbud));
+      tegnTilbud();
+
+      const lederGlider = document.getElementById("leder-lonn");
+      function oppdaterLonn() {
+        if (!lederGlider) return;
+        const leder = Number(lederGlider.value);
+        const alle = [340, 480, 510, 520, 540, 560, leder].sort((a, b) => a - b);
+        const sum = alle.reduce((s, v) => s + v, 0);
+        const snitt = Math.round((sum / alle.length) * 1000);
+        const median = alle[3] * 1000;
+        const kvartil = (alle[5] - alle[1]) * 1000;
+
+        document.getElementById("vis-leder-lonn").textContent = (leder * 1000).toLocaleString("nb-NO") + " kr";
+        document.getElementById("stat-median").textContent = median.toLocaleString("nb-NO") + " kr";
+        document.getElementById("stat-snitt").textContent = snitt.toLocaleString("nb-NO") + " kr";
+        document.getElementById("stat-kvartil").textContent = kvartil.toLocaleString("nb-NO") + " kr";
+      }
+      if (lederGlider) {
+        lederGlider.addEventListener("input", oppdaterLonn);
+        oppdaterLonn();
+      }
+    });
+  </script>
+</body>
+</html>

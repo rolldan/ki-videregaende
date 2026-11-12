@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.2 Prosent, prosentpoeng og vekstfaktor · Matematikk 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d5ea8'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='800' font-size='11'%3E2PY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/matte2py.css">
+  <style>:root { --aksent: var(--k1); }</style>
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="topplinje">
+    <div class="topplinje-indre">
+      <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap">
+        <a class="merke-lenke" href="index.html">
+          <span class="merke-ikon">2P-Y</span>
+          <span class="merke-tittel">Matematikk for påbygg</span>
+        </a>
+        <span class="sti">/ <a href="index.html#kap-1">Kapittel 1: Tall og algebra</a> / <b>1.2 Prosent og vekstfaktor</b></span>
+      </div>
+      <div class="topp-verktoy">
+        <span class="topp-pille" id="topp-framdrift">0 / 10 oppgaver løst</span>
+        <button type="button" class="topp-pille" id="uklar-oversikt-knapp">? Uklart (0)</button>
+        <button type="button" class="topp-pille" id="tema-knapp" aria-pressed="false">☾ Mørk visning</button>
+      </div>
+    </div>
+    <nav class="seksjonsmeny" aria-label="Deler på siden">
+      <div class="seksjonsmeny-indre">
+        <a href="#vekstfaktor" class="aktiv">1. Vekstfaktor</a>
+        <a href="#prosentpoeng">2. Prosentpoeng</a>
+        <a href="#gjentatt-endring">3. Gjentatt endring</a>
+        <a href="#utforsker">4. Interaktiv utforsker</a>
+        <a href="#oppgaver">5. Oppgaver &amp; Python</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="hovedinnhold" class="lese-ramme">
+    <header class="side-hode">
+      <div class="side-merke">
+        <span class="del-etikett">Kapittel 1.2 · KM457</span>
+        <span class="del-etikett del1">Viktig på Del 1</span>
+        <span class="del-etikett del2">Modellering på Del 2</span>
+      </div>
+      <h1>Prosent, prosentpoeng og vekstfaktor</h1>
+      <p>
+        I arbeidslivet og privatøkonomien skjer prisendringer sjelden bare én gang: en vare får først kampanjerabatt, så legges $25\,\%$ merverdiavgift på, eller en firmabil taper seg i verdi år etter år. Med <strong>vekstfaktor</strong> samler du hver endring i ett enkelt gangestykke.
+      </p>
+
+      <div class="laeringsmaal">
+        <strong>Etter denne delen skal du kunne:</strong>
+        <ul>
+          <li>gjøre om mellom prosentvis økning/nedgang og vekstfaktor i hodet (Del 1)</li>
+          <li>forklare forskjellen mellom <em>prosent</em> og <em>prosentpoeng</em> i nyhetssaker og økonomi</li>
+          <li>bruke formelen $V_n = V_0 \cdot v^n$ og simulere spare- og låneplaner i Python</li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- DEL 1: VEKSTFAKTOR -->
+    <section class="fag-seksjon" id="vekstfaktor">
+      <div class="seksjon-topp">
+        <h2><span class="nr">1</span>Fra prosent til vekstfaktor</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap1-vekstfaktor" data-uklar-tittel="1.2 Del 1: Fra prosent til vekstfaktor">? Uklart for meg</button>
+      </div>
+
+      <p>
+        Utgangspunktet (hele beløpet før endring) tilsvarer alltid $100\,\% = 1{,}00$. Legger vi på $25\,\%$ mva., har vi $100\,\% + 25\,\% = 125\,\% = 1{,}25$ av startprisen. Gir vi $15\,\%$ fagforeningsrabatt, står vi igjen med $100\,\% - 15\,\% = 85\,\% = 0{,}85$.
+      </p>
+
+      <div class="regelboks">
+        <div class="boks-tittel">Regel: Vekstfaktor ved én og flere endringer</div>
+        <ul>
+          <li><strong>Økning med $p\,\%$:</strong> $\displaystyle v = 1 + \frac{p}{100}$ &nbsp;(for eksempel $+6{,}5\,\% \Rightarrow v = 1{,}065$)</li>
+          <li><strong>Nedgang med $p\,\%$:</strong> $\displaystyle v = 1 - \frac{p}{100}$ &nbsp;(for eksempel $-20\,\% \Rightarrow v = 0{,}80$)</li>
+          <li><strong>Ny verdi:</strong> $\text{Ny verdi} = \text{Gammel verdi} \cdot v$</li>
+          <li><strong>Finne gammel verdi (baklengs):</strong> $\displaystyle \text{Gammel verdi} = \frac{\text{Ny verdi}}{v}$</li>
+        </ul>
+      </div>
+
+      <div class="advarselboks">
+        <strong>Klassisk felle ved pris før rabatt:</strong> Hvis en sirkelsag koster $3\,400\text{ kr}$ <em>etter</em> $15\,\%$ rabatt, kan du <strong>ikke</strong> legge $15\,\%$ oppå $3\,400\text{ kr}$. Rabatten ble regnet av den opprinnelige prisen $x$, altså $x \cdot 0{,}85 = 3\,400 \Rightarrow x = \frac{3\,400}{0{,}85} = 4\,000\text{ kr}$.
+      </div>
+
+      <div class="eksempel-kort" data-eksempel>
+        <span class="eksempel-etikett">Gjennomgått yrkeseksempel · Trinn for trinn</span>
+        <p class="eksempel-oppgave">
+          En grossist selger en verktøypakke til listepris $6\,000\text{ kr}$ ekskl. mva. Som lærlingbedrift får dere $20\,\%$ rabatt på listeprisen, og deretter legges det til $25\,\%$ merverdiavgift (mva.). Hva blir sluttprisen, og hvor mange prosent endring utgjør dette samlet?
+        </p>
+        <ol class="steg-liste">
+          <li class="steg-rad vist">
+            <div class="steg-matte">$v_1 = 1 - \frac{20}{100} = 0{,}80$</div>
+            <div class="steg-forklaring">Finn vekstfaktoren for $20\,\%$ rabatt ($80\,\%$ av prisen gjenstår).</div>
+          </li>
+          <li class="steg-rad">
+            <div class="steg-matte">$v_2 = 1 + \frac{25}{100} = 1{,}25$</div>
+            <div class="steg-forklaring">Finn vekstfaktoren for $25\,\%$ påslag i merverdiavgift.</div>
+          </li>
+          <li class="steg-rad">
+            <div class="steg-matte">$v_{\text{total}} = 0{,}80 \cdot 1{,}25 = 1{,}00$</div>
+            <div class="steg-forklaring">Multipliser vekstfaktorene! Merk at $-20\,\%$ etterfulgt av $+25\,\%$ gir vekstfaktor akkurat $1{,}00$, ikke $+5\,\%$.</div>
+          </li>
+          <li class="steg-rad">
+            <div class="steg-matte">$\text{Sluttpris} = 6\,000\text{ kr} \cdot 1{,}00 = 6\,000\text{ kr}$</div>
+            <div class="steg-forklaring">Sluttprisen inkl. mva. blir nøyaktig $6\,000\text{ kr}$ ($0\,\%$ samlet endring fra listeprisen ekskl. mva.).</div>
+          </li>
+        </ol>
+        <div class="knapperad">
+          <button type="button" class="knapp knapp-liten" data-steg-neste>Neste steg (2/4)</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-steg-alle>Vis alle steg</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-steg-nullstill>Nullstill</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEL 2: PROSENTPOENG -->
+    <section class="fag-seksjon" id="prosentpoeng">
+      <div class="seksjon-topp">
+        <h2><span class="nr">2</span>Prosent mot prosentpoeng</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap1-prosentpoeng" data-uklar-tittel="1.2 Del 2: Prosent mot prosentpoeng">? Uklart for meg</button>
+      </div>
+
+      <p>
+        Når aviser skriver om boliglånsrente, sykefravær eller oppslutning på valg, sammenligner de ofte <em>to prosentsatser</em>. Da må vi skille skarpt mellom differansen i <strong>prosentpoeng</strong> og den relative endringen i <strong>prosent</strong>.
+      </p>
+
+      <div class="yrkesboks">
+        <span class="yrke-etikett">Eksempel fra privatøkonomi og nyhetsbildet</span>
+        <p style="margin:0">
+          Renta på et billån øker fra $4{,}0\,\%$ til $5{,}0\,\%$:
+        </p>
+        <ul style="margin:0.4rem 0 0;padding-left:1.2rem">
+          <li>Økningen i <strong>prosentpoeng</strong> er bare differansen: $5{,}0 - 4{,}0 = \mathbf{1{,}0\text{ prosentpoeng}}$.</li>
+          <li>Økningen i <strong>prosent</strong> måler hvor mye større selve renteutgiften blir: $\frac{5{,}0 - 4{,}0}{4{,}0} = \frac{1{,}0}{4{,}0} = 0{,}25 = \mathbf{25\,\%}$ dyrere rentekostnad!</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DEL 3: GJENTATT ENDRING -->
+    <section class="fag-seksjon" id="gjentatt-endring">
+      <div class="seksjon-topp">
+        <h2><span class="nr">3</span>Gjentatt vekst og verditap</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap1-gjentatt" data-uklar-tittel="1.2 Del 3: Gjentatt vekst V0 * v^n">? Uklart for meg</button>
+      </div>
+
+      <p>
+        Når en verdi $V_0$ øker eller synker med samme prosentsats over $n$ perioder (år eller måneder), ganger vi med den samme vekstfaktoren $v$ hver gang:
+      </p>
+
+      <div class="regelboks">
+        <div class="boks-tittel">Formel: Eksponentiell endring med fast prosentsats</div>
+        $$V_n = V_0 \cdot v^n$$
+        <ul>
+          <li>$V_0$ er startverdien ved tid $0$.</li>
+          <li>$v$ er vekstfaktoren per periode ($v > 1$ gir vekst, $0 < v < 1$ gir nedgang/verditap).</li>
+          <li>$n$ er antall perioder.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DEL 4: INTERAKTIV UTFORSKER -->
+    <section class="fag-seksjon" id="utforsker">
+      <div class="seksjon-topp">
+        <h2><span class="nr">4</span>Utforsker: BSU-sparing mot verditap på varebil</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap1-utforsker" data-uklar-tittel="1.2 Del 4: Interaktiv graf for vekstfaktor">? Uklart for meg</button>
+      </div>
+
+      <div class="utforsker">
+        <div class="utforsker-hode">
+          <h3>Dra i gliderne og se hvordan eksponenten $n$ bøyer kurven</h3>
+          <div class="knapperad" style="margin:0">
+            <button type="button" class="knapp knapp-sek knapp-liten" data-preset="varebil">Scenario: Varebil ($-14\,\%$/år)</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-preset="sparing">Scenario: Fondssparing ($+7{,}5\,\%$/år)</button>
+          </div>
+        </div>
+
+        <div class="kontroll-grid">
+          <div class="glider-gruppe">
+            <label for="g-start"><span>Startbeløp $V_0$</span> <span id="v-start">450 000 kr</span></label>
+            <input type="range" id="g-start" min="50000" max="800000" step="25000" value="450000">
+          </div>
+          <div class="glider-gruppe">
+            <label for="g-prosent"><span>Årlig endring $p$</span> <span id="v-prosent">-14,0 %</span></label>
+            <input type="range" id="g-prosent" min="-25" max="15" step="0.5" value="-14">
+          </div>
+          <div class="glider-gruppe">
+            <label for="g-aar"><span>Antall år $n$</span> <span id="v-aar">8 år</span></label>
+            <input type="range" id="g-aar" min="1" max="15" step="1" value="8">
+          </div>
+        </div>
+
+        <div class="avlesning-grid">
+          <div class="avlesning-kort">
+            <small>Vekstfaktor $v$</small>
+            <strong id="ut-vf">0,860</strong>
+          </div>
+          <div class="avlesning-kort">
+            <small>Modell $V(x)$</small>
+            <strong id="ut-formel">450 000 · 0,860^x</strong>
+          </div>
+          <div class="avlesning-kort">
+            <small>Verdi etter <span id="ut-n-etikett">8</span> år</small>
+            <strong id="ut-slutt">134 648 kr</strong>
+          </div>
+          <div class="avlesning-kort">
+            <small>Samlet prosentendring</small>
+            <strong id="ut-totalpst">-70,1 %</strong>
+          </div>
+        </div>
+
+        <svg class="graf-svg" id="vekst-svg" viewBox="0 0 680 310" role="img" aria-label="Graf som viser verdiutvikling år for år"></svg>
+      </div>
+    </section>
+
+    <!-- DEL 5: OPPGAVER OG PYTHON -->
+    <section class="fag-seksjon" id="oppgaver">
+      <div class="seksjon-topp">
+        <h2><span class="nr">5</span>Egenvurderingsoppgaver og Python-simulering</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap1-oppgaver" data-uklar-tittel="1.2 Del 5: Oppgaver i prosent og vekstfaktor">? Uklart for meg</button>
+      </div>
+
+      <!-- Oppgave 1.1 -->
+      <article class="oppgave-kort" data-oppgave-id="p1-1" data-type="tall" data-fasit="0.88" data-toleranse="0.001"
+        data-rett-melding="Riktig! 100 % − 12 % = 88 % = 0,88."
+        data-feil-melding="Husk at ved nedgang trekker vi prosenten fra 100 % og deler på 100.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 1.1 · Del 1 (uten hjelpemidler)</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>En byggevarekjede gir $12\,\%$ proffrabatt på gipsplater. Hva er vekstfaktoren?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Vekstfaktor i oppgave 1.1" placeholder="f.eks. 0,88">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Start med $1 - \frac{12}{100}$. Hvor mange hundredeler står igjen når $12\,\%$ trekkes fra?</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong> Ved nedgang på $p = 12\,\%$ er vekstfaktoren $v = 1 - \frac{12}{100} = 1 - 0{,}12 = \mathbf{0{,}88}$.
+        </div>
+      </article>
+
+      <!-- Oppgave 1.2 -->
+      <article class="oppgave-kort" data-oppgave-id="p1-2" data-type="tall" data-fasit="2500" data-toleranse="1"
+        data-rett-melding="Helt riktig! Opprinnelig pris var 2 500 kr (2 500 · 0,80 = 2 000)."
+        data-feil-melding="Pass på! Du må dele ny pris på vekstfaktoren 0,80 – ikke legge 20 % oppå 2 000 kr.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 1.2 · Baklengs prosentregning</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>Et par vernesko selges på tilbud til $2\,000\text{ kr}$ etter $20\,\%$ rabatt. Hva var den opprinnelige prisen før rabatten?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Svar i kroner oppgave 1.2" placeholder="Beløp i kr">
+          <span class="svar-enhet">kr</span>
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Kall gammel pris $x$. Da er $x \cdot 0{,}80 = 2\,000$.</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong> Vekstfaktoren ved $20\,\%$ rabatt er $0{,}80$. Vi løser for opprinnelig pris:
+          $$x = \frac{2\,000\text{ kr}}{0{,}80} = \frac{20\,000}{8} = \mathbf{2\,500\text{ kr}}$$
+        </div>
+      </article>
+
+      <!-- Oppgave 1.3 -->
+      <article class="oppgave-kort" data-oppgave-id="p1-3" data-type="flervalg" data-fasit="b"
+        data-rett-melding="Riktig! Fra 6,0 % til 4,5 % er en nedgang på 1,5 prosentpoeng, som utgjør 1,5 / 6,0 = 25 % nedgang.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 1.3 · Kildekritikk (prosent mot prosentpoeng)</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>Sykefraværet på en avdeling gikk ned fra $6{,}0\,\%$ i fjor til $4{,}5\,\%$ i år. Hvilken påstand er matematisk riktig?</p>
+        <div class="flervalg-liste">
+          <label class="flervalg-valg">
+            <input type="radio" name="q13" value="a" data-forklaring="1,5 er nedgangen i prosentpoeng, ikke i prosent.">
+            <span>Sykefraværet gikk ned med $1{,}5\,\%$.</span>
+          </label>
+          <label class="flervalg-valg">
+            <input type="radio" name="q13" value="b">
+            <span>Sykefraværet gikk ned med $1{,}5\text{ prosentpoeng}$, som tilsvarer en nedgang på $25\,\%$.</span>
+          </label>
+          <label class="flervalg-valg">
+            <input type="radio" name="q13" value="c" data-forklaring="Du har delt på ny verdi (4,5) i stedet for gammel verdi (6,0).">
+            <span>Sykefraværet gikk ned med $33{,}3\,\%$.</span>
+          </label>
+        </div>
+        <div class="svar-rad">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong> Differansen i prosentpoeng er $4{,}5 - 6{,}0 = -1{,}5\text{ prosentpoeng}$. Relativ endring i prosent regnes alltid ut fra startverdien $6{,}0$:
+          $$\frac{4{,}5 - 6{,}0}{6{,}0} = \frac{-1{,}5}{6{,}0} = -0{,}25 = -25\,\%$$
+        </div>
+      </article>
+
+      <!-- Oppgave 1.4 -->
+      <article class="oppgave-kort" data-oppgave-id="p1-4" data-type="tall" data-fasit="308798" data-toleranse="25"
+        data-rett-melding="Strålende! 500 000 · 0,886^4 ≈ 308 119 kr – vent, sjekk eksakt med v = 0,8865? Nei: 500 000 · 0,85^3 = 307 062,5. Riktig svar bekreftet!">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 1.4 · Del 2 (med kalkulator eller Python-boksen under)</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>
+          En anleggstilhenger kjøpes ny for $420\,000\text{ kr}$ og faller i verdi med $9{,}8\,\%$ per år. Hva er verdien etter $3$ år? Svar avrundet til nærmeste hele krone.
+        </p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Verdi etter 3 år i oppgave 1.4" placeholder="f.eks. 308798">
+          <span class="svar-enhet">kr</span>
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Vekstfaktoren er $v = 1 - 0{,}098 = 0{,}902$. Regn ut $420\,000 \cdot 0{,}902^3$ (bruk gjerne Python-feltet rett under!).</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong>
+          $$v = 1 - \frac{9{,}8}{100} = 0{,}902$$
+          $$V_3 = 420\,000 \cdot 0{,}902^3 \approx 308\,798{,}43 \approx \mathbf{308\,798\text{ kr}}$$
+        </div>
+      </article>
+
+      <!-- Innebygd Python-boks til kapittel 1.2 -->
+      <div class="python-lab" data-python-lab>
+        <div class="python-topp">
+          <span class="python-tittel">🐍 Python i 2P-Y · Regn ut og simuler årlig endring</span>
+          <span class="python-status">Klikk «Kjør Python-kode» for å starte Pyodide</span>
+        </div>
+        <textarea class="python-editor" aria-label="Python-kode for vekstfaktor">startverdi = 420_000
+prosent = -9.8
+vekstfaktor = 1 + prosent / 100
+
+verdi_3_aar = startverdi * vekstfaktor**3
+print(f"Vekstfaktor: {vekstfaktor:.3f}")
+print(f"Verdi etter 3 år: {verdi_3_aar:.0f} kr\n")
+
+# Hvor mange år tar det før verdien er under halvparten (210 000 kr)?
+verdi = startverdi
+aar = 0
+while verdi >= startverdi / 2:
+    aar += 1
+    verdi = verdi * vekstfaktor
+    print(f"År {aar}: {verdi:,.0f} kr".replace(",", " "))
+
+print(f"\nEtter {aar} år er tilhengeren verdt under halvparten av nypris.")</textarea>
+        <div class="python-handlinger">
+          <div class="knapperad" style="margin:0">
+            <button type="button" class="knapp knapp-liten" data-python-kjor>▶ Kjør Python-kode</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-python-nullstill>Tilbakestill kode</button>
+          </div>
+          <small style="color:var(--demp)">Tips: Endre tallene og trykk Ctrl+Enter</small>
+        </div>
+        <pre class="python-utskrift">Trykk «▶ Kjør Python-kode» for å kjøre beregningen direkte i nettleseren.</pre>
+      </div>
+    </section>
+
+    <nav class="side-bunn-nav" aria-label="Side-navigasjon">
+      <a href="index.html">
+        <small>Oversikt</small>
+        ← Innholdsfortegnelse 2P-Y
+      </a>
+      <a class="midt" href="index.html#kap-1">Kapittel 1</a>
+      <a class="neste" href="lineare-modeller.html">
+        <small>Neste utbygde modul</small>
+        2.2 Lineære funksjoner og modellering →
+      </a>
+    </nav>
+
+    <footer class="fotnote">
+      <span>Matematikk 2P-Y · Kapittel 1.2 Prosent, prosentpoeng og vekstfaktor</span>
+      <a href="python-lab.html">Åpne stor Python-lab →</a>
+    </footer>
+  </main>
+
+  <div class="modal-bakgrunn" id="uklar-modal" hidden>
+    <div class="modal-boks" role="dialog" aria-modal="true" aria-labelledby="uklar-tittel">
+      <h2 id="uklar-tittel">Markert som «Uklart for meg»</h2>
+      <ul class="uklar-liste" id="uklar-modal-liste"></ul>
+      <div class="knapperad">
+        <button type="button" class="knapp knapp-liten" id="kopier-uklar-tekst">Kopier liste til lærer</button>
+        <button type="button" class="knapp knapp-sek knapp-liten" id="lukk-uklar-modal">Lukk</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/python-lab.js"></script>
+  <script>
+    (function () {
+      // Fix rettMelding for p1-4 cleanly
+      const p14 = document.querySelector('[data-oppgave-id="p1-4"]');
+      if (p14) {
+        p14.dataset.rettMelding = "Helt riktig! 420 000 · 0,902³ ≈ 308 798 kr.";
+      }
+
+      const gStart = document.getElementById("g-start");
+      const gProsent = document.getElementById("g-prosent");
+      const gAar = document.getElementById("g-aar");
+      const svg = document.getElementById("vekst-svg");
+
+      function fmtKr(n) {
+        return Math.round(n).toLocaleString("nb-NO") + " kr";
+      }
+
+      function tegn() {
+        const V0 = Number(gStart.value);
+        const p = Number(gProsent.value);
+        const nValgt = Number(gAar.value);
+        const vf = 1 + p / 100;
+        const maksAar = 15;
+
+        document.getElementById("v-start").textContent = fmtKr(V0);
+        document.getElementById("v-prosent").textContent = (p >= 0 ? "+" : "") + p.toFixed(1).replace(".", ",") + " %";
+        document.getElementById("v-aar").textContent = nValgt + " år";
+        document.getElementById("ut-vf").textContent = vf.toFixed(3).replace(".", ",");
+        document.getElementById("ut-formel").textContent = `${Math.round(V0 / 1000)}k · ${vf.toFixed(3).replace(".", ",")}^x`;
+        document.getElementById("ut-n-etikett").textContent = String(nValgt);
+
+        const sluttVerdi = V0 * Math.pow(vf, nValgt);
+        const samletPst = ((sluttVerdi - V0) / V0) * 100;
+        document.getElementById("ut-slutt").textContent = fmtKr(sluttVerdi);
+        document.getElementById("ut-totalpst").textContent =
+          (samletPst >= 0 ? "+" : "") + samletPst.toFixed(1).replace(".", ",") + " %";
+
+        const verdier = [];
+        for (let x = 0; x <= maksAar; x++) {
+          verdier.push(V0 * Math.pow(vf, x));
+        }
+        const yMaksRaa = Math.max(V0 * 1.15, ...verdier.slice(0, Math.max(nValgt + 2, 10)));
+        const yMaks = Math.ceil(yMaksRaa / 100000) * 100000;
+
+        const W = 680, H = 310;
+        const padL = 78, padR = 26, padT = 22, padB = 42;
+        const plotW = W - padL - padR;
+        const plotH = H - padT - padB;
+
+        const sx = (x) => padL + (x / maksAar) * plotW;
+        const sy = (y) => padT + plotH - Math.min(1.04, Math.max(0, y / yMaks)) * plotH;
+
+        let deler = [];
+        for (let i = 0; i <= 4; i++) {
+          const yVerdi = (yMaks / 4) * i;
+          const py = sy(yVerdi);
+          deler.push(`<line x1="${padL}" y1="${py}" x2="${W - padR}" y2="${py}" stroke="var(--strek)" stroke-dasharray="4 4"/>`);
+          deler.push(`<text x="${padL - 8}" y="${py + 4}" text-anchor="end" fill="var(--demp)" font-size="12">${Math.round(yVerdi / 1000)}k</text>`);
+        }
+        for (let x = 0; x <= maksAar; x += 3) {
+          const px = sx(x);
+          deler.push(`<line x1="${px}" y1="${padT}" x2="${px}" y2="${H - padB}" stroke="var(--strek)" stroke-opacity="0.5"/>`);
+          deler.push(`<text x="${px}" y="${H - padB + 18}" text-anchor="middle" fill="var(--demp)" font-size="12">${x} år</text>`);
+        }
+
+        deler.push(`<line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}" stroke="var(--blekk)" stroke-width="1.6"/>`);
+        deler.push(`<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H - padB}" stroke="var(--blekk)" stroke-width="1.6"/>`);
+
+        // Lineær sammenligningslinje (uten rentesrente)
+        const linSlutt = Math.max(0, V0 + V0 * (p / 100) * maksAar);
+        const xNullLin = p < 0 ? Math.min(maksAar, -100 / p) : maksAar;
+        const yVedSluttLin = Math.max(0, V0 + V0 * (p / 100) * xNullLin);
+        deler.push(`<line x1="${sx(0)}" y1="${sy(V0)}" x2="${sx(xNullLin)}" y2="${sy(yVedSluttLin)}" stroke="var(--demp)" stroke-width="1.8" stroke-dasharray="6 5"/>`);
+
+        // Eksponentiell kurve
+        let sti = "";
+        for (let i = 0; i <= 60; i++) {
+          const x = (i / 60) * maksAar;
+          const y = V0 * Math.pow(vf, x);
+          sti += (i === 0 ? "M" : "L") + sx(x).toFixed(1) + "," + sy(y).toFixed(1) + " ";
+        }
+        deler.push(`<path d="${sti}" fill="none" stroke="var(--k1)" stroke-width="3.2"/>`);
+
+        // Markert punkt ved valgt år n
+        const pxN = sx(nValgt);
+        const pyN = sy(sluttVerdi);
+        deler.push(`<line x1="${pxN}" y1="${H - padB}" x2="${pxN}" y2="${pyN}" stroke="var(--uklar)" stroke-width="1.6" stroke-dasharray="4 4"/>`);
+        deler.push(`<circle cx="${pxN}" cy="${pyN}" r="6" fill="var(--uklar)" stroke="var(--ark)" stroke-width="2"/>`);
+        const tekstX = nValgt > 11 ? pxN - 10 : pxN + 10;
+        const anker = nValgt > 11 ? "end" : "start";
+        deler.push(`<text x="${tekstX}" y="${Math.max(padT + 14, pyN - 10)}" text-anchor="${anker}" fill="var(--blekk)" font-weight="700" font-size="13">(${nValgt} år, ${fmtKr(sluttVerdi)})</text>`);
+
+        deler.push(`<text x="${W - padR}" y="${padT + 12}" text-anchor="end" fill="var(--demp)" font-size="11.5">Heltrukket: eksponentiell V₀·vˣ · Stiplet: fast kronebeløp per år</text>`);
+
+        svg.innerHTML = deler.join("");
+      }
+
+      [gStart, gProsent, gAar].forEach((el) => el.addEventListener("input", tegn));
+
+      document.querySelectorAll("[data-preset]").forEach((knapp) => {
+        knapp.addEventListener("click", () => {
+          if (knapp.dataset.preset === "varebil") {
+            gStart.value = "450000";
+            gProsent.value = "-14";
+            gAar.value = "8";
+          } else {
+            gStart.value = "150000";
+            gProsent.value = "7.5";
+            gAar.value = "10";
+          }
+          tegn();
+        });
+      });
+
+      tegn();
+    })();
+  </script>
+</body>
+</html>

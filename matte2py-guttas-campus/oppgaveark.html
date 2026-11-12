@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Utskriftsklar A4-oppgavearkgenerator for Matematikk 2P-Y (Guttas Campus) med parameteriserte tallvarianter, rutenett for håndregning og valgfri fasit.">
+  <title>Oppgaveark-generator (A4) · Guttas Campus Matematikk 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2438'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fbbf24' font-family='sans-serif' font-weight='800' font-size='11'%3EGC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/campus.css">
+  <link rel="stylesheet" href="css/print-worksheet.css">
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="camp-topp">
+    <div class="camp-topp-indre">
+      <a class="merke" href="index.html">
+        <span class="merke-emblem">GC · 2P-Y</span>
+        <span class="merke-tekst">
+          <strong>Guttas Campus · Matematikk 2P-Y</strong>
+          <small>Oppgaveark-generator · Mengdetrening på papir + lærerfasit</small>
+        </span>
+      </a>
+      <nav class="topp-nav" aria-label="Hovedmeny">
+        <a class="topp-lenke" href="index.html">Hovedbase</a>
+        <a class="topp-lenke" href="okt-prosent-vekst.html">Økt 1: Prosent &amp; vekst</a>
+        <a class="topp-lenke" href="okt-funksjoner-statistikk.html">Økt 2: Modeller &amp; statistikk</a>
+        <a class="topp-lenke" href="python-lab.html">▶ Python-verksted</a>
+        <a class="topp-lenke oppgaveark-cta aktiv" href="oppgaveark.html">🖨 Oppgaveark (A4)</a>
+        <button type="button" class="topp-knapp" data-mentor-knapp aria-pressed="false">Mentormodus</button>
+        <button type="button" class="topp-knapp" id="tema-knapp" aria-pressed="false">☾ Mørk</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="hovedinnhold" class="ramme">
+    <aside class="mentor-boks">
+      <div class="mentor-tittel">★ Slik brukes Oppgaveark-modulen på camp og i klasserommet</div>
+      <p>
+        Skriv ut ett elevark (med <em>Vis fasit og utregningssteg</em> skrudd <strong>AV</strong>) til hver elev, og ett eksemplar med fasit skrudd <strong>PÅ</strong> til mentor/lærerbordet.
+        Trenger en elev ekstra mengdetrening på akkurat samme ferdighet dagen etter? Klikk <strong>«↻ Generer nye tallvarianter»</strong> for et helt ferskt A4-ark med ny Ark-ID!
+      </p>
+    </aside>
+
+    <!-- Kontrollpanel (skjules automatisk ved utskrift) -->
+    <section class="ark-kontrollpanel" aria-label="Innstillinger for oppgaveark">
+      <div class="panel-topp" style="margin-bottom:0.3rem">
+        <div>
+          <span class="etikett">Papir + Campus Inkrement · A4-generator</span>
+          <h1 style="margin:0.2rem 0 0;font-family:var(--f-display);font-size:1.5rem">Sett sammen og skriv ut 2P-Y-oppgaveark</h1>
+        </div>
+        <div style="display:flex;gap:0.55rem;flex-wrap:wrap">
+          <button type="button" class="knapp knapp-gronn" id="knapp-nye-tall">↻ Generer nye tallvarianter</button>
+          <button type="button" class="knapp" id="knapp-skriv-ut">🖨 Skriv ut / Lagre som PDF (A4)</button>
+        </div>
+      </div>
+
+      <div class="kontroll-grid">
+        <div class="kontroll-felt">
+          <label for="velg-emne">1. Velg emne i 2P-Y</label>
+          <select id="velg-emne">
+            <option value="prosent">Kap. 1.2 · Prosent, prosentpoeng &amp; vekstfaktor</option>
+            <option value="funksjoner">Kap. 2.2 · Lineære funksjoner &amp; break-even</option>
+            <option value="statistikk">Kap. 3.2 · Statistikk, median &amp; kvartilbredde</option>
+            <option value="algebra">Kap. 1.1 &amp; 1.3 · Proporsjonalitet &amp; standardform</option>
+            <option value="python">Kap. 4 &amp; 5 · Datasett &amp; Python-kodeforståelse</option>
+            <option value="blandet">Blandet 2P-Y eksamensark (alle emner)</option>
+          </select>
+        </div>
+
+        <div class="kontroll-felt">
+          <label for="velg-niva">2. Velg mestringsnivå / arktype</label>
+          <select id="velg-niva">
+            <option value="komplett">Komplett Guttas Campus-øktark (Trinn 1–3)</option>
+            <option value="niva1">Nivå 1 · Grunnleggende mengdetrening</option>
+            <option value="niva2">Nivå 2 · Påbygg-standard</option>
+            <option value="niva3">Nivå 3 · Eksamensrettet utfordring</option>
+          </select>
+        </div>
+
+        <div class="kontroll-felt">
+          <label for="velg-antall">3. Antall hovedoppgaver</label>
+          <select id="velg-antall">
+            <option value="4">4 oppgaver (kort økt / 20 min)</option>
+            <option value="5" selected>5 oppgaver (standard 45 min økt)</option>
+            <option value="6">6 oppgaver (full camp-økt)</option>
+            <option value="8">8 oppgaver (mengdetreningshefte)</option>
+          </select>
+        </div>
+
+        <div class="kontroll-felt">
+          <label for="velg-styrke">4. Dagens karakterstyrke på arket</label>
+          <select id="velg-styrke"></select>
+        </div>
+
+        <div class="kontroll-felt">
+          <label for="felt-oktmaal">5. Øktmål (vises i toppfeltet)</label>
+          <input type="text" id="felt-oktmaal" placeholder="Bruke vekstfaktor sikkert ved rabatt, mva. og førpris.">
+        </div>
+
+        <div class="kontroll-felt">
+          <label for="velg-rutestil">6. Utregningsfelt for håndskrift</label>
+          <select id="velg-rutestil">
+            <option value="ruter" selected>Ruteark (5 mm rutenett)</option>
+            <option value="linjer">Linjert skrivefelt</option>
+            <option value="blank">Åpen ramme uten ruter</option>
+          </select>
+        </div>
+
+        <div class="kontroll-felt">
+          <label for="felt-dato">Dato på arket</label>
+          <input type="date" id="felt-dato">
+        </div>
+      </div>
+
+      <div class="kontroll-handlinger">
+        <div class="bryter-gruppe">
+          <label class="bryter-etikett">
+            <input type="checkbox" id="bryter-fasit" checked>
+            <span>Vis fasit og utregningssteg (lærerfasit / egenkontroll)</span>
+          </label>
+          <label class="bryter-etikett">
+            <input type="checkbox" id="bryter-nyside" checked>
+            <span>Start fasit på egen A4-side ved utskrift</span>
+          </label>
+        </div>
+        <small class="skjerm-info" style="color:var(--demp)">Tips: Skru av fasitbryteren når du skriver ut elevarket, og skru den på for lærerfasit.</small>
+      </div>
+    </section>
+
+    <!-- Selve A4-oppgavearket -->
+    <div class="a4-pakke">
+      <section class="a4-ark" id="a4-ark" aria-label="Forhåndsvisning av A4-oppgaveark">
+        <header class="ark-hode">
+          <div class="ark-hode-topp">
+            <div class="ark-merke">
+              <span class="ark-merke-boks">GUTTAS CAMPUS · 2P-Y</span>
+              <div class="ark-tittel-blokk">
+                <h1 id="ark-tittel">Kap. 1.2 · Prosent, prosentpoeng og vekstfaktor</h1>
+                <p id="ark-undertittel">Komplett Guttas Campus-øktark (Oppvarming + Trinn 1–3 + Loggbok)</p>
+              </div>
+            </div>
+            <div class="ark-kode-boks">
+              <span>Matematikk 2P-Y (MAT06-04)</span>
+              <strong id="ark-kode">GC-2PY-4820</strong>
+            </div>
+          </div>
+
+          <div class="ark-elevfelt">
+            <div class="elev-linje"><b>Navn:</b> <span class="skrive-strek"></span></div>
+            <div class="elev-linje"><b>Dato:</b> <span class="skrive-strek" id="ark-vis-dato"></span></div>
+            <div class="elev-linje"><b>Øktmål:</b> <span class="skrive-strek" id="ark-vis-maal"></span></div>
+            <div class="elev-linje"><b>Karakterstyrke:</b> <span class="skrive-strek" id="ark-vis-styrke"></span></div>
+          </div>
+        </header>
+
+        <!-- Oppvarmingsstripe (vises i Komplett øktark) -->
+        <section class="ark-oppvarming" id="ark-oppvarming-seksjon">
+          <h2>Del 1 · Oppvarming i hodet (uten kalkulator)</h2>
+          <div class="ark-oppv-grid" id="ark-oppvarming-grid"></div>
+        </section>
+
+        <!-- Hovedoppgaver med rutenett -->
+        <div class="ark-oppgaveliste" id="ark-oppgaveliste"></div>
+
+        <!-- Egenvurdering / utsjekk på papir -->
+        <footer class="ark-loggbok" id="ark-loggbok-bunn">
+          <strong>Loggbok-utsjekk etter økta («Ingen kan alt ennå – men øving flytter deg opp Måltrappa»):</strong>
+          <div class="ark-loggbok-rad">
+            <span>Kryss av dagens innsats: ☐ Jeg førte alle mellomregninger &emsp; ☐ Jeg brukte dagens karakterstyrke</span>
+            <span>Mestring nå: ☐ Trygg &emsp; ☐ På god vei &emsp; ☐ Ikke helt ennå (spør mentor)</span>
+          </div>
+        </footer>
+
+        <!-- Egen fasit- og utregningsseksjon (kan skjules med bryteren) -->
+        <section class="fasit-seksjon ny-side" id="fasit-seksjon">
+          <div class="fasit-hode">
+            <h2>Fasit og steg-for-steg utregning (Lærer / egenkontroll)</h2>
+            <span style="font-size:8.8pt;color:#475569;font-family:'JetBrains Mono',monospace" id="fasit-kode-merke"></span>
+          </div>
+          <div class="fasit-liste" id="fasit-liste"></div>
+        </section>
+      </section>
+    </div>
+
+    <footer class="bunnfot">
+      <span><a href="index.html">← Tilbake til Guttas Campus Hovedbase</a></span>
+      <span>Alle menyer og knapper skjules automatisk ved utskrift (<code>@media print</code>).</span>
+    </footer>
+  </main>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="js/campus-data.js"></script>
+  <script defer src="js/campus-core.js"></script>
+  <script defer src="js/worksheet-bank.js"></script>
+  <script defer src="js/worksheets.js"></script>
+</body>
+</html>

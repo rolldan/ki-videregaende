@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guttas Campus-utgave av interaktivt læreverk i Matematikk 2P-Y med måltrapp, karakterstyrker, yrkesfaglige økter, Python og utskriftsklare oppgaveark.">
+  <title>Guttas Campus · Matematikk 2P-Y (Påbygg)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2438'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fbbf24' font-family='sans-serif' font-weight='800' font-size='11'%3EGC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/campus.css">
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="camp-topp">
+    <div class="camp-topp-indre">
+      <a class="merke" href="index.html">
+        <span class="merke-emblem">GC · 2P-Y</span>
+        <span class="merke-tekst">
+          <strong>Guttas Campus · Matematikk 2P-Y</strong>
+          <small>Synlig læring, karakterstyrker og mengdetrening for påbygg</small>
+        </span>
+      </a>
+      <nav class="topp-nav" aria-label="Hovedmeny">
+        <a class="topp-lenke aktiv" href="index.html">Hovedbase</a>
+        <a class="topp-lenke" href="okt-prosent-vekst.html">Økt 1: Prosent &amp; vekst</a>
+        <a class="topp-lenke" href="okt-funksjoner-statistikk.html">Økt 2: Modeller &amp; statistikk</a>
+        <a class="topp-lenke" href="python-lab.html">▶ Python-verksted</a>
+        <a class="topp-lenke oppgaveark-cta" href="oppgaveark.html">🖨 Oppgaveark (A4)</a>
+        <button type="button" class="topp-knapp" data-mentor-knapp aria-pressed="false">Mentormodus</button>
+        <button type="button" class="topp-knapp" id="tema-knapp" aria-pressed="false">☾ Mørk</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="hovedinnhold" class="ramme">
+    <section class="camp-hero">
+      <p class="overtittel">MATEMATIKK 2P-Y (MAT06-04) · PÅBYGG ETTER YRKESFAG · GUTTAS CAMPUS-METODIKK</p>
+      <h1>Ingen kan alt ennå – men steg for steg tar vi 2P-Y sammen</h1>
+      <p class="ingress">
+        Bygget på Guttas Campus sin kombinasjon av <strong>tydelige øktrammer</strong>, <strong>synlig fremgang på Måltrappa</strong>,
+        <strong>aktive karakterstyrker</strong> og veksling mellom digital mengdetrening og <strong>håndskrevne A4-oppgaveark</strong>.
+      </p>
+
+      <div class="hero-knapper">
+        <a class="knapp" href="okt-prosent-vekst.html">Start Økt 1: Prosent &amp; vekstfaktor →</a>
+        <a class="knapp knapp-gronn" href="okt-funksjoner-statistikk.html">Start Økt 2: Funksjoner &amp; statistikk →</a>
+        <a class="knapp knapp-sek" href="oppgaveark.html">🖨 Skriv ut ferske oppgaveark</a>
+        <a class="knapp knapp-sek" href="python-lab.html">▶ Åpne Python-verksted</a>
+      </div>
+
+      <div class="prinsipp-stripe" aria-label="Guttas Campus fem grunnprinsipper">
+        <div class="prinsipp-kort"><b>1. Forvent det beste</b>Vi møter forberedt, skjerpet og med tro på at innsats virker.</div>
+        <div class="prinsipp-kort"><b>2. Eget tempo</b>Start på Trinn 1 og bygg trygghet før eksamenstrinnet.</div>
+        <div class="prinsipp-kort"><b>3. Karakter kan trenes</b>Selvkontroll og viljestyrke avgjør når tekstoppgaven er lang.</div>
+        <div class="prinsipp-kort"><b>4. Ditt valg forplikter</b>Før ekte mellomregning på papir før du sjekker fasit.</div>
+        <div class="prinsipp-kort"><b>5. Best sammen</b>Spør mentor tidlig og forklar løsningssteg til sidemannen.</div>
+      </div>
+    </section>
+
+    <aside class="mentor-boks" aria-label="Veiledning for mentor og lærer">
+      <div class="mentor-tittel">★ Mentor- og lærermodus aktivert · Slik ledes en Guttas Campus-økt i 2P-Y</div>
+      <p>
+        <strong>1. Felles oppstart (3 min):</strong> La elevene velge dagens karakterstyrke høyt og lese øktmålet på Måltrappa.
+        <strong>2. Oppvarming uten kalkulator (5 min):</strong> Rask mestring på Del 1-tall før ny teori.
+        <strong>3. Kort tavlegjennomgang (8–10 min):</strong> Bruk det yrkesfaglige steg-for-steg-eksempelet.
+        <strong>4. Kombiner papir + skjerm (25 min):</strong> Skriv ut et nivåtilpasset A4-ark fra <a href="oppgaveark.html">Oppgaveark-modulen</a> slik at elevene fører håndskrevne mellomregninger i rutenettet mens de jobber i eget tempo.
+        <strong>5. Kraften i «ennå»:</strong> Møt frustrasjon med <em>«Det at det kjennes tøft er et tegn på at du kjemper – du kan det bare ikke ennå!»</em>
+      </p>
+    </aside>
+
+    <!-- Karakterstyrke-velger -->
+    <section class="panel" id="karakterstyrker">
+      <div class="panel-topp">
+        <div>
+          <span class="etikett">Steg 0 før øktstart · KarakterLab</span>
+          <h2>Velg dagens karakterstyrke</h2>
+          <p style="margin:0.25rem 0 0;color:var(--demp);font-size:0.95rem">
+            Valget ditt lagres automatisk og følger deg inn i øktsidene og på toppen av utskrevne oppgaveark.
+          </p>
+        </div>
+        <div class="etikett" style="font-size:0.85rem" data-aktiv-styrke>Viljestyrke · «Gi aldri opp»</div>
+      </div>
+
+      <div class="styrke-rutenett" id="styrke-velger" role="group" aria-label="De syv karakterstyrkene i Guttas Campus"></div>
+    </section>
+
+    <!-- Måltrappa + Øktstruktur -->
+    <div class="framdrift-rad">
+      <section class="panel" style="margin-top:0" id="maaltrappa">
+        <div class="panel-topp">
+          <div>
+            <span class="etikett">Synlig læring · Campus Inkrement</span>
+            <h2>Måltrappa di i Matematikk 2P-Y</h2>
+          </div>
+          <button type="button" class="knapp knapp-sek knapp-liten" id="nullstill-progresjon">Nullstill trapp</button>
+        </div>
+        <p id="framdrift-oppsummering" style="margin:0;font-size:0.92rem;color:var(--demp)"></p>
+        <div class="framdrift-bar" role="progressbar" aria-label="Samlet progresjon" aria-valuemin="0" aria-valuemax="100">
+          <div class="framdrift-fyll" id="framdrift-fyll"></div>
+        </div>
+        <ul class="maaltrapp-liste" id="maaltrapp-liste"></ul>
+      </section>
+
+      <section class="panel" style="margin-top:0">
+        <span class="etikett">Fast øktramme</span>
+        <h2>Slik er hver økt bygget opp</h2>
+        <ol style="padding-left:1.2rem;margin:0.75rem 0;display:grid;gap:0.65rem;font-size:0.93rem">
+          <li><strong>1. Oppvarming / hoderegning:</strong> 5 raske Del 1-oppgaver som skrur på hodet og gir umiddelbar mestring.</li>
+          <li><strong>2. Kort yrkesfaglig gjennomgang:</strong> Konkrete regler med KaTeX, tømrer-/elektro-/økonomieksempel steg for steg og visuell grafutforsker.</li>
+          <li><strong>3. Trinnvis mestringsløype (Trinn 1–3):</strong>
+            <br><span class="trinn-merke trinn-1" style="font-size:0.75rem;padding:0.1rem 0.45rem">Trinn 1</span> Grunnleggende mengdetrening
+            <br><span class="trinn-merke trinn-2" style="font-size:0.75rem;padding:0.1rem 0.45rem">Trinn 2</span> Påbygg-nivå i yrkeskontekst
+            <br><span class="trinn-merke trinn-3" style="font-size:0.75rem;padding:0.1rem 0.45rem">Trinn 3</span> Eksamensutfordring &amp; Python
+          </li>
+          <li><strong>4. Oppsummering &amp; Loggbok:</strong> Kort egenvurdering av hva du lærte og hvordan du brukte dagens karakterstyrke.</li>
+        </ol>
+        <div class="regelboks" style="margin-bottom:0">
+          <strong>Papir + skjerm = sant:</strong> Evalueringene av Guttas Campus viser at håndskrevet utregning kombinert med mengdetrening gir størst løft.
+          <div style="margin-top:0.5rem">
+            <a class="knapp knapp-gronn knapp-liten" href="oppgaveark.html">Åpne Oppgaveark-generatoren →</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Søk + Komplette 6 NDLA-kapitler -->
+    <section class="panel" id="pensum-oversikt">
+      <div class="panel-topp">
+        <div>
+          <span class="etikett">Komplett pensumoversikt · NDLA Matematikk 2P-Y</span>
+          <h2>Alle 6 hovedemner i 2P-Y (Vg3 påbygging)</h2>
+        </div>
+        <span style="font-size:0.86rem;font-weight:700;color:var(--gronn)" data-topp-progresjon>Måltrapp: 0/8</span>
+      </div>
+
+      <label for="pensum-sok" style="display:block;font-weight:700;font-size:0.9rem;margin-bottom:0.35rem">
+        Hurtigsøk i formler, emner, kompetansemål og yrkeseksempler
+      </label>
+      <input id="pensum-sok" class="sok-felt" type="search" placeholder="Søk f.eks. vekstfaktor, prosentpoeng, stigningstall, median, lønn, while-løkke, oppgaveark…" autocomplete="off">
+      <div id="sok-resultat" class="sok-treff-liste" aria-live="polite"></div>
+
+      <div class="kap-grid">
+        <article class="kap-kort k1">
+          <div>
+            <span class="etikett">Kapittel 1 · KM457, KM458, KM463</span>
+            <h3>Tall og algebra i yrkes- og samfunnsliv</h3>
+            <p style="font-size:0.9rem;color:var(--demp);margin:0.3rem 0">
+              Proporsjonalitet på byggeplassen, prosent/vekstfaktor ved rabatt, mva. og lån, samt potenser og standardform ($a \cdot 10^n$).
+            </p>
+            <ul class="emne-liste">
+              <li><span>1.1 Proporsjonalitet ($\frac{y}{x}=k$) &amp; omvendt ($x\cdot y=k$)</span><a href="oppgaveark.html?emne=algebra">Ark →</a></li>
+              <li><a href="okt-prosent-vekst.html"><strong>1.2 Prosent, prosentpoeng og vekstfaktor</strong></a><span class="badge-klar">★ Full økt</span></li>
+              <li><span>1.3 Potenser, rotuttrykk og standardform</span><a href="oppgaveark.html?emne=algebra">Ark →</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <a class="knapp knapp-liten" href="okt-prosent-vekst.html">Åpne Økt 1 →</a>
+            <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=prosent">Skriv ut ark (1.2)</a>
+          </div>
+        </article>
+
+        <article class="kap-kort k2">
+          <div>
+            <span class="etikett">Kapittel 2 · KM459, KM460, KM461, KM462</span>
+            <h3>Funksjoner og praktisk modellering</h3>
+            <p style="font-size:0.9rem;color:var(--demp);margin:0.3rem 0">
+              Fra fastpris og timepris ($f(x)=ax+b$) til eksponentiell vekst, skjæringspunkt (break-even) og modellers gyldighetsområde.
+            </p>
+            <ul class="emne-liste">
+              <li><span>2.1 Funksjonsbegrepet, $D_f$ og $V_f$</span><a href="okt-funksjoner-statistikk.html#teori">Se i økt →</a></li>
+              <li><a href="okt-funksjoner-statistikk.html"><strong>2.2 Lineære modeller, topunktsformel &amp; skjæring</strong></a><span class="badge-klar">★ Full økt</span></li>
+              <li><span>2.3 Eksponential-, potens- og andregradsmodeller</span><a href="python-lab.html">Python →</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <a class="knapp knapp-gronn knapp-liten" href="okt-funksjoner-statistikk.html">Åpne Økt 2 →</a>
+            <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=funksjoner">Skriv ut ark (2.2)</a>
+          </div>
+        </article>
+
+        <article class="kap-kort k3">
+          <div>
+            <span class="etikett">Kapittel 3 · KM455</span>
+            <h3>Statistikk, sentralmål og spredningsmål</h3>
+            <p style="font-size:0.9rem;color:var(--demp);margin:0.3rem 0">
+              Frekvenstabeller, gjennomsnitt, median, typetall, variasjonsbredde, kvartilbredde ($Q_3 - Q_1$), standardavvik og histogram.
+            </p>
+            <ul class="emne-liste">
+              <li><span>3.1 Frekvenstabeller og relativ frekvens</span><a href="oppgaveark.html?emne=statistikk">Ark →</a></li>
+              <li><a href="okt-funksjoner-statistikk.html#statistikk-del"><strong>3.2 Sentralmål og spredning i lønnsdata</strong></a><span class="badge-klar">★ Full økt</span></li>
+              <li><span>3.3 Gruppert datamateriale og histogram</span><a href="oppgaveark.html?emne=statistikk">Ark →</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <a class="knapp knapp-gronn knapp-liten" href="okt-funksjoner-statistikk.html#statistikk-del">Gå til Statistikk-del →</a>
+            <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=statistikk">Skriv ut ark (3.2)</a>
+          </div>
+        </article>
+
+        <article class="kap-kort k4">
+          <div>
+            <span class="etikett">Kapittel 4 · KM454, KM456, KM461</span>
+            <h3>Arbeid med datasett og samfunnsmatematikk</h3>
+            <p style="font-size:0.9rem;color:var(--demp);margin:0.3rem 0">
+              Kritisk vurdering av statistikk i nyheter, valg av premisser i kalkyler og uthenting av nøkkeltall fra reelle datasett.
+            </p>
+            <ul class="emne-liste">
+              <li><span>4.1 Kildekritikk: avkuttede akser &amp; prosentfeller</span><a href="okt-prosent-vekst.html#teori">Prosentpoeng →</a></li>
+              <li><span>4.2 Premisser i låne- og bedriftskalkyler</span><a href="okt-funksjoner-statistikk.html#mestringsloype">Trening →</a></li>
+              <li><a href="python-lab.html"><strong>4.3 Analyse av yrkesdatasett i Python</strong></a><span class="badge-klar">★ Kjørbar</span></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <a class="knapp knapp-sek knapp-liten" href="python-lab.html">Analyser datasett i Python →</a>
+          </div>
+        </article>
+
+        <article class="kap-kort k5">
+          <div>
+            <span class="etikett">Kapittel 5 · Algoritmisk tenkning</span>
+            <h3>Algoritmer og programmering (Python)</h3>
+            <p style="font-size:0.9rem;color:var(--demp);margin:0.3rem 0">
+              Variabler, vilkår (`if/else`), `while`-løkker for sparemål, `for`-løkker over lister og numerisk likningsløsning i nettleseren.
+            </p>
+            <ul class="emne-liste">
+              <li><a href="python-lab.html"><strong>5.1–5.2 Løkker (`while`/`for`) på vekstfaktor</strong></a><span class="badge-klar">★ Pyodide</span></li>
+              <li><a href="python-lab.html"><strong>5.3 Lister og statistiske beregninger</strong></a><span class="badge-klar">★ Pyodide</span></li>
+              <li><a href="python-lab.html"><strong>5.4 Halveringsmetoden steg for steg</strong></a><span class="badge-klar">★ Pyodide</span></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <a class="knapp knapp-liten" href="python-lab.html">▶ Åpne Python-verksted →</a>
+            <a class="knapp knapp-sek knapp-liten" href="oppgaveark.html?emne=python">Del 1 kode-ark</a>
+          </div>
+        </article>
+
+        <article class="kap-kort k6">
+          <div>
+            <span class="etikett">Kapittel 6 · Del 1 &amp; Del 2</span>
+            <h3>Eksamenstrening og mengdetreningsark</h3>
+            <p style="font-size:0.9rem;color:var(--demp);margin:0.3rem 0">
+              Generer utømmelige A4-oppgaveark med nye tallvarianter, håndregningsruter og av/på-bryter for lærerfasit med utregningssteg.
+            </p>
+            <ul class="emne-liste">
+              <li><a href="oppgaveark.html?niva=niva1"><strong>Nivå 1: Grunnleggende mengdetrening</strong></a><span class="badge-klar">★ Generator</span></li>
+              <li><a href="oppgaveark.html?niva=niva2"><strong>Nivå 2: Påbygg-standard</strong></a><span class="badge-klar">★ Generator</span></li>
+              <li><a href="oppgaveark.html?niva=komplett"><strong>Komplett Guttas Campus-øktark (A4)</strong></a><span class="badge-klar">★ Utskrift</span></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <a class="knapp knapp-liten" href="oppgaveark.html">🖨 Lag oppgaveark nå →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="bunnfot">
+      <span><strong>Guttas Campus · Matematikk 2P-Y</strong> – Utviklet etter LK20 (MAT06-04), NDLA 2P-Y og Guttas Campus sin styrkebaserte metodikk.</span>
+      <span><a href="../index.html">← MA2PY-forsiden</a> · <a href="oppgaveark.html">Oppgaveark (A4)</a> · <a href="python-lab.html">Python-verksted</a> · <a href="../matte2py/index.html">Standardutgave</a></span>
+    </footer>
+  </main>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="js/campus-data.js"></script>
+  <script defer src="js/campus-core.js"></script>
+</body>
+</html>

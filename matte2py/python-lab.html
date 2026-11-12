@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5.1 Python-lab for 2P-Y · Matematikk 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235b45b0'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='800' font-size='11'%3E2PY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/matte2py.css">
+  <style>:root { --aksent: var(--k5); }</style>
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="topplinje">
+    <div class="topplinje-indre">
+      <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap">
+        <a class="merke-lenke" href="index.html">
+          <span class="merke-ikon">2P-Y</span>
+          <span class="merke-tittel">Matematikk for påbygg</span>
+        </a>
+        <span class="sti">/ <a href="index.html#kap-5">Kapittel 5: Algoritmer og Python</a> / <b>5.1 Python-lab</b></span>
+      </div>
+      <div class="topp-verktoy">
+        <span class="topp-pille" id="topp-framdrift">0 / 10 oppgaver løst</span>
+        <button type="button" class="topp-pille" id="uklar-oversikt-knapp">? Uklart (0)</button>
+        <button type="button" class="topp-pille" id="tema-knapp" aria-pressed="false">☾ Mørk visning</button>
+      </div>
+    </div>
+    <nav class="seksjonsmeny" aria-label="Deler på siden">
+      <div class="seksjonsmeny-indre">
+        <a href="#byggesteiner" class="aktiv">1. Byggesteiner i 2P-Y</a>
+        <a href="#maler">2. Kjørbar Python-editor</a>
+        <a href="#les-koden">3. Del 1: Les koden</a>
+        <a href="#oppgaver">4. Oppgaver</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="hovedinnhold" class="lese-ramme">
+    <header class="side-hode">
+      <div class="side-merke">
+        <span class="del-etikett">Kapittel 5.1 · NDLA Algoritmer og programmering</span>
+        <span class="del-etikett del1">Tolke kode på Del 1</span>
+        <span class="del-etikett del2">Skrive/endre kode på Del 2</span>
+      </div>
+      <h1>Algoritmer og Python-lab i 2P-Y</h1>
+      <p>
+        I 2P-Y bruker vi Python når regnestykkene gjentas mange ganger (sparing måned for måned), når vi analyserer datasett i lister, eller når vi skal finne skjæringspunkter og nullpunkter med <strong>halveringsmetoden</strong>. Alt kjører direkte her i nettleseren uten installasjon.
+      </p>
+    </header>
+
+    <!-- DEL 1: BYGGESTEINER -->
+    <section class="fag-seksjon" id="byggesteiner">
+      <div class="seksjon-topp">
+        <h2><span class="nr">1</span>De fem Python-byggesteinene i 2P-Y</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap5-byggesteiner" data-uklar-tittel="5.1 Del 1: Python-byggesteiner i 2P-Y">? Uklart for meg</button>
+      </div>
+
+      <div class="regelboks">
+        <div class="boks-tittel">Huskelapp for Python-operatorer i matematikk</div>
+        <ul>
+          <li><strong>Potens ($a^n$):</strong> Skrives med to stjerner <code>a ** n</code> (ikke <code>^</code>!). For eksempel er $1{,}05^{10}$ lik <code>1.05 ** 10</code>.</li>
+          <li><strong>Desimaltall:</strong> Python bruker alltid <strong>punktum</strong>: <code>0.85</code> (komma lager liste/tuppel).</li>
+          <li><strong><code>while</code>-løkke:</strong> Gjentar så lenge en betingelse er sann – perfekt når vi spør <em>«hvor mange måneder tar det før kontoen passerer 100 000 kr?»</em>.</li>
+          <li><strong><code>for</code>-løkke og lister:</strong> Går gjennom faste år <code>range(1, 11)</code> eller målinger i ei liste <code>lonn = [310, 460, 480, ...]</code>.</li>
+          <li><strong>Funksjoner <code>def f(x):</code></strong> Lar oss definere matematiske modeller som $f(x)$ og kalle dem mange ganger.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DEL 2: KJØRBAR PYTHON-LAB MED 3 SENTRALE 2P-Y-MALER -->
+    <section class="fag-seksjon" id="maler">
+      <div class="seksjon-topp">
+        <h2><span class="nr">2</span>Kjørbar Python-sandkasse med 2P-Y-maler</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap5-editor" data-uklar-tittel="5.1 Del 2: Python-maler og halveringsmetoden">? Uklart for meg</button>
+      </div>
+
+      <p>
+        Velg et 2P-Y-tema under, kjør koden og endre tallene for å utforske hvordan forutsetningene påvirker svaret:
+      </p>
+
+      <div class="python-lab" data-python-lab>
+        <div class="python-topp">
+          <span class="python-tittel">🐍 Interaktiv Python 3.12 (Pyodide)</span>
+          <span class="python-status">Klar til å laste Python ved første kjøring</span>
+        </div>
+        <div class="python-maler" role="toolbar" aria-label="Velg ferdig 2P-Y-mal">
+          <button type="button" class="mal-knapp aktiv" data-mal-kode="mal-sparing">1. BSU-sparing med fast innskudd (while)</button>
+          <button type="button" class="mal-knapp" data-mal-kode="mal-statistikk">2. Lønnsstatistikk: snitt vs. median (datasett)</button>
+          <button type="button" class="mal-knapp" data-mal-kode="mal-halvering">3. Halveringsmetoden for nullpunkt</button>
+        </div>
+        <textarea class="python-editor" aria-label="Python-kode i Python-lab"># Mal 1: BSU-sparing med årlig innskudd og rente (Kap. 1 & 5)
+saldo = 0
+innskudd_per_aar = 27_500
+rente_prosent = 6.4
+vekstfaktor = 1 + rente_prosent / 100
+maal = 200_000
+
+aar = 0
+while saldo < maal:
+    aar += 1
+    saldo = (saldo + innskudd_per_aar) * vekstfaktor
+    print(f"År {aar:2d}: saldo = {saldo:9.0f} kr")
+
+egeninnsats = aar * innskudd_per_aar
+renter_tjent = saldo - egeninnsats
+print("-" * 38)
+print(f"Målet på {maal} kr nås etter {aar} år.")
+print(f"Innskutt selv: {egeninnsats} kr | Renter opptjent: {renter_tjent:.0f} kr")</textarea>
+        <div class="python-handlinger">
+          <div class="knapperad" style="margin:0">
+            <button type="button" class="knapp knapp-liten" data-python-kjor>▶ Kjør Python-kode</button>
+            <button type="button" class="knapp knapp-sek knapp-liten" data-python-nullstill>Tilbakestill valgt mal</button>
+          </div>
+          <small style="color:var(--demp)">Hurtigtast: Ctrl+Enter i kodefeltet</small>
+        </div>
+        <pre class="python-utskrift">Velg en mal eller trykk «▶ Kjør Python-kode» for å se utskriften her.</pre>
+      </div>
+
+      <!-- Skjulte maler -->
+      <script type="text/plain" id="mal-sparing"># Mal 1: BSU-sparing med årlig innskudd og rente (Kap. 1 & 5)
+saldo = 0
+innskudd_per_aar = 27_500
+rente_prosent = 6.4
+vekstfaktor = 1 + rente_prosent / 100
+maal = 200_000
+
+aar = 0
+while saldo < maal:
+    aar += 1
+    saldo = (saldo + innskudd_per_aar) * vekstfaktor
+    print(f"År {aar:2d}: saldo = {saldo:9.0f} kr")
+
+egeninnsats = aar * innskudd_per_aar
+renter_tjent = saldo - egeninnsats
+print("-" * 38)
+print(f"Målet på {maal} kr nås etter {aar} år.")
+print(f"Innskutt selv: {egeninnsats} kr | Renter opptjent: {renter_tjent:.0f} kr")</script>
+
+      <script type="text/plain" id="mal-statistikk"># Mal 2: Lønn i en håndverksbedrift (i tusen kr) – Kap. 3 & 4
+import statistics as stat
+
+# 2 lærlinger, 6 fagarbeidere, 1 bas og 1 daglig leder/eier
+lonn = [265, 290, 540, 555, 560, 575, 580, 595, 650, 1_490]
+sortert = sorted(lonn)
+
+snitt = stat.mean(lonn)
+median = stat.median(lonn)
+std_avvik = stat.stdev(lonn)
+kvartiler = stat.quantiles(lonn, n=4)
+kvartilbredde = kvartiler[2] - kvartiler[0]
+
+print("Sorterte årslønner (1000 kr):", sortert)
+print(f"Gjennomsnitt:   {snitt:.1f} tusen kr")
+print(f"Median:         {median:.1f} tusen kr")
+print(f"Standardavvik:  {std_avvik:.1f} tusen kr")
+print(f"Kvartilbredde:  {kvartilbredde:.1f} tusen kr")
+print("\nKritisk vurdering (KM455):")
+print(" hele 9 av 10 ansatte tjener MINDRE enn gjennomsnittet fordi")
+print(" daglig leders lønn (1 490k) drar snittet kraftig opp. Medianen er bedre!")</script>
+
+      <script type="text/plain" id="mal-halvering"># Mal 3: Halveringsmetoden for ikke-lineær modell (Kap. 2.3 & 5)
+# Når har en bedrift med omsetning O(x) = 1.2 * 1.18**x passert 3.0 mill. kr?
+# Vi løser likningen f(x) = 1.2 * 1.18**x - 3.0 = 0
+
+def f(x):
+    return 1.2 * (1.18 ** x) - 3.0
+
+a = 0.0    # Ved x = 0 er f(0) < 0
+b = 15.0   # Ved x = 15 er f(15) > 0
+noyaktighet = 0.001
+steg = 0
+
+while (b - a) > noyaktighet:
+    steg += 1
+    m = (a + b) / 2
+    if f(a) * f(m) <= 0:
+        b = m
+    else:
+        a = m
+
+losning = (a + b) / 2
+print(f"Halveringsmetoden brukte {steg} halveringer:")
+print(f"Omsetningen når 3,0 mill. kr etter x ≈ {losning:.2f} år.")
+print(f"Kontroll: 1.2 * 1.18**{losning:.2f} = {1.2 * 1.18**losning:.3f} mill. kr")</script>
+    </section>
+
+    <!-- DEL 3: DEL 1 KODELESING -->
+    <section class="fag-seksjon" id="les-koden">
+      <div class="seksjon-topp">
+        <h2><span class="nr">3</span>Del 1-strategi: Spor variablene i en tabell</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap5-del1" data-uklar-tittel="5.1 Del 3: Spore variabler i Python på Del 1">? Uklart for meg</button>
+      </div>
+
+      <p>
+        På Del 1 av eksamen får du ofte $6\text{–}10$ linjer med Python-kode og spørsmål om hva programmet skriver ut, og hvilken praktisk situasjon koden modellerer. Lag alltid en liten verdikolonne på kladdearket for hver runde i løkka!
+      </p>
+    </section>
+
+    <!-- DEL 4: OPPGAVER -->
+    <section class="fag-seksjon" id="oppgaver">
+      <div class="seksjon-topp">
+        <h2><span class="nr">4</span>Egenvurderingsoppgaver i Python og algoritmer</h2>
+      </div>
+
+      <!-- Oppgave 5.1 -->
+      <article class="oppgave-kort" data-oppgave-id="p5-1" data-type="tall" data-fasit="4" data-toleranse="0"
+        data-rett-melding="Riktig! Etter 1 år: 12 000, 2 år: 14 400, 3 år: 17 280, 4 år: 20 736 (løkka stopper fordi beløp >= 20 000).">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 5.1 · Del 1: Hva skriver programmet ut?</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>Les koden under uten å kjøre den først. Hvilket tall skrives ut til slutt?</p>
+        <pre style="background:#101822;color:#e6edf3;padding:0.85rem 1rem;border-radius:6px;font:0.88rem/1.5 var(--f-kode);overflow-x:auto">belop = 10000
+aar = 0
+while belop &lt; 20000:
+    belop = belop * 1.20
+    aar = aar + 1
+print(aar)</pre>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Utskrift i oppgave 5.1" placeholder="Heltall">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Å gange med $1{,}20$ betyr $+20\,\%$ for hver runde. Regn ut runde 1, 2, 3 og 4.</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong>
+          Start: <code>belop = 10 000</code>, <code>aar = 0</code>.<br>
+          • Runde 1: $10\,000 \cdot 1{,}2 = 12\,000$, <code>aar = 1</code><br>
+          • Runde 2: $12\,000 \cdot 1{,}2 = 14\,400$, <code>aar = 2</code><br>
+          • Runde 3: $14\,400 \cdot 1{,}2 = 17\,280$, <code>aar = 3</code><br>
+          • Runde 4: $17\,280 \cdot 1{,}2 = 20\,736 \ge 20\,000$, <code>aar = 4</code>. Løkka avsluttes og skriver ut <strong>4</strong>.
+        </div>
+      </article>
+
+      <!-- Oppgave 5.2 -->
+      <article class="oppgave-kort" data-oppgave-id="p5-2" data-type="tall" data-fasit="5.53" data-toleranse="0.05"
+        data-rett-melding="Helt riktig! Halveringsmetoden i mal 3 gir x ≈ 5,53 år.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 5.2 · Del 2: Bruk halveringsmetoden i editoren over</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>
+          Velg <strong>«3. Halveringsmetoden for nullpunkt»</strong> i Python-editoren over og kjør koden. Etter hvor mange år (med to desimaler) når bedriftens omsetning $O(x) = 1{,}2 \cdot 1{,}18^x$ opp til $3{,}0\text{ millioner kr}$?
+        </p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Antall år med to desimaler i oppgave 5.2" placeholder="f.eks. 5,53">
+          <span class="svar-enhet">år</span>
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong> Når du klikker på mal 3 og trykker «Kjør Python-kode», halverer programmet intervallet $[0, 15]$ $14$ ganger til bredden er mindre enn $0{,}001$, og finner $x \approx \mathbf{5{,}53\text{ år}}$.
+        </div>
+      </article>
+    </section>
+
+    <nav class="side-bunn-nav" aria-label="Side-navigasjon">
+      <a href="lineare-modeller.html">
+        <small>Forrige modul</small>
+        ← 2.2 Lineære funksjoner og modellering
+      </a>
+      <a class="midt" href="index.html">Innhold</a>
+      <a class="neste" href="index.html#kap-3">
+        <small>Tilbake til oversikt</small>
+        Se alle 6 kapitler i 2P-Y →
+      </a>
+    </nav>
+
+    <footer class="fotnote">
+      <span>Matematikk 2P-Y · Kapittel 5.1 Algoritmer og Python-lab</span>
+      <a href="index.html">Til innholdsfortegnelsen →</a>
+    </footer>
+  </main>
+
+  <div class="modal-bakgrunn" id="uklar-modal" hidden>
+    <div class="modal-boks" role="dialog" aria-modal="true" aria-labelledby="uklar-tittel">
+      <h2 id="uklar-tittel">Markert som «Uklart for meg»</h2>
+      <ul class="uklar-liste" id="uklar-modal-liste"></ul>
+      <div class="knapperad">
+        <button type="button" class="knapp knapp-liten" id="kopier-uklar-tekst">Kopier liste til lærer</button>
+        <button type="button" class="knapp knapp-sek knapp-liten" id="lukk-uklar-modal">Lukk</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/python-lab.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.2 Lineære funksjoner og modellering · Matematikk 2P-Y</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f766e'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='800' font-size='11'%3E2PY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/matte2py.css">
+  <style>:root { --aksent: var(--k2); }</style>
+</head>
+<body>
+  <a class="hopp-lenke" href="#hovedinnhold">Hopp til innhold</a>
+
+  <header class="topplinje">
+    <div class="topplinje-indre">
+      <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap">
+        <a class="merke-lenke" href="index.html">
+          <span class="merke-ikon">2P-Y</span>
+          <span class="merke-tittel">Matematikk for påbygg</span>
+        </a>
+        <span class="sti">/ <a href="index.html#kap-2">Kapittel 2: Funksjoner</a> / <b>2.2 Lineære modeller</b></span>
+      </div>
+      <div class="topp-verktoy">
+        <span class="topp-pille" id="topp-framdrift">0 / 10 oppgaver løst</span>
+        <button type="button" class="topp-pille" id="uklar-oversikt-knapp">? Uklart (0)</button>
+        <button type="button" class="topp-pille" id="tema-knapp" aria-pressed="false">☾ Mørk visning</button>
+      </div>
+    </div>
+    <nav class="seksjonsmeny" aria-label="Deler på siden">
+      <div class="seksjonsmeny-indre">
+        <a href="#stigningstall" class="aktiv">1. Stigningstall &amp; konstantledd</a>
+        <a href="#to-punkter">2. Fra to punkter til formel</a>
+        <a href="#skjaering">3. Skjæringspunkt</a>
+        <a href="#utforsker">4. Prissammenligner</a>
+        <a href="#oppgaver">5. Oppgaver</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="hovedinnhold" class="lese-ramme">
+    <header class="side-hode">
+      <div class="side-merke">
+        <span class="del-etikett">Kapittel 2.2 · KM459, KM460, KM461</span>
+        <span class="del-etikett del1">Grafavlesning på Del 1</span>
+        <span class="del-etikett del2">Modellering på Del 2</span>
+      </div>
+      <h1>Lineære funksjoner, skjæring og pristilbud</h1>
+      <p>
+        Fast oppmøtepris pluss fast timepris, strømabonnement med fastbeløp pluss pris per kWh, eller jevn tapping av en vanntank: hver gang noe endrer seg med like mye per enhet, har vi en <strong>lineær modell</strong> $f(x) = ax + b$.
+      </p>
+
+      <div class="laeringsmaal">
+        <strong>Etter denne delen skal du kunne:</strong>
+        <ul>
+          <li>tolke hva stigningstallet $a$ og konstantleddet $b$ betyr konkret i en praktisk situasjon</li>
+          <li>finne funksjonsuttrykket ut fra en graf eller to målepunkter $(x_1, y_1)$ og $(x_2, y_2)$</li>
+          <li>finne og tolke skjæringspunktet mellom to pristilbud både ved regning og grafisk</li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- DEL 1: STIGNINGSTALL OG KONSTANTLEDD -->
+    <section class="fag-seksjon" id="stigningstall">
+      <div class="seksjon-topp">
+        <h2><span class="nr">1</span>Stigningstall $a$ og konstantledd $b$</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap2-stigningstall" data-uklar-tittel="2.2 Del 1: Stigningstall og konstantledd">? Uklart for meg</button>
+      </div>
+
+      <div class="regelboks">
+        <div class="boks-tittel">Regel: Lineær funksjon $f(x) = ax + b$</div>
+        <ul>
+          <li><strong>Konstantleddet $b = f(0)$:</strong> Startverdien når $x = 0$ (der grafen skjærer $y$-aksen) – f.eks. fast oppmøtegebyr før arbeidet starter.</li>
+          <li><strong>Stigningstallet $a$:</strong> Hvor mye $f(x)$ øker (eller minker hvis $a < 0$) hver gang $x$ øker med $1$ enhet – f.eks. kr per arbeidstime eller liter per minutt.</li>
+        </ul>
+      </div>
+
+      <div class="yrkesboks">
+        <span class="yrke-etikett">Praktisk tolkning på eksamen</span>
+        <p style="margin:0">
+          Hvis batteriprosenten på en elektrisk lift etter $x$ timers bruk modelleres ved $B(x) = -12x + 96$, må du på eksamen forklare med <em>enheter</em>:
+          <br>• $b = 96$ betyr at batteriet var ladet til $96\,\%$ ved arbeidsstart ($x = 0$).
+          <br>• $a = -12$ betyr at batterinivået synker med $12\text{ prosentpoeng per time}$.
+        </p>
+      </div>
+    </section>
+
+    <!-- DEL 2: FRA TO PUNKTER TIL LIKNING -->
+    <section class="fag-seksjon" id="to-punkter">
+      <div class="seksjon-topp">
+        <h2><span class="nr">2</span>Finne modellen ut fra to målepunkter</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap2-topunkter" data-uklar-tittel="2.2 Del 2: Stigningstall fra to punkter">? Uklart for meg</button>
+      </div>
+
+      <p>
+        Kjenner du to punkter $(x_1, y_1)$ og $(x_2, y_2)$ på ei rett linje, finner du alltid stigningstallet ved å dele endringen i høyde ($\Delta y$) på endringen langs førsteaksen ($\Delta x$):
+      </p>
+
+      <div class="regelboks">
+        <div class="boks-tittel">Formel: Stigningstall fra to punkter</div>
+        $$a = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}$$
+      </div>
+
+      <div class="eksempel-kort" data-eksempel>
+        <span class="eksempel-etikett">Gjennomgått yrkeseksempel · Trinn for trinn</span>
+        <p class="eksempel-oppgave">
+          En rørlegger fakturerer fast oppmøtepris pluss fast timepris. En jobb på $2$ timer kostet $3\,150\text{ kr}$, og en jobb på $5$ timer kostet $6\,000\text{ kr}$. Finn funksjonsuttrykket $P(x)$ for prisen ved $x$ timer.
+        </p>
+        <ol class="steg-liste">
+          <li class="steg-rad vist">
+            <div class="steg-matte">$(2,\; 3\,150) \quad\text{og}\quad (5,\; 6\,000)$</div>
+            <div class="steg-forklaring">Skriv opplysningene som to punkter $(x_1, y_1)$ og $(x_2, y_2)$, der $x$ er timer og $y$ er pris i kr.</div>
+          </li>
+          <li class="steg-rad">
+            <div class="steg-matte">$a = \frac{6\,000 - 3\,150}{5 - 2} = \frac{2\,850}{3} = 950$</div>
+            <div class="steg-forklaring">De $3$ ekstra timene kostet $2\,850\text{ kr}$. Timeprisen er altså $a = 950\text{ kr/time}$.</div>
+          </li>
+          <li class="steg-rad">
+            <div class="steg-matte">$950 \cdot 2 + b = 3\,150 \;\Rightarrow\; b = 3\,150 - 1\,900 = 1\,250$</div>
+            <div class="steg-forklaring">Sett $a = 950$ og punktet $(2, 3\,150)$ inn i $ax + b = y$ for å finne det faste oppmøtegebyret $b$.</div>
+          </li>
+          <li class="steg-rad">
+            <div class="steg-matte">$P(x) = 950x + 1\,250$</div>
+            <div class="steg-forklaring">Ferdig modell: $1\,250\text{ kr}$ i fast oppmøte og $950\text{ kr}$ per time.</div>
+          </li>
+        </ol>
+        <div class="knapperad">
+          <button type="button" class="knapp knapp-liten" data-steg-neste>Neste steg (2/4)</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-steg-alle>Vis alle steg</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-steg-nullstill>Nullstill</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEL 3: SKJÆRINGSPUNKT -->
+    <section class="fag-seksjon" id="skjaering">
+      <div class="seksjon-topp">
+        <h2><span class="nr">3</span>Skjæringspunkt: Hvilket tilbud lønner seg?</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap2-skjaering" data-uklar-tittel="2.2 Del 3: Skjæringspunkt mellom to linjer">? Uklart for meg</button>
+      </div>
+
+      <p>
+        I kompetansemål <strong>KM461</strong> skal du utforske hvordan ulike premisser (for eksempel antall timer en jobb tar, eller hvor langt en varebil skal kjøres) avgjør hvilket valg som lønner seg. Ved <strong>skjæringspunktet</strong> koster begge alternativene like mye: vi setter $f(x) = g(x)$.
+      </p>
+    </section>
+
+    <!-- DEL 4: INTERAKTIV PRISSAMMENLIGNER -->
+    <section class="fag-seksjon" id="utforsker">
+      <div class="seksjon-topp">
+        <h2><span class="nr">4</span>Utforsker: Sammenlign to håndverkstilbud</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap2-utforsker" data-uklar-tittel="2.2 Del 4: Interaktiv prissammenligner">? Uklart for meg</button>
+      </div>
+
+      <div class="utforsker">
+        <div class="utforsker-hode">
+          <h3>Juster oppmøtegebyr og timepris for Firma A og Firma B</h3>
+        </div>
+
+        <div class="kontroll-grid">
+          <div class="glider-gruppe">
+            <label for="fa-b"><span>Firma A oppmøte ($b_A$)</span> <span id="v-fa-b">1 600 kr</span></label>
+            <input type="range" id="fa-b" min="0" max="3000" step="100" value="1600">
+          </div>
+          <div class="glider-gruppe">
+            <label for="fa-a"><span>Firma A timepris ($a_A$)</span> <span id="v-fa-a">850 kr/t</span></label>
+            <input type="range" id="fa-a" min="500" max="1400" step="50" value="850">
+          </div>
+          <div class="glider-gruppe">
+            <label for="fb-b"><span>Firma B oppmøte ($b_B$)</span> <span id="v-fb-b">400 kr</span></label>
+            <input type="range" id="fb-b" min="0" max="3000" step="100" value="400">
+          </div>
+          <div class="glider-gruppe">
+            <label for="fb-a"><span>Firma B timepris ($a_B$)</span> <span id="v-fb-a">1 050 kr/t</span></label>
+            <input type="range" id="fb-a" min="500" max="1400" step="50" value="1050">
+          </div>
+        </div>
+
+        <div class="avlesning-grid">
+          <div class="avlesning-kort">
+            <small style="color:var(--k1)">Firma A (blå linje)</small>
+            <strong id="ut-fa">A(x) = 850x + 1600</strong>
+          </div>
+          <div class="avlesning-kort">
+            <small style="color:var(--uklar)">Firma B (rosa stiplet)</small>
+            <strong id="ut-fb">B(x) = 1050x + 400</strong>
+          </div>
+          <div class="avlesning-kort">
+            <small>Skjæringspunkt (lik pris)</small>
+            <strong id="ut-skjaering">6,0 t → 6 700 kr</strong>
+          </div>
+          <div class="avlesning-kort">
+            <small>Konklusjon</small>
+            <strong id="ut-konklusjon" style="font-size:0.94rem">B billigst under 6,0 t</strong>
+          </div>
+        </div>
+
+        <svg class="graf-svg" id="linje-svg" viewBox="0 0 680 310" role="img" aria-label="Koordinatsystem med to lineære prismodeller og deres skjæringspunkt"></svg>
+      </div>
+    </section>
+
+    <!-- DEL 5: OPPGAVER -->
+    <section class="fag-seksjon" id="oppgaver">
+      <div class="seksjon-topp">
+        <h2><span class="nr">5</span>Egenvurderingsoppgaver i lineære modeller</h2>
+        <button type="button" class="uklar-knapp" data-uklar-id="kap2-oppgaver" data-uklar-tittel="2.2 Del 5: Oppgaver i lineære funksjoner">? Uklart for meg</button>
+      </div>
+
+      <!-- Oppgave 2.1 -->
+      <article class="oppgave-kort" data-oppgave-id="p2-1" data-type="tall" data-fasit="4750" data-toleranse="1"
+        data-rett-melding="Riktig! P(4) = 900 · 4 + 1 150 = 3 600 + 1 150 = 4 750 kr.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 2.1 · Funksjonsverdi (Del 1)</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>En elektriker bruker prismodellen $P(x) = 900x + 1\,150$, der $x$ er antall timer arbeidet tar. Hva koster et oppdrag på $4$ timer?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Pris for 4 timer oppgave 2.1" placeholder="Beløp i kr">
+          <span class="svar-enhet">kr</span>
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Sett inn $x = 4$ i uttrykket og gang før du legger sammen.</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong> $P(4) = 900 \cdot 4 + 1\,150 = 3\,600 + 1\,150 = \mathbf{4\,750\text{ kr}}$.
+        </div>
+      </article>
+
+      <!-- Oppgave 2.2 -->
+      <article class="oppgave-kort" data-oppgave-id="p2-2" data-type="tall" data-fasit="-35" data-toleranse="0.1"
+        data-rett-melding="Helt riktig! Stigningstallet er −35 liter/minutt (negativt fordi tanken tømmes)."
+        data-feil-melding="Husk fortegnet! Volumet synker fra 800 til 520 liter på 8 minutter.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 2.2 · Stigningstall med fortegn</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>En dieseltank på et anlegg inneholder $800\text{ liter}$ ved start ($t = 0$). Etter $8\text{ minutter}$ pumping er det $520\text{ liter}$ igjen. Hva er stigningstallet $a$ til funksjonen $V(t)$ (i liter per minutt)?</p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Stigningstall i oppgave 2.2" placeholder="f.eks. -35">
+          <span class="svar-enhet">L/min</span>
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Punktene er $(0, 800)$ og $(8, 520)$. Bruk $a = \frac{520 - 800}{8 - 0}$.</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong>
+          $$a = \frac{520 - 800}{8 - 0} = \frac{-280}{8} = \mathbf{-35\text{ L/min}}$$
+        </div>
+      </article>
+
+      <!-- Oppgave 2.3 -->
+      <article class="oppgave-kort" data-oppgave-id="p2-3" data-type="tall" data-fasit="5" data-toleranse="0.05"
+        data-rett-melding="Riktig! Ved x = 5 timer koster begge firmaene nøyaktig 5 750 kr.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 2.3 · Skjæringspunkt mellom to tilbud</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>
+          To utleiefirmaer leier ut minigraver. Firma A tar $A(x) = 750x + 2\,000$ kr og Firma B tar $B(x) = 1\,050x + 500$ kr for $x$ timer. Ved hvor mange timer koster begge firmaene like mye?
+        </p>
+        <div class="svar-rad">
+          <input type="text" class="svar-input" aria-label="Antall timer ved lik pris oppgave 2.3" placeholder="Antall timer">
+          <span class="svar-enhet">timer</span>
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-hint>Vis hint</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel hint-panel"><strong>Hint:</strong> Sett $750x + 2\,000 = 1\,050x + 500$, eller test verdiene direkte i prissammenligneren over!</div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong>
+          $$750x + 2\,000 = 1\,050x + 500$$
+          $$2\,000 - 500 = 1\,050x - 750x \;\Rightarrow\; 1\,500 = 300x \;\Rightarrow\; x = \frac{1\,500}{300} = \mathbf{5\text{ timer}}$$
+        </div>
+      </article>
+
+      <!-- Oppgave 2.4 -->
+      <article class="oppgave-kort" data-oppgave-id="p2-4" data-type="flervalg" data-fasit="c"
+        data-rett-melding="Riktig! En lineær modell som synker med fast beløp vil til slutt krysse 0 og bli negativ – derfor har modellen en begrenset definisjonsmengde.">
+        <div class="oppgave-topp">
+          <span class="oppgave-nr">Oppgave 2.4 · Modellens gyldighet (KM460 / KM462)</span>
+          <span class="oppgave-status-merke">Ikke løst ennå</span>
+        </div>
+        <p>En ny sveiseapparat-modell avskrives lineært i regnskapet med formelen $V(x) = -6\,000x + 42\,000$, der $x$ er antall år etter kjøp. Hvorfor er modellen <strong>ikke</strong> gyldig for $x = 9$ år?</p>
+        <div class="flervalg-liste">
+          <label class="flervalg-valg">
+            <input type="radio" name="q24" value="a" data-forklaring="Utregningen V(9) = -12 000 lar seg regne ut matematisk, men gir ikke mening fysisk/økonomisk.">
+            <span>Fordi det ikke går an å regne ut $V(9)$ uten kalkulator.</span>
+          </label>
+          <label class="flervalg-valg">
+            <input type="radio" name="q24" value="b" data-forklaring="Konstantleddet 42 000 endrer seg ikke.">
+            <span>Fordi konstantleddet $b$ blir større enn $42\,000$ etter $7$ år.</span>
+          </label>
+          <label class="flervalg-valg">
+            <input type="radio" name="q24" value="c">
+            <span>Fordi $V(9) = -12\,000\text{ kr}$ gir negativ verdi – apparatet når nullpunktet ved $x = 7$ år, så praktisk definisjonsmengde er $[0, 7]$.</span>
+          </label>
+        </div>
+        <div class="svar-rad">
+          <button type="button" class="knapp knapp-liten" data-sjekk>Sjekk svar</button>
+          <button type="button" class="knapp knapp-sek knapp-liten" data-vis-losning>Steg-for-steg løsning</button>
+        </div>
+        <div class="tilbakemelding" aria-live="polite"></div>
+        <div class="hjelp-panel losning-panel">
+          <strong>Løsning:</strong> Nullpunktet er $-6\,000x + 42\,000 = 0 \Rightarrow x = 7\text{ år}$. Etter $7$ år gir den lineære modellen negativ kroneverdi, og i virkeligheten flater bruktverdien heller ut som en eksponentialfunksjon.
+        </div>
+      </article>
+    </section>
+
+    <nav class="side-bunn-nav" aria-label="Side-navigasjon">
+      <a href="prosent-vekst.html">
+        <small>Forrige modul</small>
+        ← 1.2 Prosent og vekstfaktor
+      </a>
+      <a class="midt" href="index.html">Innhold</a>
+      <a class="neste" href="python-lab.html">
+        <small>Neste utbygde modul</small>
+        5.1 Interaktiv Python-lab (Pyodide) →
+      </a>
+    </nav>
+
+    <footer class="fotnote">
+      <span>Matematikk 2P-Y · Kapittel 2.2 Lineære funksjoner og modellering</span>
+      <a href="index.html">Til innholdsfortegnelsen →</a>
+    </footer>
+  </main>
+
+  <div class="modal-bakgrunn" id="uklar-modal" hidden>
+    <div class="modal-boks" role="dialog" aria-modal="true" aria-labelledby="uklar-tittel">
+      <h2 id="uklar-tittel">Markert som «Uklart for meg»</h2>
+      <ul class="uklar-liste" id="uklar-modal-liste"></ul>
+      <div class="knapperad">
+        <button type="button" class="knapp knapp-liten" id="kopier-uklar-tekst">Kopier liste til lærer</button>
+        <button type="button" class="knapp knapp-sek knapp-liten" id="lukk-uklar-modal">Lukk</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    (function () {
+      const elFaB = document.getElementById("fa-b");
+      const elFaA = document.getElementById("fa-a");
+      const elFbB = document.getElementById("fb-b");
+      const elFbA = document.getElementById("fb-a");
+      const svg = document.getElementById("linje-svg");
+
+      function tegn() {
+        const bA = Number(elFaB.value);
+        const aA = Number(elFaA.value);
+        const bB = Number(elFbB.value);
+        const aB = Number(elFbA.value);
+        const xMaks = 12;
+
+        document.getElementById("v-fa-b").textContent = bA.toLocaleString("nb-NO") + " kr";
+        document.getElementById("v-fa-a").textContent = aA.toLocaleString("nb-NO") + " kr/t";
+        document.getElementById("v-fb-b").textContent = bB.toLocaleString("nb-NO") + " kr";
+        document.getElementById("v-fb-a").textContent = aB.toLocaleString("nb-NO") + " kr/t";
+
+        document.getElementById("ut-fa").textContent = `A(x) = ${aA}x + ${bA}`;
+        document.getElementById("ut-fb").textContent = `B(x) = ${aB}x + ${bB}`;
+
+        let xSkj = null;
+        let ySkj = null;
+        if (aA !== aB) {
+          const xs = (bB - bA) / (aA - aB);
+          if (xs >= 0 && xs <= 30) {
+            xSkj = xs;
+            ySkj = aA * xs + bA;
+          }
+        }
+
+        const skjEl = document.getElementById("ut-skjaering");
+        const konkEl = document.getElementById("ut-konklusjon");
+        if (aA === aB) {
+          skjEl.textContent = bA === bB ? "Identiske linjer" : "Parallelle (ingen)";
+          konkEl.textContent = bA < bB ? "Firma A alltid billigst" : bB < bA ? "Firma B alltid billigst" : "Alltid lik pris";
+        } else if (xSkj !== null && xSkj > 0) {
+          skjEl.textContent = `${xSkj.toFixed(1).replace(".", ",")} t → ${Math.round(ySkj).toLocaleString("nb-NO")} kr`;
+          const billigstStart = bA < bB ? "A" : "B";
+          konkEl.textContent = `Firma ${billigstStart} billigst under ${xSkj.toFixed(1).replace(".", ",")} t`;
+        } else {
+          skjEl.textContent = "Ingen for x > 0";
+          konkEl.textContent = aA * 2 + bA < aB * 2 + bB ? "Firma A alltid billigst" : "Firma B alltid billigst";
+        }
+
+        const yMaksRaa = Math.max(aA * xMaks + bA, aB * xMaks + bB, 8000);
+        const yMaks = Math.ceil(yMaksRaa / 2000) * 2000;
+
+        const W = 680, H = 310;
+        const padL = 74, padR = 26, padT = 20, padB = 42;
+        const plotW = W - padL - padR;
+        const plotH = H - padT - padB;
+        const sx = (x) => padL + (x / xMaks) * plotW;
+        const sy = (y) => padT + plotH - (y / yMaks) * plotH;
+
+        const deler = [];
+        for (let i = 0; i <= 4; i++) {
+          const yv = (yMaks / 4) * i;
+          const py = sy(yv);
+          deler.push(`<line x1="${padL}" y1="${py}" x2="${W - padR}" y2="${py}" stroke="var(--strek)" stroke-dasharray="4 4"/>`);
+          deler.push(`<text x="${padL - 8}" y="${py + 4}" text-anchor="end" fill="var(--demp)" font-size="12">${yv.toLocaleString("nb-NO")}</text>`);
+        }
+        for (let x = 0; x <= xMaks; x += 2) {
+          const px = sx(x);
+          deler.push(`<line x1="${px}" y1="${padT}" x2="${px}" y2="${H - padB}" stroke="var(--strek)" stroke-opacity="0.5"/>`);
+          deler.push(`<text x="${px}" y="${H - padB + 18}" text-anchor="middle" fill="var(--demp)" font-size="12">${x} t</text>`);
+        }
+
+        deler.push(`<line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}" stroke="var(--blekk)" stroke-width="1.6"/>`);
+        deler.push(`<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H - padB}" stroke="var(--blekk)" stroke-width="1.6"/>`);
+
+        // Firma A og Firma B
+        deler.push(`<line x1="${sx(0)}" y1="${sy(bA)}" x2="${sx(xMaks)}" y2="${sy(aA * xMaks + bA)}" stroke="var(--k1)" stroke-width="3.2"/>`);
+        deler.push(`<line x1="${sx(0)}" y1="${sy(bB)}" x2="${sx(xMaks)}" y2="${sy(aB * xMaks + bB)}" stroke="var(--uklar)" stroke-width="3" stroke-dasharray="8 5"/>`);
+
+        if (xSkj !== null && xSkj >= 0 && xSkj <= xMaks) {
+          const px = sx(xSkj);
+          const py = sy(ySkj);
+          deler.push(`<line x1="${px}" y1="${H - padB}" x2="${px}" y2="${py}" stroke="var(--k2)" stroke-width="1.6" stroke-dasharray="4 4"/>`);
+          deler.push(`<circle cx="${px}" cy="${py}" r="6.5" fill="var(--k2)" stroke="var(--ark)" stroke-width="2"/>`);
+          const tx = xSkj > 8.5 ? px - 10 : px + 10;
+          const ank = xSkj > 8.5 ? "end" : "start";
+          deler.push(`<text x="${tx}" y="${Math.max(padT + 14, py - 10)}" text-anchor="${ank}" fill="var(--blekk)" font-weight="700" font-size="13">Skjæring (${xSkj.toFixed(1).replace(".", ",")} t, ${Math.round(ySkj).toLocaleString("nb-NO")} kr)</text>`);
+        }
+
+        svg.innerHTML = deler.join("");
+      }
+
+      [elFaB, elFaA, elFbB, elFbA].forEach((el) => el.addEventListener("input", tegn));
+      tegn();
+    })();
+  </script>
+</body>
+</html>

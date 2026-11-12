@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MA2PY – Interaktivt læreverk og oppgavearkgenerator i Matematikk 2P-Y (LK20 MAT06-04) for Vg3 påbygging til generell studiekompetanse.">
+  <title>MA2PY · Matematikk 2P-Y (Vg3 påbygging)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f2438'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='%23fbbf24' font-family='sans-serif' font-weight='800' font-size='10'%3E2P-Y%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f3f6f9;
+      --grid: rgba(15, 36, 56, 0.055);
+      --card: #ffffff;
+      --text: #122130;
+      --muted: #4b5d6e;
+      --border: #d7e1ea;
+      --navy: #0f2438;
+      --navy-soft: #1c3b59;
+      --amber: #d97706;
+      --amber-bg: #fef3c7;
+      --green: #0f766e;
+      --green-bg: #ccfbf1;
+      --blue: #1d4ed8;
+      --blue-bg: #dbeafe;
+      --shadow: 0 10px 30px rgba(15, 36, 56, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1520;
+      --grid: rgba(148, 163, 184, 0.06);
+      --card: #132232;
+      --text: #e8eff6;
+      --muted: #9fb2c4;
+      --border: #25394d;
+      --navy: #f8fafc;
+      --navy-soft: #38bdf8;
+      --amber: #fbbf24;
+      --amber-bg: rgba(251, 191, 36, 0.14);
+      --green: #2dd4bf;
+      --green-bg: rgba(45, 212, 191, 0.14);
+      --blue: #60a5fa;
+      --blue-bg: rgba(96, 165, 250, 0.14);
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      line-height: 1.6;
+    }
+
+    .topbar {
+      background: #0f2438;
+      color: #f8fafc;
+      border-bottom: 3px solid #f59e0b;
+    }
+
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-badge {
+      background: #fbbf24;
+      color: #0f2438;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      padding: 0.3rem 0.65rem;
+      border-radius: 7px;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1.08rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .top-pill {
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.38rem 0.78rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .top-pill:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.25rem 1.25rem 3.5rem;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2.1rem 2.2rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.75rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.45rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      line-height: 1.2;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 3.4vw, 2.6rem);
+      margin-bottom: 0.65rem;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 74ch;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .edition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.35rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .edition-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .edition-card.featured {
+      border-color: #f59e0b;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.65rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .tag-amber { background: var(--amber-bg); color: var(--amber); }
+    .tag-green { background: var(--green-bg); color: var(--green); }
+    .tag-blue  { background: var(--blue-bg); color: var(--blue); }
+
+    .edition-card h2 {
+      font-size: 1.45rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .edition-card p {
+      margin: 0 0 0.9rem;
+      color: var(--muted);
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: 0.95rem;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .shortcut-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.68rem 1.1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: transform 0.12s ease, opacity 0.12s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: #0f2438;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .btn-primary {
+      background: #fbbf24;
+      color: #0f2438;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      padding: 0.48rem 0.82rem;
+      font-size: 0.86rem;
+    }
+
+    .curriculum-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow);
+    }
+
+    .curriculum-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.9rem;
+    }
+
+    .topic-pill {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.92rem;
+    }
+
+    .topic-pill strong {
+      display: block;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      margin-bottom: 0.15rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    footer code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge">MA2PY</span>
+        <span class="brand-title">Matematikk 2P-Y · Vg3 påbygging</span>
+      </a>
+      <div class="top-actions">
+        <a class="top-pill" href="matte2py-guttas-campus/oppgaveark.html">🖨 A4-oppgaveark</a>
+        <a class="top-pill" href="matte2py-guttas-campus/python-lab.html">▶ Python-verksted</a>
+        <button type="button" class="top-pill" id="theme-toggle" aria-pressed="false">☾ Mørk visning</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">LK20 · MAT06-04 · NDLA-STRUKTUR · YRKESFAGLIG PÅBYGG</p>
+      <h1>Interaktivt læreverk i Matematikk 2P-Y</h1>
+      <p class="lead">
+        Praktisk, yrkesnær matematikk for Vg3 påbygging til generell studiekompetanse – med kjørbar Python i nettleseren (Pyodide), interaktive grafer, trinnvise løsningsforslag og utskriftsklare A4-oppgaveark med ruteark og fasit.
+      </p>
+    </section>
+
+    <section class="edition-grid" aria-label="Velg utgave">
+      <article class="edition-card featured">
+        <div>
+          <div class="tag-row">
+            <span class="tag tag-amber">★ Guttas Campus-utgave</span>
+            <span class="tag tag-green">Papir + skjerm (A4-generator)</span>
+          </div>
+          <h2>Guttas Campus · Matematikk 2P-Y</h2>
+          <p>
+            Bygget på synlig læring (måltrapp), utviklende tankesett («ennå»), de syv karakterstyrkene, fast øktramme med oppvarming + mengdetrening og dynamisk oppgavearkgenerator for utskrift.
+          </p>
+          <ul class="feature-list">
+            <li><strong>Økt 1 &amp; Økt 2:</strong> Prosent/vekstfaktor, lineære modeller og lønnsstatistikk</li>
+            <li><strong>Utskriftsmodul (A4):</strong> Generer ferske oppgaveark med nye tall, ruteark og separat fasit</li>
+            <li><strong>Mentormodus &amp; loggbok:</strong> Veiledningsspørsmål og karakterstyrke-sjekk</li>
+            <li><strong>Python-verksted:</strong> Kjørbare 2P-Y-maler direkte i nettleseren</li>
+          </ul>
+        </div>
+        <div>
+          <div style="margin-bottom:0.75rem">
+            <a class="btn btn-primary" href="matte2py-guttas-campus/index.html">Åpne Guttas Campus-utgaven →</a>
+          </div>
+          <div class="shortcut-grid">
+            <a class="btn btn-secondary" href="matte2py-guttas-campus/oppgaveark.html">🖨 Oppgaveark (A4)</a>
+            <a class="btn btn-secondary" href="matte2py-guttas-campus/okt-prosent-vekst.html">Økt 1: Prosent</a>
+            <a class="btn btn-secondary" href="matte2py-guttas-campus/okt-funksjoner-statistikk.html">Økt 2: Modeller</a>
+            <a class="btn btn-secondary" href="matte2py-guttas-campus/python-lab.html">▶ Python</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="edition-card">
+        <div>
+          <div class="tag-row">
+            <span class="tag tag-blue">Standard læreverk-utgave</span>
+            <span class="tag tag-green">Selvstudium &amp; tavle</span>
+          </div>
+          <h2>Læreverk i Matematikk 2P-Y</h2>
+          <p>
+            Klassisk kapittel- og oppslagsutgave inspirert av 1T-tavleressurser og Munchboka – med hurtigsøk på tvers av pensum, begrepsregister A–Å og «Uklart for meg»-liste til timen.
+          </p>
+          <ul class="feature-list">
+            <li><strong>Kap. 1.2:</strong> Prosent, prosentpoeng, vekstfaktor og spare-/verditapsutforsker</li>
+            <li><strong>Kap. 2.2:</strong> Lineære funksjoner, topunktsformel og interaktiv prissammenligner</li>
+            <li><strong>Kap. 5.1:</strong> Python-lab med Pyodide og Del 1 kodeforståelse</li>
+            <li><strong>Elevstøtte:</strong> Steg-for-steg-eksempler, hint og eksport av uklare punkter</li>
+          </ul>
+        </div>
+        <div>
+          <div style="margin-bottom:0.75rem">
+            <a class="btn btn-primary" href="matte2py/index.html">Åpne Standardutgaven →</a>
+          </div>
+          <div class="shortcut-grid">
+            <a class="btn btn-secondary" href="matte2py/prosent-vekst.html">Kap. 1.2: Prosent</a>
+            <a class="btn btn-secondary" href="matte2py/lineare-modeller.html">Kap. 2.2: Modeller</a>
+            <a class="btn btn-secondary" href="matte2py/python-lab.html">▶ Python-lab</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="curriculum-box">
+      <h3 style="margin-bottom:0.25rem">Dekker hovedområdene i LK20 (<code>MAT06-04</code>) og NDLA 2P-Y</h3>
+      <p style="margin:0;color:var(--muted);font-size:0.95rem">
+        Eksempler og oppgaver er forankret i yrkesfaglig praksis (elektro, tømrer/bygg, transport, helse, salg og privatøkonomi) samt skille mellom Del 1 (uten hjelpemidler) og Del 2 (med Python/digitale verktøy).
+      </p>
+      <div class="curriculum-grid">
+        <div class="topic-pill"><strong>1. Tall og algebra</strong>Proporsjonalitet, prosent, prosentpoeng, vekstfaktor, potenser og standardform.</div>
+        <div class="topic-pill"><strong>2. Funksjoner og modellering</strong>Lineære modeller, skjæringspunkt, eksponential-/potensvekst og gyldighetsområde.</div>
+        <div class="topic-pill"><strong>3. Statistikk</strong>Frekvenstabeller, gjennomsnitt, median, kvartilbredde, standardavvik og histogram.</div>
+        <div class="topic-pill"><strong>4. Datasett &amp; Python</strong>Løkker, lister, simulering av lån/sparing, halveringsmetoden og kritisk tallbruk.</div>
+      </div>
+    </section>
+
+    <footer>
+      <span><strong>MA2PY</strong> · Matematikk 2P-Y (<code>MAT06-04</code>) – Statisk webapp uten byggesteg (klar for GitHub Pages)</span>
+      <span><a href="matte2py-guttas-campus/index.html" style="color:inherit">Guttas Campus</a> · <a href="matte2py/index.html" style="color:inherit">Standardutgave</a></span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var KEY = 'ma2py-portal-theme';
+      var btn = document.getElementById('theme-toggle');
+      function apply(theme) {
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          btn.textContent = '☀ Lys visning';
+          btn.setAttribute('aria-pressed', 'true');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+          btn.textContent = '☾ Mørk visning';
+          btn.setAttribute('aria-pressed', 'false');
+        }
+      }
+      var saved = localStorage.getItem(KEY);
+      if (saved) apply(saved);
+      btn.addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(KEY, next);
+        apply(next);
+      });
+    })();
+  </script>
+</body>
+</html>
