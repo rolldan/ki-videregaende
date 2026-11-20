@@ -25,6 +25,8 @@ Nettsiden er publisert via GitHub Pages:
 | `KI-implementering-videregaende.docx` | Strategidokument |
 | `KI-implementering-videregaende.pptx` | Presentasjon |
 | `KI-implementering-videregaende.md` | Markdown-versjon |
+| `microbit-naturfag-pabygg.html` | Elevhefte: Micro:bit + naturfag påbygg (delbart/utskriftsvennlig) |
+| `microbit-naturfag-pabygg.md` | Samme elevhefte i Markdown |
 
 ## Lokal forhåndsvisning
 
