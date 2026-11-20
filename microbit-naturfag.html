@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Oppgaveark: Micro:bit i naturfag for påbygg – oppgavetekst, instruks og kode. 90 minutter.">
+  <title>Oppgaveark: Micro:bit i naturfag – påbygg</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --surface: #ffffff;
+      --text: #142433;
+      --muted: #5a6b7d;
+      --primary: #0a5f7a;
+      --primary-dark: #084a5f;
+      --accent: #c45c26;
+      --border: #d5e0e8;
+      --code-bg: #0f2430;
+      --radius: 10px;
+      --font: "DM Sans", system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --max: 800px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 1.02rem;
+      line-height: 1.55;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #d8ebf2 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #f0e6dc 0%, transparent 45%),
+        var(--bg);
+    }
+
+    .wrap {
+      width: min(100% - 2rem, var(--max));
+      margin: 0 auto;
+      padding: 2rem 0 3.5rem;
+    }
+
+    header {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 4.5vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--primary-dark);
+    }
+
+    .lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+    }
+
+    .fill-in {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .fill-in span {
+      display: block;
+      border-bottom: 1px solid var(--border);
+      padding: 0.35rem 0;
+    }
+
+    h2 {
+      margin: 2.25rem 0 0.85rem;
+      padding: 0.55rem 0.85rem;
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: #fff;
+      background: var(--primary-dark);
+      border-radius: 6px;
+    }
+
+    h3 {
+      margin: 1.15rem 0 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    p, li { color: var(--text); }
+    a { color: var(--primary); }
+    .muted { color: var(--muted); font-size: 0.95rem; }
+
+    .box {
+      margin: 0.65rem 0 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .box.oppgave { border-left: 4px solid var(--primary); }
+    .box.instruks { border-left: 4px solid #5a7a8c; background: #f7fafc; }
+    .box.science { border-left: 4px solid var(--accent); background: #fff8f3; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0 1.1rem;
+      font-size: 0.92rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.55rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: #e8f2f5;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .write-row td { height: 2.2rem; background: #fafcfd; }
+
+    pre {
+      margin: 0.35rem 0 1rem;
+      padding: 0.9rem 1rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: #e8f0f4;
+      background: var(--code-bg);
+      border-radius: 8px;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      background: #e8f0f4;
+      padding: 0.08em 0.3em;
+      border-radius: 3px;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    .code-label {
+      margin: 0.75rem 0 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+
+    .checklist li {
+      margin: 0.35rem 0;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      width: 0.95rem;
+      height: 0.95rem;
+      border: 2px solid var(--primary);
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    .tools a {
+      display: inline-block;
+      padding: 0.5rem 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 7px;
+    }
+
+    .tools a.secondary {
+      color: var(--primary-dark);
+      background: #e8f2f5;
+    }
+
+    .lines {
+      margin: 0.5rem 0 0;
+    }
+
+    .lines div {
+      border-bottom: 1px solid var(--border);
+      min-height: 1.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .note {
+      margin: 0.5rem 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      background: #eef6f8;
+      border-radius: 7px;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .print-hint {
+      margin: 0 0 1.25rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    @media print {
+      body { background: #fff; font-size: 11pt; }
+      .print-hint, .tools { display: none; }
+      h2 { break-after: avoid; background: #ddd !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .box, table, pre { break-inside: avoid; }
+      pre {
+        white-space: pre-wrap;
+        border: 1px solid #bbb;
+        color: #111;
+        background: #f4f4f4;
+      }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="print-hint">Skriv ut / lagre som PDF: Ctrl/Cmd+P. Markdown: <code>microbit-naturfag-paabygg.md</code></p>
+
+    <header>
+      <p class="eyebrow">Oppgaveark · Naturfag påbygg · 90 min</p>
+      <h1>Micro:bit i naturfag</h1>
+      <p class="lead">Oppgavetekst, instruks og kode til hele økten. Bruk MakeCode (blokk) – Python ligger som alternativ.</p>
+      <div class="fill-in">
+        <span><strong>Navn:</strong></span>
+        <span><strong>Gruppe nr.:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Radiogruppe:</strong></span>
+      </div>
+      <div class="tools">
+        <a href="https://makecode.microbit.org" target="_blank" rel="noopener">MakeCode</a>
+        <a class="secondary" href="https://python.microbit.org" target="_blank" rel="noopener">Python Editor</a>
+      </div>
+    </header>
+
+    <section>
+      <h3>Dette skal du ha</h3>
+      <ul>
+        <li>Minst 2 micro:bitter</li>
+        <li>USB-kabel eller batteripakke til hver</li>
+        <li>PC med nettleser</li>
+      </ul>
+
+      <h3>Slik laster du ned program</h3>
+      <ol>
+        <li>Åpne <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a></li>
+        <li>Velg <strong>Nytt prosjekt</strong></li>
+        <li>Bygg med blokker (eller bytt til Python)</li>
+        <li>Trykk <strong>Last ned</strong> og dra <code>.hex</code>-fila til micro:bit</li>
+        <li>Radio må testes på <strong>fysiske</strong> micro:bitter</li>
+      </ol>
+    </section>
+
+    <!-- OPPGAVE 1 -->
+    <section>
+      <h2>Oppgave 1 – Bli kjent med MakeCode (15 min)</h2>
+
+      <h3>Oppgavetekst</h3>
+      <div class="box oppgave">
+        Bli kjent med Microsoft MakeCode. Finn fram i editoren, test simulatoren og last ned et program til micro:bit.
+      </div>
+
+      <h3>Instruks</h3>
+      <div class="box instruks">
+        <ol>
+          <li>Gå til MakeCode og lag et nytt prosjekt (f.eks. <code>Oppgave1</code>).</li>
+          <li>Finn menyene <strong>Grunnleggende</strong>, <strong>Inndata</strong> og <strong>Radio</strong>.</li>
+          <li>Se på <strong>simulatoren</strong> i midten.</li>
+          <li>Last ned et enkelt program til micro:biten.</li>
+        </ol>
+      </div>
+
+      <ul class="checklist">
+        <li>Jeg har åpnet et nytt prosjekt</li>
+        <li>Jeg har testet noe i simulatoren</li>
+        <li>Jeg har lastet ned program til micro:bit</li>
+      </ul>
+    </section>
+
+    <!-- OPPGAVE 2 -->
+    <section>
+      <h2>Oppgave 2 – Tekst og symbol (15 min)</h2>
+
+      <h3>Oppgavetekst</h3>
+      <div class="box oppgave">
+        Få micro:bit til å vise en <strong>tekst</strong> og deretter et <strong>symbol</strong> når den starter.
+      </div>
+
+      <h3>Instruks</h3>
+      <div class="box instruks">
+        <ol>
+          <li>Bruk blokken <code>ved start</code>.</li>
+          <li>Legg inn <code>vis streng</code> med en tekst du velger.</li>
+          <li>Legg inn en kort <code>pause</code>.</li>
+          <li>Legg inn <code>vis ikon</code> (eller tegn eget med <code>vis lysdioder</code>).</li>
+          <li>Last ned og test.</li>
+        </ol>
+      </div>
+
+      <h3>Kode</h3>
+      <p class="code-label">Blokk</p>
+<pre><code>ved start
+    → vis streng "Hei"
+    → pause (ms) 1000
+    → vis ikon (hjerte)</code></pre>
+
+      <p class="code-label">Python</p>
+<pre><code>from microbit import *
+
+display.scroll("Hei")
+sleep(1000)
+display.show(Image.HEART)</code></pre>
+
+      <div class="box science">
+        <strong>Naturfag:</strong> LED-skjermen gjør elektrisk energi om til <strong>lysenergi</strong>.
+      </div>
+    </section>
+
+    <!-- OPPGAVE 3 -->
+    <section>
+      <h2>Oppgave 3 – Utforsk knapp A og B (15 min)</h2>
+
+      <h3>Oppgavetekst</h3>
+      <div class="box oppgave">
+        Programmer knappene slik at A og B gjør ulike ting.
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Handling</th><th>Skal skje</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Trykk <strong>A</strong></td><td>Vis tekst «A» (eller et tall)</td></tr>
+          <tr><td>Trykk <strong>B</strong></td><td>Vis et symbol (f.eks. smilefjes)</td></tr>
+          <tr><td>Trykk <strong>A+B</strong> (valgfritt)</td><td>Tøm skjermen</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Instruks</h3>
+      <div class="box instruks">
+        <ol>
+          <li>Finn blokkene under <strong>Inndata</strong>: <code>når knapp A trykkes</code> / <code>når knapp B trykkes</code>.</li>
+          <li>Koble tekst til A og ikon til B.</li>
+          <li>(Valgfritt) Legg til A+B → tøm skjerm.</li>
+          <li>Last ned og test.</li>
+        </ol>
+      </div>
+
+      <h3>Kode</h3>
+      <p class="code-label">Blokk</p>
+<pre><code>når knapp A trykkes
+    → vis streng "A"
+
+når knapp B trykkes
+    → vis ikon (glad)
+
+når knapper A+B trykkes
+    → tøm skjerm</code></pre>
+
+      <p class="code-label">Python</p>
+<pre><code>from microbit import *
+
+while True:
+    if button_a.was_pressed():
+        display.scroll("A")
+    if button_b.was_pressed():
+        display.show(Image.HAPPY)
+    if button_a.is_pressed() and button_b.is_pressed():
+        display.clear()</code></pre>
+    </section>
+
+    <!-- OPPGAVE 4 -->
+    <section>
+      <h2>Oppgave 4 – Giver og mottaker (25 min)</h2>
+
+      <h3>Oppgavetekst</h3>
+      <div class="box oppgave">
+        Lag to roller: <strong>giver</strong> (sender) og <strong>mottaker</strong>. Send en beskjed mellom to micro:bitter. Deretter skal dere kunne sende meldinger begge veier.
+      </div>
+      <p class="note"><strong>Viktig:</strong> Begge må ha <strong>samme radiogruppe</strong>. Skriv den øverst på arket.</p>
+
+      <h3>Instruks – del A (én vei)</h3>
+      <div class="box instruks">
+        <ol>
+          <li>Avtal radiogruppe i gruppa.</li>
+          <li>Last giver-programmet på micro:bit 1.</li>
+          <li>Last mottaker-programmet på micro:bit 2.</li>
+          <li>Trykk A på giveren. Mottakeren skal vise «HEI».</li>
+        </ol>
+      </div>
+
+      <h3>Kode – del A</h3>
+      <p class="code-label">Giver (blokk)</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+
+når knapp A trykkes
+    → radio send streng "HEI"
+    → vis ikon (ja)</code></pre>
+
+      <p class="code-label">Mottaker (blokk)</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+
+på radio mottatt streng
+    → vis streng (mottatt streng)</code></pre>
+
+      <p class="code-label">Giver (Python)</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3)
+
+while True:
+    if button_a.was_pressed():
+        radio.send("HEI")
+        display.show(Image.YES)
+        sleep(400)
+        display.clear()</code></pre>
+
+      <p class="code-label">Mottaker (Python)</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3)
+
+while True:
+    msg = radio.receive()
+    if msg:
+        display.scroll(msg)</code></pre>
+
+      <h3>Instruks – del B (begge veier)</h3>
+      <div class="box instruks">
+        <ol>
+          <li>Last <strong>samme program</strong> på begge micro:bitene.</li>
+          <li>A sender «HEI», B sender «OK».</li>
+          <li>Test at dere kan sende beskjed til hverandre.</li>
+        </ol>
+      </div>
+
+      <h3>Kode – del B</h3>
+      <p class="code-label">Toveis (blokk, samme på begge)</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+
+når knapp A trykkes
+    → radio send streng "HEI"
+
+når knapp B trykkes
+    → radio send streng "OK"
+
+på radio mottatt streng
+    → vis streng (mottatt streng)</code></pre>
+
+      <p class="code-label">Toveis (Python, samme på begge)</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3)
+
+while True:
+    if button_a.was_pressed():
+        radio.send("HEI")
+    if button_b.was_pressed():
+        radio.send("OK")
+
+    msg = radio.receive()
+    if msg:
+        display.scroll(msg)</code></pre>
+
+      <div class="box science">
+        <strong>Naturfag:</strong> Radioen bruker <strong>elektromagnetiske bølger</strong> (ca. 2,4&nbsp;GHz) – samme type som Wi‑Fi og Bluetooth.
+      </div>
+    </section>
+
+    <!-- OPPGAVE 5 -->
+    <section>
+      <h2>Oppgave 5 – Signalstyrke (20 min)</h2>
+
+      <h3>Oppgavetekst</h3>
+      <div class="box oppgave">
+        Undersøk hva som påvirker radio-signalet. Én micro:bit er <strong>giver</strong>, én er <strong>mottaker</strong>.
+        Mottakeren viser <strong>signalstyrke</strong>. Endre én ting om gangen og noter resultatene.
+      </div>
+      <p class="note">Signalstyrke er ofte negative tall (f.eks. −42). <strong>Nærmere null = sterkere signal</strong> (−30 er sterkere enn −80).</p>
+
+      <h3>Instruks</h3>
+      <div class="box instruks">
+        <ol>
+          <li>Last giver- og mottaker-programmet (bruk MakeCode-blokk for signalstyrke).</li>
+          <li>Sett sendeeffekt til 6 først.</li>
+          <li>Gjennomfør testene i tabellen. Endre bare <strong>én ting</strong> per test.</li>
+          <li>Svar på spørsmålene.</li>
+        </ol>
+      </div>
+
+      <h3>Kode</h3>
+      <p class="code-label">Giver (blokk)</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+    → radio sett sendeeffekt 6
+
+når knapp A trykkes
+    → radio send streng "PING"
+    → vis ikon (diamant)</code></pre>
+
+      <p class="code-label">Mottaker (blokk)</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+
+på radio mottatt streng
+    → vis tall (radio signalstyrke)</code></pre>
+      <p class="muted">Finn «radio signalstyrke» under Radio → mer / avansert.</p>
+
+      <p class="code-label">Giver (Python)</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3, power=6)
+
+while True:
+    if button_a.was_pressed():
+        radio.send("PING")
+        display.show(Image.DIAMOND)
+        sleep(300)
+        display.clear()</code></pre>
+
+      <h3>Resultattabell</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Hva gjør dere?</th>
+            <th>Signalstyrke</th>
+            <th>Melding fram?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="write-row"><td>1</td><td>1 m, fri sikt</td><td></td><td></td></tr>
+          <tr class="write-row"><td>2</td><td>5 m avstand</td><td></td><td></td></tr>
+          <tr class="write-row"><td>3</td><td>Bak vegg/dør</td><td></td><td></td></tr>
+          <tr class="write-row"><td>4</td><td>Person mellom</td><td></td><td></td></tr>
+          <tr class="write-row"><td>5</td><td>Lavere sendeeffekt (f.eks. 1)</td><td></td><td></td></tr>
+          <tr class="write-row"><td>6</td><td>Valgfritt: metall/vann mellom</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Spørsmål</h3>
+      <ol>
+        <li>Hva skjedde med signalstyrken når avstanden økte? Hvorfor?</li>
+      </ol>
+      <div class="lines"><div></div><div></div></div>
+      <ol start="2">
+        <li>Hvilket hinder reduserte signalet mest?</li>
+      </ol>
+      <div class="lines"><div></div></div>
+      <ol start="3">
+        <li>Nevn én likhet mellom radiobølger og lys eller lyd:</li>
+      </ol>
+      <div class="lines"><div></div></div>
+
+      <div class="box science">
+        <strong>Kort teori:</strong>
+        Avstand sprer energien → svakere signal.
+        Hindre kan absorbere/reflektere bølger.
+        Lavere sendeeffekt → kortere rekkevidde.
+      </div>
+    </section>
+
+    <!-- INNLEVERING -->
+    <section>
+      <h2>Innlevering</h2>
+      <ul class="checklist">
+        <li>Skjermbilde / bekreftelse av giver- og mottaker-kode (oppgave 4 eller 5)</li>
+        <li>Ferdig resultattabell fra oppgave 5</li>
+        <li>Svar på de tre spørsmålene</li>
+      </ul>
+
+      <h3>Refleksjon (individuelt)</h3>
+      <p>Hva lærte du om usynlige bølger – og hvordan ligner det på noe annet fra naturfag?</p>
+      <div class="lines">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Hurtighjelp</h2>
+      <table>
+        <thead>
+          <tr><th>Problem</th><th>Løsning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Finner ikke MakeCode</td><td>makecode.microbit.org</td></tr>
+          <tr><td>Program lastes ikke</td><td>Annen USB-kabel/port, last ned .hex på nytt</td></tr>
+          <tr><td>Radio virker ikke</td><td>Samme radiogruppe? Begge har «radio sett gruppe»?</td></tr>
+          <tr><td>Andre forstyrrer</td><td>Bytt til unikt gruppenummer (1–255)</td></tr>
+          <tr><td>Finner ikke signalstyrke</td><td>MakeCode → Radio → mer/avansert</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      Naturfag påbygg · Micro:bit · Microsoft MakeCode · 90 min
+    </footer>
+  </div>
+</body>
+</html>

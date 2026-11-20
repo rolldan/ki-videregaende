@@ -25,6 +25,9 @@ Nettsiden er publisert via GitHub Pages:
 | `KI-implementering-videregaende.docx` | Strategidokument |
 | `KI-implementering-videregaende.pptx` | Presentasjon |
 | `KI-implementering-videregaende.md` | Markdown-versjon |
+| `microbit-naturfag.html` | Oppgaveark: Micro:bit + naturfag (påbygg, 90 min) |
+| `microbit-naturfag-paabygg.md` | Markdown-versjon av oppgavearket |
+| `microbit-naturfag-paabygg.docx` | Word-fil (redigerbar) av oppgavearket |
 
 ## Lokal forhåndsvisning
 
