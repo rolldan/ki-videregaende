@@ -1,94 +1,62 @@
-# Micro:bit og naturfag – påbygg
+# Oppgaveark: Micro:bit i naturfag (påbygg)
 
-**Elevhefte · 1 økt à 90 minutter**  
-Dere programmerer i **Microsoft MakeCode** (blokk) og kan også se tilsvarende kode i **Python**.
+**Fag:** Naturfag · **Varighet:** 90 min · **Gruppe:** 2–3 elever  
+**Verktøy:** [Microsoft MakeCode](https://makecode.microbit.org) (blokk) og/eller [Python Editor](https://python.microbit.org)
 
----
-
-## Læringsmål
-
-Etter økten skal du kunne:
-
-1. Finne fram i Microsoft MakeCode og laste ned program til micro:bit
-2. Vise tekst og symboler på skjermen
-3. Bruke knapp A og B til å styre programmet
-4. Sende og motta meldinger med radio (giver og mottaker)
-5. Undersøke hva som påvirker **signalstyrken** (naturfag: elektromagnetiske bølger)
+**Navn:** ________________________ **Gruppe nr.:** ______ **Radiogruppe:** ______
 
 ---
 
-## Utstyr (per gruppe, 2–3 elever)
+## Dette skal du ha
 
-| Utstyr | Antall |
-|--------|--------|
-| micro:bit (v1 eller v2) | minst 2 |
-| USB-kabel / batteripakke | 1 per micro:bit |
-| PC med nettleser | 1 |
-
-**Verktøy:** [makecode.microbit.org](https://makecode.microbit.org) (blokk) · [python.microbit.org](https://python.microbit.org) (Python)
+- Minst 2 micro:bitter
+- USB-kabel eller batteripakke til hver
+- PC med nettleser
 
 ---
 
-## Tidsplan (90 min)
+## Slik laster du ned program til micro:bit
 
-| Tid | Hva | Min |
-|-----|-----|-----|
-| 0–15 | Del 1: Bli kjent med MakeCode | 15 |
-| 15–30 | Del 2: Tekst og symbol | 15 |
-| 30–45 | Del 3: Utforsk knapp A og B | 15 |
-| 45–70 | Del 4: Giver og mottaker – send beskjed | 25 |
-| 70–90 | Del 5: Signalstyrke – hva påvirker? | 20 |
+1. Åpne [makecode.microbit.org](https://makecode.microbit.org)
+2. Velg **Nytt prosjekt**
+3. Bygg programmet med blokker (eller bytt til Python øverst)
+4. Trykk **Last ned**
+5. Dra `.hex`-fila over til micro:bit-stasjonen på PC-en
+6. Test på den fysiske micro:biten (radio må testes på ekte enheter, ikke bare i simulator)
 
 ---
 
-## Del 1 – Bli kjent med Microsoft MakeCode (15 min)
+# Oppgave 1 – Bli kjent med MakeCode (ca. 15 min)
 
-### Slik kommer du i gang
+### Oppgavetekst
+Bli kjent med Microsoft MakeCode. Finn fram i editoren, test simulatoren og last ned et program til micro:bit.
 
-1. Gå til [makecode.microbit.org](https://makecode.microbit.org)
-2. Velg **Nytt prosjekt** og gi det et navn (f.eks. `Oekt1`)
-3. Se på arbeidsområdet:
-   - **Blokker** til venstre (Grunnleggende, Inndata, Radio, …)
-   - **Simulator** i midten (virtuell micro:bit)
-   - **Kodeflate** til høyre (der du bygger programmet)
-4. Prøv noe i simulatoren først – deretter **Last ned** og dra `.hex`-fila over til micro:bit (som en USB-minnepinne)
+### Instruks
+1. Gå til MakeCode og lag et nytt prosjekt. Kall det f.eks. `Oppgave1`.
+2. Finn menyene **Grunnleggende**, **Inndata** og **Radio**.
+3. Se på **simulatoren** i midten – den viser hva programmet gjør.
+4. Last ned et enkelt program til micro:biten.
 
-### Sjekkliste
-
+### Kryss av
 - [ ] Jeg har åpnet et nytt prosjekt
-- [ ] Jeg ser simulatoren reagere når jeg tester
-- [ ] Jeg har lastet ned minst ett program til den fysiske micro:biten
-
-**Tips:** Bytt mellom **Blokker** og **Python** øverst i MakeCode for å se samme program på to måter.
+- [ ] Jeg har testet noe i simulatoren
+- [ ] Jeg har lastet ned program til micro:bit
 
 ---
 
-## Del 2 – Lag en tekst og et symbol (15 min)
+# Oppgave 2 – Tekst og symbol (ca. 15 min)
 
-### Oppgave 2a – Vis en tekst
+### Oppgavetekst
+Få micro:bit til å vise en **tekst** og deretter et **symbol** når den starter.
 
-Få micro:bit til å vise en tekst når den starter, f.eks. navnet ditt eller «Hei».
+### Instruks
+1. Bruk blokken `ved start`.
+2. Legg inn `vis streng` med en tekst du velger (f.eks. navnet ditt).
+3. Legg inn en kort `pause`.
+4. Legg inn `vis ikon` (f.eks. hjerte) – eller tegn eget symbol med `vis lysdioder`.
+5. Last ned og test.
 
-#### Blokk
-
-```
-ved start
-    → vis streng "Hei"
-```
-
-#### Python
-
-```python
-from microbit import *
-
-display.scroll("Hei")
-```
-
-### Oppgave 2b – Lag et symbol
-
-Vis et innebygd ikon (hjerte, smilefjes, …) eller tegn ditt eget mønster på 5×5-skjermen.
-
-#### Blokk
+### Kode – blokk
 
 ```
 ved start
@@ -97,9 +65,7 @@ ved start
     → vis ikon (hjerte)
 ```
 
-**Eget symbol (blokk):** Bruk `vis lysdioder` og tenn de lampene du vil.
-
-#### Python
+### Kode – Python
 
 ```python
 from microbit import *
@@ -107,31 +73,31 @@ from microbit import *
 display.scroll("Hei")
 sleep(1000)
 display.show(Image.HEART)
-
-# Eller eget mønster (9 = full lysstyrke):
-# mitt_symbol = Image("09090:99999:99999:09990:00900")
-# display.show(mitt_symbol)
 ```
 
-### Naturfag-kobling (kort)
-
-LED-skjermen lyser fordi elektrisk energi blir til **lysenergi**. Hvert «punkt» er en liten diode.
+### Naturfag
+LED-skjermen gjør elektrisk energi om til **lysenergi**.
 
 ---
 
-## Del 3 – Utforsk knapp A og B (15 min)
+# Oppgave 3 – Utforsk knapp A og B (ca. 15 min)
 
-### Oppgave
+### Oppgavetekst
+Programmer knappene slik at A og B gjør ulike ting.
 
-Programmer slik at:
+| Handling | Skal skje |
+|----------|-----------|
+| Trykk **A** | Vis tekst «A» (eller et tall) |
+| Trykk **B** | Vis et symbol (f.eks. smilefjes) |
+| Trykk **A+B** (valgfritt) | Tøm skjermen |
 
-| Handling | Resultat |
-|----------|----------|
-| Trykk **A** | Viser en tekst (f.eks. «A») eller et tall |
-| Trykk **B** | Viser et symbol (f.eks. smilefjes) |
-| Trykk **A+B** (valgfritt) | Nullstiller skjermen / viser noe tredje |
+### Instruks
+1. Finn blokkene under **Inndata**: `når knapp A trykkes` og `når knapp B trykkes`.
+2. Koble tekst til A og ikon til B.
+3. (Valgfritt) Legg til `når knapper A+B trykkes` → `tøm skjerm`.
+4. Last ned og test på micro:biten.
 
-#### Blokk
+### Kode – blokk
 
 ```
 når knapp A trykkes
@@ -144,7 +110,7 @@ når knapper A+B trykkes
     → tøm skjerm
 ```
 
-#### Python
+### Kode – Python
 
 ```python
 from microbit import *
@@ -158,36 +124,37 @@ while True:
         display.clear()
 ```
 
-### Utforsk videre
-
-- Kan du få A til å vise et tall som øker hver gang du trykker?
-- Hva skjer om du bruker `når knappen A er trykket` (kontinuerlig) i stedet for `når knapp A trykkes` (én gang)?
+### Ekstra (valgfritt)
+- Få A til å øke et tall hver gang du trykker.
+- Prøv forskjellen mellom «når knapp A trykkes» og «når knappen A er trykket».
 
 ---
 
-## Del 4 – Giver og mottaker: send beskjed (25 min)
+# Oppgave 4 – Giver og mottaker: send beskjed (ca. 25 min)
 
-Nå lager dere to roller. En micro:bit er **giver** (sender), den andre er **mottaker**.
+### Oppgavetekst
+Lag to roller: **giver** (sender) og **mottaker**. Send en beskjed mellom to micro:bitter. Deretter skal dere kunne sende meldinger begge veier.
 
-**Viktig:** Begge må bruke **samme radiogruppe** (f.eks. gruppenummeret deres: 1, 2, 3 …). Ellers snakker dere med feil gruppe.
+**Viktig:** Begge micro:bitene må ha **samme radiogruppe** (skriv gruppenummeret øverst på arket).
 
-### Oppgave 4a – Send en kort beskjed
+### Instruks – del A (én vei)
+1. Avtal radiogruppe i gruppa (f.eks. 3, 7 eller gruppenummeret deres).
+2. Last **giver**-programmet på micro:bit 1.
+3. Last **mottaker**-programmet på micro:bit 2.
+4. Trykk A på giveren. Mottakeren skal vise «HEI».
 
-- **Giver:** Trykk A for å sende teksten `HEI` (eller et tall).
-- **Mottaker:** Vis det som mottas på skjermen.
-
-#### Blokk – giver (sender)
+### Kode – giver (blokk)
 
 ```
 ved start
-    → radio sett gruppe 3          ← bytt til deres gruppenummer
+    → radio sett gruppe 3
 
 når knapp A trykkes
     → radio send streng "HEI"
     → vis ikon (ja)
 ```
 
-#### Blokk – mottaker
+### Kode – mottaker (blokk)
 
 ```
 ved start
@@ -197,14 +164,14 @@ på radio mottatt streng
     → vis streng (mottatt streng)
 ```
 
-#### Python – giver
+### Kode – giver (Python)
 
 ```python
 from microbit import *
 import radio
 
 radio.on()
-radio.config(group=3)  # bytt til deres gruppenummer
+radio.config(group=3)
 
 while True:
     if button_a.was_pressed():
@@ -214,7 +181,7 @@ while True:
         display.clear()
 ```
 
-#### Python – mottaker
+### Kode – mottaker (Python)
 
 ```python
 from microbit import *
@@ -229,16 +196,12 @@ while True:
         display.scroll(msg)
 ```
 
-### Oppgave 4b – Toveis prat
+### Instruks – del B (begge veier)
+1. Last **samme program** på begge micro:bitene (koden under).
+2. A sender «HEI», B sender «OK».
+3. Test at dere kan sende beskjed til hverandre.
 
-Bytt roller, eller programmer **begge** micro:bitene slik at:
-
-- A sender «HEI»
-- B sender «OK»
-
-Da kan dere sende beskjed fram og tilbake.
-
-#### Blokk (samme program på begge)
+### Kode – toveis (blokk, samme på begge)
 
 ```
 ved start
@@ -254,7 +217,7 @@ på radio mottatt streng
     → vis streng (mottatt streng)
 ```
 
-#### Python (samme program på begge)
+### Kode – toveis (Python, samme på begge)
 
 ```python
 from microbit import *
@@ -274,29 +237,30 @@ while True:
         display.scroll(msg)
 ```
 
-### Naturfag-kobling
-
-Radioen bruker **elektromagnetiske bølger** (2,4 GHz). Det er samme type bølger som Wi‑Fi og Bluetooth – usynlige, men de bærer informasjon.
+### Naturfag
+Radioen bruker **elektromagnetiske bølger** (ca. 2,4 GHz) – samme type bølger som Wi‑Fi og Bluetooth.
 
 ---
 
-## Del 5 – Signalstyrke: hva påvirker? (20 min)
+# Oppgave 5 – Signalstyrke: hva påvirker? (ca. 20 min)
 
-Til slutt tester dere systematisk hva som påvirker hvor godt signalet kommer fram.
+### Oppgavetekst
+Undersøk hva som påvirker radio-signalet. Én micro:bit er **giver**, én er **mottaker**. Mottakeren viser **signalstyrke**. Endre én ting om gangen og noter resultatene.
 
-### Oppsett
+**Slik leser du signalstyrke:** Tallene er ofte negative (f.eks. −42). **Nærmere null = sterkere signal** (−30 er sterkere enn −80).
 
-1. Én **giver** og én **mottaker** (bruk programmene under).
-2. Giver sender jevnlig (eller når du trykker A).
-3. Mottaker viser **signalstyrke** (RSS / «received signal strength»).
-4. Noter resultatene i tabellen.
+### Instruks
+1. Last giver- og mottaker-programmet under (bruk MakeCode-blokk for signalstyrke).
+2. Sett sendeeffekt til 6 først.
+3. Gjennomfør testene i tabellen. Endre bare **én ting** per test.
+4. Svar på spørsmålene.
 
 ### Kode – giver (blokk)
 
 ```
 ved start
     → radio sett gruppe 3
-    → radio sett sendeeffekt 6     ← maks er ofte 7 (prøv også lavere!)
+    → radio sett sendeeffekt 6
 
 når knapp A trykkes
     → radio send streng "PING"
@@ -313,18 +277,16 @@ på radio mottatt streng
     → vis tall (radio signalstyrke)
 ```
 
-> I MakeCode: blokken **«radio signalstyrke»** / **«received packet signal strength»** finnes under Radio (avansert). Tallene er typisk negative (f.eks. −42). **Nærmere null = sterkere signal** (−30 er sterkere enn −80).
+> Finn «radio signalstyrke» under **Radio → mer / avansert** i MakeCode.
 
-### Kode – Python
-
-**Giver:**
+### Kode – giver (Python)
 
 ```python
 from microbit import *
 import radio
 
 radio.on()
-radio.config(group=3, power=6)  # power 0–7
+radio.config(group=3, power=6)
 
 while True:
     if button_a.was_pressed():
@@ -334,64 +296,50 @@ while True:
         display.clear()
 ```
 
-**Mottaker:**
-
-```python
-from microbit import *
-import radio
-
-radio.on()
-radio.config(group=3)
-
-while True:
-    msg = radio.receive()
-    if msg:
-        # signalstyrke for siste mottatte pakke
-        styrke = radio.receive_full()
-        # Alternativ i noen firmware: bruk MakeCode for RSSI
-        display.scroll(msg)
-```
-
-> **Merk:** Signalstyrke (RSSI) er enklest å lese i **MakeCode-blokker**. Bruk blokk-mottakeren over til forsøket hvis Python-versjonen mangler RSSI i editoren deres.
-
-### Forsøk – fyll inn
-
-Hold giveren i ro. Endre **én ting om gangen**.
+### Resultattabell
 
 | Test | Hva gjør dere? | Signalstyrke | Kom melding fram? (ja/nei) |
 |------|----------------|--------------|----------------------------|
-| 1 | 1 meter fra hverandre, fri sikt | | |
-| 2 | 5 meter fra hverandre | | |
-| 3 | Bak en vegg / dør | | |
-| 4 | Med kroppen mellom (person står imellom) | | |
-| 5 | Lavere sendeeffekt (f.eks. 1 i stedet for 6) | | |
-| 6 | (valgfritt) Metallskap / vannflaske mellom | | |
+| 1 | 1 meter, fri sikt | | |
+| 2 | 5 meter avstand | | |
+| 3 | Bak vegg eller dør | | |
+| 4 | Person står mellom | | |
+| 5 | Lavere sendeeffekt (f.eks. 1) | | |
+| 6 | Valgfritt: metall eller vann mellom | | |
 
-### Spørsmål til naturfag
+### Spørsmål
+1. Hva skjedde med signalstyrken når avstanden økte? Hvorfor?  
+   _________________________________________________________________
 
-1. Hva skjedde med signalstyrken når avstanden økte? Hvorfor?
-2. Hvilket hinder reduserte signalet mest?
-3. Elektromagnetiske bølger dempes av materialer og avstand. Nevn én likhet med **lys** eller **lyd**.
+2. Hvilket hinder reduserte signalet mest?  
+   _________________________________________________________________
 
-### Kort forklaring (til diskusjon)
+3. Nevn én likhet mellom radiobølger og **lys** eller **lyd**:  
+   _________________________________________________________________
 
+### Kort teori
 - **Avstand:** Energien fordeles over større område → svakere signal.
-- **Hindre:** Vegger, kropp og metall kan **absorbere** eller **reflektere** bølger.
-- **Sendeeffekt:** Lavere effekt = mindre energi i bølgen = kortere rekkevidde.
+- **Hindre:** Vegger, kropp og metall kan absorbere eller reflektere bølger.
+- **Sendeeffekt:** Lavere effekt → mindre energi → kortere rekkevidde.
 
 ---
 
-## Innlevering (siste 5 min av del 5)
+# Innlevering
 
-Per gruppe:
+Lever dette (per gruppe):
 
-1. Skjermbilde eller kort beskrivelse av **giver**- og **mottaker**-programmet  
-2. Ferdig tabell fra signalstyrke-forsøket  
-3. Svar på de tre naturfagspørsmålene  
+1. [ ] Kort bekreftelse / skjermbilde av giver- og mottaker-kode (oppgave 4 eller 5)
+2. [ ] Ferdig resultattabell fra oppgave 5
+3. [ ] Svar på de tre spørsmålene
 
-### Refleksjon (individuelt, 2–3 setninger)
+### Refleksjon (individuelt)
+Hva lærte du om usynlige bølger – og hvordan ligner det på noe annet fra naturfag?
 
-> Hva lærte du om hvordan usynlige bølger oppfører seg – og hvordan ligner det på noe annet dere har hatt i naturfag?
+_______________________________________________________________________________
+
+_______________________________________________________________________________
+
+_______________________________________________________________________________
 
 ---
 
@@ -400,12 +348,12 @@ Per gruppe:
 | Problem | Løsning |
 |---------|---------|
 | Finner ikke MakeCode | [makecode.microbit.org](https://makecode.microbit.org) |
-| Program lastes ikke | USB-kabel, last ned `.hex` på nytt, annen port |
-| Radio virker ikke | Samme gruppenummer? Begge har «radio sett gruppe»? |
-| Mange grupper forstyrrer | Bruk unikt gruppenummer (1–255) |
-| Ser ikke signalstyrke | MakeCode → Radio → avansert → «signalstyrke» |
-| Simulator vs. ekte | Radio og signalstyrke må testes på **fysiske** micro:bitter |
+| Program lastes ikke | Prøv annen USB-kabel/port, last ned `.hex` på nytt |
+| Radio virker ikke | Samme radiogruppe? Begge har «radio sett gruppe»? |
+| Andre grupper forstyrrer | Bytt til et unikt gruppenummer (1–255) |
+| Finner ikke signalstyrke | MakeCode → Radio → mer/avansert |
+| Virker i simulator, ikke på radio | Radio må testes på **fysiske** micro:bitter |
 
 ---
 
-*Materiell til naturfag påbygg · Micro:bit · Microsoft MakeCode · 90 minutter*
+*Naturfag påbygg · Micro:bit · Microsoft MakeCode · 90 min*
