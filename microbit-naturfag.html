@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Elevhefte: Micro:bit og naturfag for påbygg – én økt à 90 minutter med sensorer, radio, blokk og Python.">
+  <title>Micro:bit og naturfag – påbygg | Elevhefte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --surface: #ffffff;
+      --text: #142433;
+      --muted: #5a6b7d;
+      --primary: #0a5f7a;
+      --primary-dark: #084a5f;
+      --accent: #c45c26;
+      --border: #d5e0e8;
+      --code-bg: #0f2430;
+      --ok: #1b7f5c;
+      --radius: 12px;
+      --font: "DM Sans", system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --max: 820px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #d8ebf2 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #f0e6dc 0%, transparent 45%),
+        var(--bg);
+    }
+
+    .wrap {
+      width: min(100% - 2rem, var(--max));
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+
+    header.doc-hero {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    h1 {
+      margin: 0 0 0.75rem;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--primary-dark);
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 40rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    h2 {
+      margin: 2.75rem 0 1rem;
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--primary-dark);
+    }
+
+    h3 {
+      margin: 1.75rem 0 0.65rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    h4 {
+      margin: 1.25rem 0 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    p, li { color: var(--text); }
+    .muted { color: var(--muted); }
+
+    a { color: var(--primary); }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin: 1.25rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .meta strong { color: var(--text); font-weight: 600; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.95rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: #e8f2f5;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .write-row td {
+      height: 2.4rem;
+      background: #fafcfd;
+    }
+
+    .activity {
+      margin: 1.5rem 0;
+      padding: 1.35rem 1.35rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+    }
+
+    .activity.challenge {
+      border-left-color: var(--accent);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: #e8f2f5;
+      border-radius: 4px;
+    }
+
+    .tag.accent {
+      color: #7a3412;
+      background: #f7e8df;
+    }
+
+    pre {
+      margin: 0.75rem 0 1rem;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: #e8f0f4;
+      background: var(--code-bg);
+      border-radius: 8px;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      background: #e8f0f4;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    .code-label {
+      margin: 1rem 0 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .questions {
+      margin: 1rem 0 0;
+      padding: 0.85rem 1rem;
+      background: #f0f6f8;
+      border-radius: 8px;
+    }
+
+    .questions ol { margin: 0.4rem 0 0; padding-left: 1.25rem; }
+
+    .reflect {
+      margin: 1.5rem 0;
+      padding: 1.25rem 1.35rem;
+      background: #fff8f3;
+      border: 1px solid #efd5c4;
+      border-radius: var(--radius);
+    }
+
+    .reflect p:last-child { margin-bottom: 0; }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .tools a {
+      display: inline-block;
+      padding: 0.55rem 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 8px;
+    }
+
+    .tools a.secondary {
+      color: var(--primary-dark);
+      background: #e8f2f5;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .print-hint {
+      margin: 0 0 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    @media print {
+      body { background: #fff; }
+      .print-hint, .tools { display: none; }
+      .activity, .reflect { break-inside: avoid; }
+      pre { white-space: pre-wrap; border: 1px solid #ccc; color: #111; background: #f5f5f5; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="print-hint">Tips: Bruk Ctrl/Cmd+P for å skrive ut eller lagre som PDF. Markdown-versjon: <code>microbit-naturfag-paabygg.md</code></p>
+
+    <header class="doc-hero">
+      <p class="eyebrow">Elevhefte · Naturfag påbygg</p>
+      <h1>Micro:bit og naturfag</h1>
+      <p class="lead">
+        Én økt à 90 minutter. Dere har allerede programmert trådløs kommunikasjon.
+        Nå bruker dere sensorer til å samle data og forklare dem med naturfag.
+      </p>
+      <ul class="meta">
+        <li><strong>Varighet:</strong> 90 min</li>
+        <li><strong>Gruppe:</strong> 2–3 elever</li>
+        <li><strong>Kode:</strong> blokk eller Python</li>
+      </ul>
+    </header>
+
+    <section>
+      <h2>Læringsmål</h2>
+      <ol>
+        <li>Bruke micro:bitens sensorer til å måle temperatur, lys og bevegelse</li>
+        <li>Programmere i <strong>blokk</strong> eller <strong>Python</strong> (MicroPython)</li>
+        <li>Koble målingene til naturfagbegreper (energi, klima, kraft/bevegelse)</li>
+        <li>Bruke radio til å sende måledata mellom micro:bitter</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Utstyr</h2>
+      <table>
+        <thead>
+          <tr><th>Utstyr</th><th>Antall</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>micro:bit (v1 eller v2)</td><td>minst 2</td></tr>
+          <tr><td>USB-kabel / batteripakke</td><td>1 per micro:bit</td></tr>
+          <tr><td>PC med MakeCode eller Python Editor</td><td>1</td></tr>
+        </tbody>
+      </table>
+      <div class="tools">
+        <a href="https://makecode.microbit.org" target="_blank" rel="noopener">MakeCode (blokk)</a>
+        <a class="secondary" href="https://python.microbit.org" target="_blank" rel="noopener">Python Editor</a>
+      </div>
+      <p class="muted">Velg enten blokk <em>eller</em> Python. Begge variantene ligger under hver aktivitet.</p>
+    </section>
+
+    <section>
+      <h2>Tidsplan</h2>
+      <table>
+        <thead>
+          <tr><th>Tid</th><th>Hva</th><th>Min</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–10</td><td>Oppstart: sensorer + naturfag</td><td>10</td></tr>
+          <tr><td>10–35</td><td>Aktivitet A: Temperatur og mikroklima</td><td>25</td></tr>
+          <tr><td>35–60</td><td>Aktivitet B: Lys og energi</td><td>25</td></tr>
+          <tr><td>60–80</td><td>Aktivitet C: Bevegelsesalarm med radio</td><td>20</td></tr>
+          <tr><td>80–90</td><td>Oppsummering og innlevering</td><td>10</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Oppstart (10 min)</h2>
+      <p>Micro:bit har innebygde sensorer. I naturfag bruker vi dem som måleinstrumenter.</p>
+      <table>
+        <thead>
+          <tr><th>Sensor</th><th>Hva måles?</th><th>Naturfagkobling</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Temperatur</td><td>°C (omtrentlig)</td><td>Energi, varme, klima</td></tr>
+          <tr><td>Lys</td><td>0–255 (relativ)</td><td>Stråling, energi, fotosyntese</td></tr>
+          <tr><td>Akselerometer</td><td>Bevegelse/helling</td><td>Kraft, bevegelse, tyngde</td></tr>
+          <tr><td>Radio</td><td>Trådløs sending</td><td>Dere kan dette fra før</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Diskuter i gruppa (2 min):</strong> Hvorfor er det smart å måle med sensorer i stedet for bare «å føle» at det er varmt eller lyst?</p>
+    </section>
+
+    <section>
+      <h2>Aktivitet A – Temperatur og mikroklima (25 min)</h2>
+
+      <div class="activity">
+        <span class="tag">Naturfag</span>
+        <p>Temperatur er et mål på den gjennomsnittlige kinetiske energien til partikler. Ute og inne, i sol og skygge, blir det ulike <strong>mikroklima</strong>. Små forskjeller (1–3 °C) kan bety mye for planter, dyr og energibruk i bygg.</p>
+      </div>
+
+      <h3>Oppgave</h3>
+      <ol>
+        <li>Programmer micro:bit til å vise temperatur når du trykker <strong>A</strong>.</li>
+        <li>Mål på <strong>tre steder</strong> (f.eks. ved vindu, midt i rommet, under bord).</li>
+        <li>Noter resultatene i tabellen.</li>
+        <li><strong>Utfordring:</strong> Glad ansikt hvis 18–22 °C, ellers trist (komfortsone).</li>
+      </ol>
+
+      <h3>Resultattabell</h3>
+      <table>
+        <thead>
+          <tr><th>Sted</th><th>Temperatur (°C)</th><th>Forklaring (hvorfor?)</th></tr>
+        </thead>
+        <tbody>
+          <tr class="write-row"><td>1.</td><td></td><td></td></tr>
+          <tr class="write-row"><td>2.</td><td></td><td></td></tr>
+          <tr class="write-row"><td>3.</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <p class="code-label">Blokk (MakeCode)</p>
+<pre><code>ved start
+    → (ingenting nødvendig)
+
+når knapp A trykkes
+    → vis tall (temperatur (°C))</code></pre>
+
+      <p class="code-label">Utfordring – blokk</p>
+<pre><code>når knapp A trykkes
+    → sett temp til temperatur (°C)
+    → vis tall (temp)
+    → hvis temp ≥ 18 og temp ≤ 22 da
+          vis ikon (glad)
+       ellers
+          vis ikon (trist)</code></pre>
+
+      <p class="code-label">Python (MicroPython)</p>
+<pre><code>from microbit import *
+
+while True:
+    if button_a.was_pressed():
+        temp = temperature()
+        display.scroll(str(temp))
+
+        # Utfordring: komfortsone 18–22 °C
+        if 18 &lt;= temp &lt;= 22:
+            display.show(Image.HAPPY)
+        else:
+            display.show(Image.SAD)</code></pre>
+
+      <div class="questions">
+        <strong>Spørsmål til naturfag</strong>
+        <ol>
+          <li>Hvilket sted var varmest, og hvorfor?</li>
+          <li>Er micro:bit-temperaturen nøyaktig nok til vitenskapelige forsøk? Hva kan påvirke målingen?</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Aktivitet B – Lys og energi (25 min)</h2>
+
+      <div class="activity">
+        <span class="tag">Naturfag</span>
+        <p>Lys er elektromagnetisk stråling. Planter bruker synlig lys til fotosyntese. Lysstyrken påvirker også energibruk til belysning. Micro:bit måler en <strong>relativ lysverdi</strong> (0–255) – nyttig til å sammenligne.</p>
+      </div>
+
+      <h3>Oppgave</h3>
+      <ol>
+        <li>Vis lysnivå når du trykker <strong>B</strong>.</li>
+        <li>Mål ved <strong>vindu</strong>, <strong>midt i rommet</strong> og <strong>under bord</strong>.</li>
+        <li>Lag energi-indikator: lavt → L, middels → M, sterkt → H.</li>
+        <li><strong>Utfordring:</strong> Send lysverdien med radio til partnerens micro:bit.</li>
+      </ol>
+
+      <h3>Resultattabell</h3>
+      <table>
+        <thead>
+          <tr><th>Sted</th><th>Lysverdi (0–255)</th><th>Energi-nivå (L/M/H)</th></tr>
+        </thead>
+        <tbody>
+          <tr class="write-row"><td>Vindu</td><td></td><td></td></tr>
+          <tr class="write-row"><td>Midt i rommet</td><td></td><td></td></tr>
+          <tr class="write-row"><td>Under bord</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <p class="code-label">Blokk – sender</p>
+<pre><code>ved start
+    → radio sett gruppe 7
+
+når knapp B trykkes
+    → sett lys til lysnivå
+    → vis tall (lys)
+    → hvis lys &lt; 50 da
+          vis streng "L"
+       ellers hvis lys &lt; 150 da
+          vis streng "M"
+       ellers
+          vis streng "H"
+    → radio send tall (lys)</code></pre>
+
+      <p class="code-label">Blokk – mottaker</p>
+<pre><code>ved start
+    → radio sett gruppe 7
+
+på radio mottatt tall
+    → vis tall (mottatt tall)</code></pre>
+
+      <p class="code-label">Python</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=7)
+
+while True:
+    if button_b.was_pressed():
+        lys = display.read_light_level()
+        display.scroll(str(lys))
+
+        if lys &lt; 50:
+            display.show("L")
+        elif lys &lt; 150:
+            display.show("M")
+        else:
+            display.show("H")
+
+        radio.send(str(lys))
+
+    mottatt = radio.receive()
+    if mottatt:
+        display.scroll(mottatt)</code></pre>
+
+      <div class="questions">
+        <strong>Spørsmål til naturfag</strong>
+        <ol>
+          <li>Hvorfor er det lyst ved vinduet, men mørkere lenger inn?</li>
+          <li>Hvordan henger lys og energi sammen i et klasserom (vindu vs. elektrisk lys)?</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Aktivitet C – Bevegelsesalarm med radio (20 min)</h2>
+
+      <div class="activity challenge">
+        <span class="tag accent">Naturfag + radio</span>
+        <p>Akselerometeret registrerer endring i fart. Når micro:bit ristes, endres akselerasjonen. Kobling til <strong>kraft og bevegelse</strong>: en kraft gir akselerasjon.</p>
+      </div>
+
+      <h3>Oppgave – «Bevegelsesalarm»</h3>
+      <ul>
+        <li><strong>Micro:bit 1 (sensor):</strong> Oppdager rist og sender radio-melding.</li>
+        <li><strong>Micro:bit 2 (mottaker):</strong> Viser alarm når melding mottas.</li>
+      </ul>
+      <p class="muted">Bruk samme radiogruppe (f.eks. 7), eller gruppenummeret deres hvis mange jobber samtidig.</p>
+
+      <p class="code-label">Blokk – sensor (sender)</p>
+<pre><code>ved start
+    → radio sett gruppe 7
+
+når ristet
+    → radio send streng "ALARM"
+    → vis ikon (kryss)</code></pre>
+
+      <p class="code-label">Blokk – mottaker</p>
+<pre><code>ved start
+    → radio sett gruppe 7
+
+på radio mottatt streng
+    → hvis mottatt streng = "ALARM" da
+          vis ikon (ja)</code></pre>
+
+      <p class="code-label">Python – sensor</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=7)
+
+while True:
+    if accelerometer.was_gesture("shake"):
+        radio.send("ALARM")
+        display.show(Image.NO)
+        sleep(500)
+        display.clear()</code></pre>
+
+      <p class="code-label">Python – mottaker</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=7)
+
+while True:
+    msg = radio.receive()
+    if msg == "ALARM":
+        display.show(Image.YES)
+        try:
+            import music
+            music.play(music.BA_DING)
+        except ImportError:
+            pass
+        sleep(1000)
+        display.clear()</code></pre>
+
+      <div class="questions">
+        <strong>Spørsmål til naturfag</strong>
+        <ol>
+          <li>Hva må til for at akselerometeret skal «reagere»?</li>
+          <li>Nevn én reell situasjon der bevegelsessensor + trådløs varsling er nyttig.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Oppsummering og innlevering (10 min)</h2>
+      <h3>Lever dette (per gruppe)</h3>
+      <ol>
+        <li>Ferdig utfylte tabeller fra A og B</li>
+        <li>Korte svar på spørsmålene under hver aktivitet</li>
+        <li>Skjermbilde eller kopi av koden til <strong>én</strong> av aktivitetene</li>
+        <li>Svar på refleksjonen under</li>
+      </ol>
+
+      <div class="reflect">
+        <h3 style="margin-top:0">Refleksjon (individuelt, 3–5 setninger)</h3>
+        <p>Hvordan kan sensorer og programmering hjelpe oss å forstå naturfag bedre enn bare å lese i læreboka? Bruk minst ett eksempel fra dagens økt (temperatur, lys eller bevegelse).</p>
+        <table>
+          <tbody>
+            <tr class="write-row"><td></td></tr>
+            <tr class="write-row"><td></td></tr>
+            <tr class="write-row"><td></td></tr>
+            <tr class="write-row"><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Hurtighjelp</h2>
+      <table>
+        <thead>
+          <tr><th>Problem</th><th>Løsning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Koden lastes ikke ned</td><td>Sjekk USB-kabel, last ned .hex på nytt, prøv annen port</td></tr>
+          <tr><td>Radio virker ikke</td><td>Samme group-nummer? Begge har radio på?</td></tr>
+          <tr><td>Temperatur virker «feil»</td><td>Fingre/USB-varme påvirker – vent litt</td></tr>
+          <tr><td>Lys er alltid lav</td><td>Ikke dekk LED-skjermen</td></tr>
+          <tr><td>Python: ImportError radio</td><td>Sjekk MicroPython-firmware, eller bruk MakeCode</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      Materiell til naturfag påbygg · Micro:bit · 90 minutter
+    </footer>
+  </div>
+</body>
+</html>
