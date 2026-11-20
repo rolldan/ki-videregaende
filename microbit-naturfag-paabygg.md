@@ -1,7 +1,7 @@
 # Micro:bit og naturfag – påbygg
 
 **Elevhefte · 1 økt à 90 minutter**  
-Dere har allerede programmert trådløs kommunikasjon. I denne økten bruker dere **sensorer** til å samle data og forklare dem med naturfag.
+Dere programmerer i **Microsoft MakeCode** (blokk) og kan også se tilsvarende kode i **Python**.
 
 ---
 
@@ -9,10 +9,11 @@ Dere har allerede programmert trådløs kommunikasjon. I denne økten bruker der
 
 Etter økten skal du kunne:
 
-1. Bruke micro:bitens sensorer til å måle temperatur, lys og bevegelse
-2. Programmere i **blokk** eller **Python** (MicroPython)
-3. Koble målingene til naturfagbegreper (energi, klima, kraft/bevegelse)
-4. Bruke radio (det dere kan fra før) til å sende måledata mellom micro:bitter
+1. Finne fram i Microsoft MakeCode og laste ned program til micro:bit
+2. Vise tekst og symboler på skjermen
+3. Bruke knapp A og B til å styre programmet
+4. Sende og motta meldinger med radio (giver og mottaker)
+5. Undersøke hva som påvirker **signalstyrken** (naturfag: elektromagnetiske bølger)
 
 ---
 
@@ -22,10 +23,9 @@ Etter økten skal du kunne:
 |--------|--------|
 | micro:bit (v1 eller v2) | minst 2 |
 | USB-kabel / batteripakke | 1 per micro:bit |
-| PC med [MakeCode](https://makecode.microbit.org) eller [Python Editor](https://python.microbit.org) | 1 |
-| Notatark / denne fila | 1 |
+| PC med nettleser | 1 |
 
-**Tips:** Velg enten blokk *eller* Python for oppgavene. Begge variantene ligger under hver aktivitet.
+**Verktøy:** [makecode.microbit.org](https://makecode.microbit.org) (blokk) · [python.microbit.org](https://python.microbit.org) (Python)
 
 ---
 
@@ -33,302 +33,365 @@ Etter økten skal du kunne:
 
 | Tid | Hva | Min |
 |-----|-----|-----|
-| 0–10 | Oppstart: sensorer + naturfag | 10 |
-| 10–35 | Aktivitet A: Temperatur og mikroklima | 25 |
-| 35–60 | Aktivitet B: Lys og energi | 25 |
-| 60–80 | Aktivitet C: Bevegelsesalarm med radio | 20 |
-| 80–90 | Oppsummering og innlevering | 10 |
+| 0–15 | Del 1: Bli kjent med MakeCode | 15 |
+| 15–30 | Del 2: Tekst og symbol | 15 |
+| 30–45 | Del 3: Utforsk knapp A og B | 15 |
+| 45–70 | Del 4: Giver og mottaker – send beskjed | 25 |
+| 70–90 | Del 5: Signalstyrke – hva påvirker? | 20 |
 
 ---
 
-## Oppstart (10 min)
+## Del 1 – Bli kjent med Microsoft MakeCode (15 min)
 
-Micro:bit har innebygde sensorer. I naturfag bruker vi dem som **måleinstrumenter**.
+### Slik kommer du i gang
 
-| Sensor | Hva måles? | Naturfagkobling |
-|--------|------------|-----------------|
-| Temperatur | °C (omtrentlig) | Energi, varme, klima |
-| Lys | 0–255 (relativ) | Stråling, energi, fotosyntese |
-| Akselerometer | Bevegelse/helling | Kraft, bevegelse, tyngde |
-| Radio | Trådløs sending | Dere kan dette fra før |
+1. Gå til [makecode.microbit.org](https://makecode.microbit.org)
+2. Velg **Nytt prosjekt** og gi det et navn (f.eks. `Oekt1`)
+3. Se på arbeidsområdet:
+   - **Blokker** til venstre (Grunnleggende, Inndata, Radio, …)
+   - **Simulator** i midten (virtuell micro:bit)
+   - **Kodeflate** til høyre (der du bygger programmet)
+4. Prøv noe i simulatoren først – deretter **Last ned** og dra `.hex`-fila over til micro:bit (som en USB-minnepinne)
 
-**Diskuter i gruppa (2 min):** Hvorfor er det smart å måle med sensorer i stedet for bare «å føle» at det er varmt eller lyst?
+### Sjekkliste
+
+- [ ] Jeg har åpnet et nytt prosjekt
+- [ ] Jeg ser simulatoren reagere når jeg tester
+- [ ] Jeg har lastet ned minst ett program til den fysiske micro:biten
+
+**Tips:** Bytt mellom **Blokker** og **Python** øverst i MakeCode for å se samme program på to måter.
 
 ---
 
-## Aktivitet A – Temperatur og mikroklima (25 min)
+## Del 2 – Lag en tekst og et symbol (15 min)
 
-### Naturfag
+### Oppgave 2a – Vis en tekst
 
-Temperatur er et mål på den gjennomsnittlige kinetiske energien til partikler. Ute og inne, i sol og skygge, blir det ulike **mikroklima**. Små forskjeller (1–3 °C) kan bety mye for planter, dyr og energibruk i bygg.
+Få micro:bit til å vise en tekst når den starter, f.eks. navnet ditt eller «Hei».
 
-### Oppgave
-
-1. Programmer micro:bit til å vise temperatur når du trykker **A**.
-2. Mål på **tre steder** (f.eks. ved vindu, midt i rommet, under bord/i skygge).
-3. Noter resultatene i tabellen under.
-4. **Utfordring:** Vis et ansikt som er glad hvis temperaturen er mellom 18 og 22 °C, ellers et trist ansikt (komfortsone).
-
-### Resultattabell
-
-| Sted | Temperatur (°C) | Forklaring (hvorfor?) |
-|------|-----------------|------------------------|
-| 1. | | |
-| 2. | | |
-| 3. | | |
-
-### Kode – blokk (MakeCode)
+#### Blokk
 
 ```
 ved start
-    → (ingenting nødvendig)
+    → vis streng "Hei"
+```
 
+#### Python
+
+```python
+from microbit import *
+
+display.scroll("Hei")
+```
+
+### Oppgave 2b – Lag et symbol
+
+Vis et innebygd ikon (hjerte, smilefjes, …) eller tegn ditt eget mønster på 5×5-skjermen.
+
+#### Blokk
+
+```
+ved start
+    → vis streng "Hei"
+    → pause (ms) 1000
+    → vis ikon (hjerte)
+```
+
+**Eget symbol (blokk):** Bruk `vis lysdioder` og tenn de lampene du vil.
+
+#### Python
+
+```python
+from microbit import *
+
+display.scroll("Hei")
+sleep(1000)
+display.show(Image.HEART)
+
+# Eller eget mønster (9 = full lysstyrke):
+# mitt_symbol = Image("09090:99999:99999:09990:00900")
+# display.show(mitt_symbol)
+```
+
+### Naturfag-kobling (kort)
+
+LED-skjermen lyser fordi elektrisk energi blir til **lysenergi**. Hvert «punkt» er en liten diode.
+
+---
+
+## Del 3 – Utforsk knapp A og B (15 min)
+
+### Oppgave
+
+Programmer slik at:
+
+| Handling | Resultat |
+|----------|----------|
+| Trykk **A** | Viser en tekst (f.eks. «A») eller et tall |
+| Trykk **B** | Viser et symbol (f.eks. smilefjes) |
+| Trykk **A+B** (valgfritt) | Nullstiller skjermen / viser noe tredje |
+
+#### Blokk
+
+```
 når knapp A trykkes
-    → vis tall (temperatur (°C))
+    → vis streng "A"
+
+når knapp B trykkes
+    → vis ikon (glad)
+
+når knapper A+B trykkes
+    → tøm skjerm
 ```
 
-**Utfordring (blokk):**
-
-```
-når knapp A trykkes
-    → sett temp til temperatur (°C)
-    → vis tall (temp)
-    → hvis temp ≥ 18 og temp ≤ 22 da
-          vis ikon (glad)
-       ellers
-          vis ikon (trist)
-```
-
-### Kode – Python (MicroPython)
+#### Python
 
 ```python
 from microbit import *
 
 while True:
     if button_a.was_pressed():
-        temp = temperature()
-        display.scroll(str(temp))
-
-        # Utfordring: komfortsone 18–22 °C
-        if 18 <= temp <= 22:
-            display.show(Image.HAPPY)
-        else:
-            display.show(Image.SAD)
-```
-
-### Spørsmål til naturfag
-
-1. Hvilket sted var varmest, og hvorfor?
-2. Er micro:bit-temperaturen nøyaktig nok til vitenskapelige forsøk? Hva kan påvirke målingen?
-
----
-
-## Aktivitet B – Lys og energi (25 min)
-
-### Naturfag
-
-Lys er elektromagnetisk stråling. Planter bruker synlig lys til fotosyntese. Lysstyrken påvirker også hvor mye energi vi bruker til belysning. Micro:bit måler ikke lux direkte, men en **relativ lysverdi** (0–255) som er nyttig til å sammenligne.
-
-### Oppgave
-
-1. Programmer micro:bit til å vise lysnivå kontinuerlig (eller når du trykker **B**).
-2. Mål lys ved **vindu**, **midt i rommet** og **under bord**.
-3. Lag en enkel «energi-indikator»:
-   - lavt lys → prikk / «L»
-   - middels → kvadrat / «M»
-   - sterkt → fylt skjerm / «H»
-4. **Utfordring:** Send lysverdien med **radio** til en annen micro:bit i gruppa (bruk det dere kan fra før).
-
-### Resultattabell
-
-| Sted | Lysverdi (0–255) | Energi-nivå (L/M/H) |
-|------|------------------|---------------------|
-| Vindu | | |
-| Midt i rommet | | |
-| Under bord | | |
-
-### Kode – blokk (MakeCode)
-
-```
-ved start
-    → radio sett gruppe 7          ← samme gruppe i hele klassen/gruppa
-
-når knapp B trykkes
-    → sett lys til lysnivå
-    → vis tall (lys)
-    → hvis lys < 50 da
-          vis streng "L"
-       ellers hvis lys < 150 da
-          vis streng "M"
-       ellers
-          vis streng "H"
-    → radio send tall (lys)        ← utfordring
-```
-
-**Mottaker (blokk):**
-
-```
-ved start
-    → radio sett gruppe 7
-
-på radio mottatt tall
-    → vis tall (mottatt tall)
-```
-
-### Kode – Python (MicroPython)
-
-```python
-from microbit import *
-import radio
-
-radio.on()
-radio.config(group=7)
-
-while True:
+        display.scroll("A")
     if button_b.was_pressed():
-        lys = display.read_light_level()
-        display.scroll(str(lys))
-
-        if lys < 50:
-            display.show("L")
-        elif lys < 150:
-            display.show("M")
-        else:
-            display.show("H")
-
-        # Utfordring: send til partner
-        radio.send(str(lys))
-
-    # Mottaker: vis tall som kommer inn
-    mottatt = radio.receive()
-    if mottatt:
-        display.scroll(mottatt)
-```
-
-### Spørsmål til naturfag
-
-1. Hvorfor er det lyst ved vinduet, men mørkere lenger inn?
-2. Hvordan henger lys og **energi** sammen i et klasserom (vindu vs. elektrisk lys)?
-
----
-
-## Aktivitet C – Bevegelsesalarm med radio (20 min)
-
-### Naturfag
-
-Akselerometeret registrerer endring i fart (akselerasjon). Når micro:bit ristes eller tippes, endres akselerasjonen. I naturfag kobler vi dette til **kraft og bevegelse** (Newtons lover): en kraft gir akselerasjon.
-
-### Oppgave – «Vibrasjons-/bevegelsesalarm»
-
-Dere lager et enkelt overvåkingssystem:
-
-- **Micro:bit 1 (sensor):** Oppdager rist/bevegelse og sender radio-melding.
-- **Micro:bit 2 (mottaker):** Viser alarm når melding mottas.
-
-Bruk samme radiogruppe som i aktivitet B (eller avtale en ny).
-
-### Kode – blokk (MakeCode)
-
-**Sensor (sender):**
-
-```
-ved start
-    → radio sett gruppe 7
-
-når ristet
-    → radio send streng "ALARM"
-    → vis ikon (kryss)
-```
-
-**Mottaker:**
-
-```
-ved start
-    → radio sett gruppe 7
-
-på radio mottatt streng
-    → hvis mottatt streng = "ALARM" da
-          vis ikon (ja)
-          spill melodi (ba ding)     ← v2 / hvis tilgjengelig
-```
-
-### Kode – Python (MicroPython)
-
-**Sensor (sender):**
-
-```python
-from microbit import *
-import radio
-
-radio.on()
-radio.config(group=7)
-
-while True:
-    # gesture "shake" eller stor akselerasjon
-    if accelerometer.was_gesture("shake"):
-        radio.send("ALARM")
-        display.show(Image.NO)
-        sleep(500)
+        display.show(Image.HAPPY)
+    if button_a.is_pressed() and button_b.is_pressed():
         display.clear()
 ```
 
-**Mottaker:**
+### Utforsk videre
+
+- Kan du få A til å vise et tall som øker hver gang du trykker?
+- Hva skjer om du bruker `når knappen A er trykket` (kontinuerlig) i stedet for `når knapp A trykkes` (én gang)?
+
+---
+
+## Del 4 – Giver og mottaker: send beskjed (25 min)
+
+Nå lager dere to roller. En micro:bit er **giver** (sender), den andre er **mottaker**.
+
+**Viktig:** Begge må bruke **samme radiogruppe** (f.eks. gruppenummeret deres: 1, 2, 3 …). Ellers snakker dere med feil gruppe.
+
+### Oppgave 4a – Send en kort beskjed
+
+- **Giver:** Trykk A for å sende teksten `HEI` (eller et tall).
+- **Mottaker:** Vis det som mottas på skjermen.
+
+#### Blokk – giver (sender)
+
+```
+ved start
+    → radio sett gruppe 3          ← bytt til deres gruppenummer
+
+når knapp A trykkes
+    → radio send streng "HEI"
+    → vis ikon (ja)
+```
+
+#### Blokk – mottaker
+
+```
+ved start
+    → radio sett gruppe 3
+
+på radio mottatt streng
+    → vis streng (mottatt streng)
+```
+
+#### Python – giver
 
 ```python
 from microbit import *
 import radio
 
 radio.on()
-radio.config(group=7)
+radio.config(group=3)  # bytt til deres gruppenummer
+
+while True:
+    if button_a.was_pressed():
+        radio.send("HEI")
+        display.show(Image.YES)
+        sleep(400)
+        display.clear()
+```
+
+#### Python – mottaker
+
+```python
+from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3)
 
 while True:
     msg = radio.receive()
-    if msg == "ALARM":
-        display.show(Image.YES)
-        # micro:bit v2 har høyttaler:
-        try:
-            import music
-            music.play(music.BA_DING)
-        except ImportError:
-            pass
-        sleep(1000)
-        display.clear()
+    if msg:
+        display.scroll(msg)
 ```
 
-### Alternativ (hvis dere vil bruke tall)
+### Oppgave 4b – Toveis prat
 
-Send akselerasjonsverdien i stedet for tekst:
+Bytt roller, eller programmer **begge** micro:bitene slik at:
+
+- A sender «HEI»
+- B sender «OK»
+
+Da kan dere sende beskjed fram og tilbake.
+
+#### Blokk (samme program på begge)
+
+```
+ved start
+    → radio sett gruppe 3
+
+når knapp A trykkes
+    → radio send streng "HEI"
+
+når knapp B trykkes
+    → radio send streng "OK"
+
+på radio mottatt streng
+    → vis streng (mottatt streng)
+```
+
+#### Python (samme program på begge)
 
 ```python
-# Sender
-styrke = accelerometer.get_x()  # eller get_z()
-radio.send(str(abs(styrke)))
+from microbit import *
+import radio
 
-# Mottaker
-msg = radio.receive()
-if msg and int(msg) > 500:
-    display.show(Image.ANGRY)
+radio.on()
+radio.config(group=3)
+
+while True:
+    if button_a.was_pressed():
+        radio.send("HEI")
+    if button_b.was_pressed():
+        radio.send("OK")
+
+    msg = radio.receive()
+    if msg:
+        display.scroll(msg)
 ```
 
-### Spørsmål til naturfag
+### Naturfag-kobling
 
-1. Hva må til for at akselerometeret skal «reagere»? (Hint: endring i fart/retning)
-2. Nevn én reell situasjon der bevegelsessensor + trådløs varsling er nyttig (f.eks. sikkerhet, miljø, helse).
+Radioen bruker **elektromagnetiske bølger** (2,4 GHz). Det er samme type bølger som Wi‑Fi og Bluetooth – usynlige, men de bærer informasjon.
 
 ---
 
-## Oppsummering og innlevering (10 min)
+## Del 5 – Signalstyrke: hva påvirker? (20 min)
 
-### Lever dette (én fil / ett notat per gruppe)
+Til slutt tester dere systematisk hva som påvirker hvor godt signalet kommer fram.
 
-1. Ferdig utfylte tabeller fra A og B  
-2. Kort svar på spørsmålene under hver aktivitet  
-3. Skjermbilde eller kopi av koden (blokk *eller* Python) til **én** av aktivitetene  
-4. Svar på refleksjonen under  
+### Oppsett
 
-### Refleksjon (individuelt, 3–5 setninger)
+1. Én **giver** og én **mottaker** (bruk programmene under).
+2. Giver sender jevnlig (eller når du trykker A).
+3. Mottaker viser **signalstyrke** (RSS / «received signal strength»).
+4. Noter resultatene i tabellen.
 
-> Hvordan kan sensorer og programmering hjelpe oss å forstå naturfag bedre enn bare å lese i læreboka? Bruk minst ett eksempel fra dagens økt (temperatur, lys eller bevegelse).
+### Kode – giver (blokk)
+
+```
+ved start
+    → radio sett gruppe 3
+    → radio sett sendeeffekt 6     ← maks er ofte 7 (prøv også lavere!)
+
+når knapp A trykkes
+    → radio send streng "PING"
+    → vis ikon (diamant)
+```
+
+### Kode – mottaker (blokk)
+
+```
+ved start
+    → radio sett gruppe 3
+
+på radio mottatt streng
+    → vis tall (radio signalstyrke)
+```
+
+> I MakeCode: blokken **«radio signalstyrke»** / **«received packet signal strength»** finnes under Radio (avansert). Tallene er typisk negative (f.eks. −42). **Nærmere null = sterkere signal** (−30 er sterkere enn −80).
+
+### Kode – Python
+
+**Giver:**
+
+```python
+from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3, power=6)  # power 0–7
+
+while True:
+    if button_a.was_pressed():
+        radio.send("PING")
+        display.show(Image.DIAMOND)
+        sleep(300)
+        display.clear()
+```
+
+**Mottaker:**
+
+```python
+from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3)
+
+while True:
+    msg = radio.receive()
+    if msg:
+        # signalstyrke for siste mottatte pakke
+        styrke = radio.receive_full()
+        # Alternativ i noen firmware: bruk MakeCode for RSSI
+        display.scroll(msg)
+```
+
+> **Merk:** Signalstyrke (RSSI) er enklest å lese i **MakeCode-blokker**. Bruk blokk-mottakeren over til forsøket hvis Python-versjonen mangler RSSI i editoren deres.
+
+### Forsøk – fyll inn
+
+Hold giveren i ro. Endre **én ting om gangen**.
+
+| Test | Hva gjør dere? | Signalstyrke | Kom melding fram? (ja/nei) |
+|------|----------------|--------------|----------------------------|
+| 1 | 1 meter fra hverandre, fri sikt | | |
+| 2 | 5 meter fra hverandre | | |
+| 3 | Bak en vegg / dør | | |
+| 4 | Med kroppen mellom (person står imellom) | | |
+| 5 | Lavere sendeeffekt (f.eks. 1 i stedet for 6) | | |
+| 6 | (valgfritt) Metallskap / vannflaske mellom | | |
+
+### Spørsmål til naturfag
+
+1. Hva skjedde med signalstyrken når avstanden økte? Hvorfor?
+2. Hvilket hinder reduserte signalet mest?
+3. Elektromagnetiske bølger dempes av materialer og avstand. Nevn én likhet med **lys** eller **lyd**.
+
+### Kort forklaring (til diskusjon)
+
+- **Avstand:** Energien fordeles over større område → svakere signal.
+- **Hindre:** Vegger, kropp og metall kan **absorbere** eller **reflektere** bølger.
+- **Sendeeffekt:** Lavere effekt = mindre energi i bølgen = kortere rekkevidde.
+
+---
+
+## Innlevering (siste 5 min av del 5)
+
+Per gruppe:
+
+1. Skjermbilde eller kort beskrivelse av **giver**- og **mottaker**-programmet  
+2. Ferdig tabell fra signalstyrke-forsøket  
+3. Svar på de tre naturfagspørsmålene  
+
+### Refleksjon (individuelt, 2–3 setninger)
+
+> Hva lærte du om hvordan usynlige bølger oppfører seg – og hvordan ligner det på noe annet dere har hatt i naturfag?
 
 ---
 
@@ -336,25 +399,13 @@ if msg and int(msg) > 500:
 
 | Problem | Løsning |
 |---------|---------|
-| Koden lastes ikke ned | Sjekk USB-kabel, last ned `.hex` på nytt, prøv annen port |
-| Radio virker ikke | Samme `group`-nummer? Begge har `radio.on()` / «radio sett gruppe»? |
-| Temperatur virker «feil» | Sensoren sitter i chipen – fingre/USB-varme påvirker. Vent litt. |
-| Lys er alltid lav | Ikke dekk LED-skjermen; lyssensoren bruker LED-ene |
-| Python: `ImportError: radio` | Last firmware/MicroPython for micro:bit, eller bruk MakeCode Python |
-
-### Verktøy
-
-- Blokk / JavaScript: [makecode.microbit.org](https://makecode.microbit.org)
-- Python: [python.microbit.org](https://python.microbit.org)
+| Finner ikke MakeCode | [makecode.microbit.org](https://makecode.microbit.org) |
+| Program lastes ikke | USB-kabel, last ned `.hex` på nytt, annen port |
+| Radio virker ikke | Samme gruppenummer? Begge har «radio sett gruppe»? |
+| Mange grupper forstyrrer | Bruk unikt gruppenummer (1–255) |
+| Ser ikke signalstyrke | MakeCode → Radio → avansert → «signalstyrke» |
+| Simulator vs. ekte | Radio og signalstyrke må testes på **fysiske** micro:bitter |
 
 ---
 
-## Fasitidéer til læreren (valgfritt å dele)
-
-- **Komfortsone 18–22 °C** er et pedagogisk valg, ikke en absolutt sannhet – fint å diskutere.
-- Lysverdier er relative; sammenlign *innenfor samme* micro:bit og rom.
-- Radio-gruppen bør være unik per gruppe hvis mange jobber samtidig (f.eks. gruppenummer).
-
----
-
-*Materiell til naturfag påbygg · Micro:bit · 90 minutter*
+*Materiell til naturfag påbygg · Micro:bit · Microsoft MakeCode · 90 minutter*

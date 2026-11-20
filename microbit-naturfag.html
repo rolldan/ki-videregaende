@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Elevhefte: Micro:bit og naturfag for påbygg – én økt à 90 minutter med sensorer, radio, blokk og Python.">
+  <meta name="description" content="Elevhefte: Micro:bit og naturfag for påbygg – MakeCode, tekst, knapper, radio og signalstyrke. 90 minutter.">
   <title>Micro:bit og naturfag – påbygg | Elevhefte</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,6 @@
       --accent: #c45c26;
       --border: #d5e0e8;
       --code-bg: #0f2430;
-      --ok: #1b7f5c;
       --radius: 12px;
       --font: "DM Sans", system-ui, sans-serif;
       --serif: "Instrument Serif", Georgia, serif;
@@ -90,19 +89,10 @@
       margin: 1.75rem 0 0.65rem;
       font-size: 1.15rem;
       font-weight: 700;
-      color: var(--text);
-    }
-
-    h4 {
-      margin: 1.25rem 0 0.5rem;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--primary);
     }
 
     p, li { color: var(--text); }
     .muted { color: var(--muted); }
-
     a { color: var(--primary); }
 
     .meta {
@@ -143,23 +133,20 @@
     }
 
     tr:last-child td { border-bottom: none; }
-
-    .write-row td {
-      height: 2.4rem;
-      background: #fafcfd;
-    }
+    .write-row td { height: 2.4rem; background: #fafcfd; }
 
     .activity {
       margin: 1.5rem 0;
-      padding: 1.35rem 1.35rem 1.1rem;
+      padding: 1.25rem 1.35rem 1.1rem;
       background: var(--surface);
       border: 1px solid var(--border);
       border-left: 4px solid var(--primary);
       border-radius: var(--radius);
     }
 
-    .activity.challenge {
+    .activity.science {
       border-left-color: var(--accent);
+      background: #fff8f3;
     }
 
     .tag {
@@ -178,6 +165,30 @@
     .tag.accent {
       color: #7a3412;
       background: #f7e8df;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0;
+    }
+
+    .checklist li {
+      margin: 0.4rem 0;
+      padding-left: 1.75rem;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.35rem;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid var(--primary);
+      border-radius: 3px;
+      background: #fff;
     }
 
     pre {
@@ -233,8 +244,6 @@
       border-radius: var(--radius);
     }
 
-    .reflect p:last-child { margin-bottom: 0; }
-
     .tools {
       display: flex;
       flex-wrap: wrap;
@@ -271,40 +280,55 @@
       color: var(--muted);
     }
 
+    .note {
+      margin: 0.75rem 0;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      background: #eef6f8;
+      border-radius: 8px;
+      color: var(--muted);
+    }
+
     @media print {
       body { background: #fff; }
       .print-hint, .tools { display: none; }
       .activity, .reflect { break-inside: avoid; }
-      pre { white-space: pre-wrap; border: 1px solid #ccc; color: #111; background: #f5f5f5; }
+      pre {
+        white-space: pre-wrap;
+        border: 1px solid #ccc;
+        color: #111;
+        background: #f5f5f5;
+      }
       a { color: inherit; text-decoration: none; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="print-hint">Tips: Bruk Ctrl/Cmd+P for å skrive ut eller lagre som PDF. Markdown-versjon: <code>microbit-naturfag-paabygg.md</code></p>
+    <p class="print-hint">Tips: Ctrl/Cmd+P for utskrift eller PDF. Markdown: <code>microbit-naturfag-paabygg.md</code></p>
 
     <header class="doc-hero">
       <p class="eyebrow">Elevhefte · Naturfag påbygg</p>
       <h1>Micro:bit og naturfag</h1>
       <p class="lead">
-        Én økt à 90 minutter. Dere har allerede programmert trådløs kommunikasjon.
-        Nå bruker dere sensorer til å samle data og forklare dem med naturfag.
+        Én økt à 90 minutter. Dere blir kjent med Microsoft MakeCode, lager tekst og symboler,
+        utforsker knappene, sender meldinger – og tester hva som påvirker signalstyrken.
       </p>
       <ul class="meta">
         <li><strong>Varighet:</strong> 90 min</li>
         <li><strong>Gruppe:</strong> 2–3 elever</li>
-        <li><strong>Kode:</strong> blokk eller Python</li>
+        <li><strong>Verktøy:</strong> MakeCode (blokk) + Python</li>
       </ul>
     </header>
 
     <section>
       <h2>Læringsmål</h2>
       <ol>
-        <li>Bruke micro:bitens sensorer til å måle temperatur, lys og bevegelse</li>
-        <li>Programmere i <strong>blokk</strong> eller <strong>Python</strong> (MicroPython)</li>
-        <li>Koble målingene til naturfagbegreper (energi, klima, kraft/bevegelse)</li>
-        <li>Bruke radio til å sende måledata mellom micro:bitter</li>
+        <li>Finne fram i Microsoft MakeCode og laste ned program til micro:bit</li>
+        <li>Vise tekst og symboler på skjermen</li>
+        <li>Bruke knapp A og B til å styre programmet</li>
+        <li>Sende og motta meldinger med radio (giver og mottaker)</li>
+        <li>Undersøke hva som påvirker <strong>signalstyrken</strong> (elektromagnetiske bølger)</li>
       </ol>
     </section>
 
@@ -317,14 +341,13 @@
         <tbody>
           <tr><td>micro:bit (v1 eller v2)</td><td>minst 2</td></tr>
           <tr><td>USB-kabel / batteripakke</td><td>1 per micro:bit</td></tr>
-          <tr><td>PC med MakeCode eller Python Editor</td><td>1</td></tr>
+          <tr><td>PC med nettleser</td><td>1</td></tr>
         </tbody>
       </table>
       <div class="tools">
         <a href="https://makecode.microbit.org" target="_blank" rel="noopener">MakeCode (blokk)</a>
         <a class="secondary" href="https://python.microbit.org" target="_blank" rel="noopener">Python Editor</a>
       </div>
-      <p class="muted">Velg enten blokk <em>eller</em> Python. Begge variantene ligger under hver aktivitet.</p>
     </section>
 
     <section>
@@ -334,226 +357,165 @@
           <tr><th>Tid</th><th>Hva</th><th>Min</th></tr>
         </thead>
         <tbody>
-          <tr><td>0–10</td><td>Oppstart: sensorer + naturfag</td><td>10</td></tr>
-          <tr><td>10–35</td><td>Aktivitet A: Temperatur og mikroklima</td><td>25</td></tr>
-          <tr><td>35–60</td><td>Aktivitet B: Lys og energi</td><td>25</td></tr>
-          <tr><td>60–80</td><td>Aktivitet C: Bevegelsesalarm med radio</td><td>20</td></tr>
-          <tr><td>80–90</td><td>Oppsummering og innlevering</td><td>10</td></tr>
+          <tr><td>0–15</td><td>Del 1: Bli kjent med MakeCode</td><td>15</td></tr>
+          <tr><td>15–30</td><td>Del 2: Tekst og symbol</td><td>15</td></tr>
+          <tr><td>30–45</td><td>Del 3: Utforsk knapp A og B</td><td>15</td></tr>
+          <tr><td>45–70</td><td>Del 4: Giver og mottaker – send beskjed</td><td>25</td></tr>
+          <tr><td>70–90</td><td>Del 5: Signalstyrke – hva påvirker?</td><td>20</td></tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>Oppstart (10 min)</h2>
-      <p>Micro:bit har innebygde sensorer. I naturfag bruker vi dem som måleinstrumenter.</p>
-      <table>
-        <thead>
-          <tr><th>Sensor</th><th>Hva måles?</th><th>Naturfagkobling</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Temperatur</td><td>°C (omtrentlig)</td><td>Energi, varme, klima</td></tr>
-          <tr><td>Lys</td><td>0–255 (relativ)</td><td>Stråling, energi, fotosyntese</td></tr>
-          <tr><td>Akselerometer</td><td>Bevegelse/helling</td><td>Kraft, bevegelse, tyngde</td></tr>
-          <tr><td>Radio</td><td>Trådløs sending</td><td>Dere kan dette fra før</td></tr>
-        </tbody>
-      </table>
-      <p><strong>Diskuter i gruppa (2 min):</strong> Hvorfor er det smart å måle med sensorer i stedet for bare «å føle» at det er varmt eller lyst?</p>
-    </section>
-
-    <section>
-      <h2>Aktivitet A – Temperatur og mikroklima (25 min)</h2>
-
+      <h2>Del 1 – Bli kjent med Microsoft MakeCode (15 min)</h2>
       <div class="activity">
-        <span class="tag">Naturfag</span>
-        <p>Temperatur er et mål på den gjennomsnittlige kinetiske energien til partikler. Ute og inne, i sol og skygge, blir det ulike <strong>mikroklima</strong>. Små forskjeller (1–3 °C) kan bety mye for planter, dyr og energibruk i bygg.</p>
+        <span class="tag">Oppstart</span>
+        <ol>
+          <li>Gå til <a href="https://makecode.microbit.org" target="_blank" rel="noopener">makecode.microbit.org</a></li>
+          <li>Velg <strong>Nytt prosjekt</strong> og gi det et navn (f.eks. <code>Oekt1</code>)</li>
+          <li>Se på arbeidsområdet:
+            <ul>
+              <li><strong>Blokker</strong> til venstre</li>
+              <li><strong>Simulator</strong> i midten</li>
+              <li><strong>Kodeflate</strong> til høyre</li>
+            </ul>
+          </li>
+          <li>Test i simulatoren først – deretter <strong>Last ned</strong> og dra <code>.hex</code>-fila til micro:bit</li>
+        </ol>
       </div>
+      <h3>Sjekkliste</h3>
+      <ul class="checklist">
+        <li>Jeg har åpnet et nytt prosjekt</li>
+        <li>Jeg ser simulatoren reagere når jeg tester</li>
+        <li>Jeg har lastet ned minst ett program til den fysiske micro:biten</li>
+      </ul>
+      <p class="muted">Tips: Bytt mellom <strong>Blokker</strong> og <strong>Python</strong> øverst i MakeCode for å se samme program på to måter.</p>
+    </section>
 
-      <h3>Oppgave</h3>
-      <ol>
-        <li>Programmer micro:bit til å vise temperatur når du trykker <strong>A</strong>.</li>
-        <li>Mål på <strong>tre steder</strong> (f.eks. ved vindu, midt i rommet, under bord).</li>
-        <li>Noter resultatene i tabellen.</li>
-        <li><strong>Utfordring:</strong> Glad ansikt hvis 18–22 °C, ellers trist (komfortsone).</li>
-      </ol>
+    <section>
+      <h2>Del 2 – Lag en tekst og et symbol (15 min)</h2>
 
-      <h3>Resultattabell</h3>
+      <h3>Oppgave 2a – Vis en tekst</h3>
+      <p>Få micro:bit til å vise en tekst når den starter, f.eks. navnet ditt eller «Hei».</p>
+
+      <p class="code-label">Blokk</p>
+<pre><code>ved start
+    → vis streng "Hei"</code></pre>
+
+      <p class="code-label">Python</p>
+<pre><code>from microbit import *
+
+display.scroll("Hei")</code></pre>
+
+      <h3>Oppgave 2b – Lag et symbol</h3>
+      <p>Vis et innebygd ikon (hjerte, smilefjes, …) eller tegn ditt eget mønster på 5×5-skjermen.</p>
+
+      <p class="code-label">Blokk</p>
+<pre><code>ved start
+    → vis streng "Hei"
+    → pause (ms) 1000
+    → vis ikon (hjerte)</code></pre>
+      <p class="muted">Eget symbol: bruk <code>vis lysdioder</code> og tenn de lampene du vil.</p>
+
+      <p class="code-label">Python</p>
+<pre><code>from microbit import *
+
+display.scroll("Hei")
+sleep(1000)
+display.show(Image.HEART)
+
+# Eller eget mønster (9 = full lysstyrke):
+# mitt_symbol = Image("09090:99999:99999:09990:00900")
+# display.show(mitt_symbol)</code></pre>
+
+      <div class="activity science">
+        <span class="tag accent">Naturfag</span>
+        <p>LED-skjermen lyser fordi elektrisk energi blir til <strong>lysenergi</strong>. Hvert «punkt» er en liten diode.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Del 3 – Utforsk knapp A og B (15 min)</h2>
+      <p>Programmer slik at:</p>
       <table>
         <thead>
-          <tr><th>Sted</th><th>Temperatur (°C)</th><th>Forklaring (hvorfor?)</th></tr>
+          <tr><th>Handling</th><th>Resultat</th></tr>
         </thead>
         <tbody>
-          <tr class="write-row"><td>1.</td><td></td><td></td></tr>
-          <tr class="write-row"><td>2.</td><td></td><td></td></tr>
-          <tr class="write-row"><td>3.</td><td></td><td></td></tr>
+          <tr><td>Trykk <strong>A</strong></td><td>Viser en tekst (f.eks. «A») eller et tall</td></tr>
+          <tr><td>Trykk <strong>B</strong></td><td>Viser et symbol (f.eks. smilefjes)</td></tr>
+          <tr><td>Trykk <strong>A+B</strong> (valgfritt)</td><td>Nullstiller skjermen / viser noe tredje</td></tr>
         </tbody>
       </table>
 
-      <p class="code-label">Blokk (MakeCode)</p>
-<pre><code>ved start
-    → (ingenting nødvendig)
-
-når knapp A trykkes
-    → vis tall (temperatur (°C))</code></pre>
-
-      <p class="code-label">Utfordring – blokk</p>
+      <p class="code-label">Blokk</p>
 <pre><code>når knapp A trykkes
-    → sett temp til temperatur (°C)
-    → vis tall (temp)
-    → hvis temp ≥ 18 og temp ≤ 22 da
-          vis ikon (glad)
-       ellers
-          vis ikon (trist)</code></pre>
+    → vis streng "A"
 
-      <p class="code-label">Python (MicroPython)</p>
+når knapp B trykkes
+    → vis ikon (glad)
+
+når knapper A+B trykkes
+    → tøm skjerm</code></pre>
+
+      <p class="code-label">Python</p>
 <pre><code>from microbit import *
 
 while True:
     if button_a.was_pressed():
-        temp = temperature()
-        display.scroll(str(temp))
-
-        # Utfordring: komfortsone 18–22 °C
-        if 18 &lt;= temp &lt;= 22:
-            display.show(Image.HAPPY)
-        else:
-            display.show(Image.SAD)</code></pre>
-
-      <div class="questions">
-        <strong>Spørsmål til naturfag</strong>
-        <ol>
-          <li>Hvilket sted var varmest, og hvorfor?</li>
-          <li>Er micro:bit-temperaturen nøyaktig nok til vitenskapelige forsøk? Hva kan påvirke målingen?</li>
-        </ol>
-      </div>
-    </section>
-
-    <section>
-      <h2>Aktivitet B – Lys og energi (25 min)</h2>
+        display.scroll("A")
+    if button_b.was_pressed():
+        display.show(Image.HAPPY)
+    if button_a.is_pressed() and button_b.is_pressed():
+        display.clear()</code></pre>
 
       <div class="activity">
-        <span class="tag">Naturfag</span>
-        <p>Lys er elektromagnetisk stråling. Planter bruker synlig lys til fotosyntese. Lysstyrken påvirker også energibruk til belysning. Micro:bit måler en <strong>relativ lysverdi</strong> (0–255) – nyttig til å sammenligne.</p>
-      </div>
-
-      <h3>Oppgave</h3>
-      <ol>
-        <li>Vis lysnivå når du trykker <strong>B</strong>.</li>
-        <li>Mål ved <strong>vindu</strong>, <strong>midt i rommet</strong> og <strong>under bord</strong>.</li>
-        <li>Lag energi-indikator: lavt → L, middels → M, sterkt → H.</li>
-        <li><strong>Utfordring:</strong> Send lysverdien med radio til partnerens micro:bit.</li>
-      </ol>
-
-      <h3>Resultattabell</h3>
-      <table>
-        <thead>
-          <tr><th>Sted</th><th>Lysverdi (0–255)</th><th>Energi-nivå (L/M/H)</th></tr>
-        </thead>
-        <tbody>
-          <tr class="write-row"><td>Vindu</td><td></td><td></td></tr>
-          <tr class="write-row"><td>Midt i rommet</td><td></td><td></td></tr>
-          <tr class="write-row"><td>Under bord</td><td></td><td></td></tr>
-        </tbody>
-      </table>
-
-      <p class="code-label">Blokk – sender</p>
-<pre><code>ved start
-    → radio sett gruppe 7
-
-når knapp B trykkes
-    → sett lys til lysnivå
-    → vis tall (lys)
-    → hvis lys &lt; 50 da
-          vis streng "L"
-       ellers hvis lys &lt; 150 da
-          vis streng "M"
-       ellers
-          vis streng "H"
-    → radio send tall (lys)</code></pre>
-
-      <p class="code-label">Blokk – mottaker</p>
-<pre><code>ved start
-    → radio sett gruppe 7
-
-på radio mottatt tall
-    → vis tall (mottatt tall)</code></pre>
-
-      <p class="code-label">Python</p>
-<pre><code>from microbit import *
-import radio
-
-radio.on()
-radio.config(group=7)
-
-while True:
-    if button_b.was_pressed():
-        lys = display.read_light_level()
-        display.scroll(str(lys))
-
-        if lys &lt; 50:
-            display.show("L")
-        elif lys &lt; 150:
-            display.show("M")
-        else:
-            display.show("H")
-
-        radio.send(str(lys))
-
-    mottatt = radio.receive()
-    if mottatt:
-        display.scroll(mottatt)</code></pre>
-
-      <div class="questions">
-        <strong>Spørsmål til naturfag</strong>
-        <ol>
-          <li>Hvorfor er det lyst ved vinduet, men mørkere lenger inn?</li>
-          <li>Hvordan henger lys og energi sammen i et klasserom (vindu vs. elektrisk lys)?</li>
-        </ol>
+        <span class="tag">Utforsk videre</span>
+        <ul>
+          <li>Kan du få A til å vise et tall som øker hver gang du trykker?</li>
+          <li>Hva skjer om du bruker «når knappen A er trykket» (kontinuerlig) i stedet for «når knapp A trykkes»?</li>
+        </ul>
       </div>
     </section>
 
     <section>
-      <h2>Aktivitet C – Bevegelsesalarm med radio (20 min)</h2>
+      <h2>Del 4 – Giver og mottaker: send beskjed (25 min)</h2>
+      <p>Én micro:bit er <strong>giver</strong> (sender), den andre er <strong>mottaker</strong>.</p>
+      <p class="note"><strong>Viktig:</strong> Begge må bruke <strong>samme radiogruppe</strong> (f.eks. gruppenummeret deres). Ellers snakker dere med feil gruppe.</p>
 
-      <div class="activity challenge">
-        <span class="tag accent">Naturfag + radio</span>
-        <p>Akselerometeret registrerer endring i fart. Når micro:bit ristes, endres akselerasjonen. Kobling til <strong>kraft og bevegelse</strong>: en kraft gir akselerasjon.</p>
-      </div>
-
-      <h3>Oppgave – «Bevegelsesalarm»</h3>
+      <h3>Oppgave 4a – Send en kort beskjed</h3>
       <ul>
-        <li><strong>Micro:bit 1 (sensor):</strong> Oppdager rist og sender radio-melding.</li>
-        <li><strong>Micro:bit 2 (mottaker):</strong> Viser alarm når melding mottas.</li>
+        <li><strong>Giver:</strong> Trykk A for å sende teksten <code>HEI</code></li>
+        <li><strong>Mottaker:</strong> Vis det som mottas på skjermen</li>
       </ul>
-      <p class="muted">Bruk samme radiogruppe (f.eks. 7), eller gruppenummeret deres hvis mange jobber samtidig.</p>
 
-      <p class="code-label">Blokk – sensor (sender)</p>
+      <p class="code-label">Blokk – giver</p>
 <pre><code>ved start
-    → radio sett gruppe 7
+    → radio sett gruppe 3          ← bytt til deres gruppenummer
 
-når ristet
-    → radio send streng "ALARM"
-    → vis ikon (kryss)</code></pre>
+når knapp A trykkes
+    → radio send streng "HEI"
+    → vis ikon (ja)</code></pre>
 
       <p class="code-label">Blokk – mottaker</p>
 <pre><code>ved start
-    → radio sett gruppe 7
+    → radio sett gruppe 3
 
 på radio mottatt streng
-    → hvis mottatt streng = "ALARM" da
-          vis ikon (ja)</code></pre>
+    → vis streng (mottatt streng)</code></pre>
 
-      <p class="code-label">Python – sensor</p>
+      <p class="code-label">Python – giver</p>
 <pre><code>from microbit import *
 import radio
 
 radio.on()
-radio.config(group=7)
+radio.config(group=3)  # bytt til deres gruppenummer
 
 while True:
-    if accelerometer.was_gesture("shake"):
-        radio.send("ALARM")
-        display.show(Image.NO)
-        sleep(500)
+    if button_a.was_pressed():
+        radio.send("HEI")
+        display.show(Image.YES)
+        sleep(400)
         display.clear()</code></pre>
 
       <p class="code-label">Python – mottaker</p>
@@ -561,45 +523,152 @@ while True:
 import radio
 
 radio.on()
-radio.config(group=7)
+radio.config(group=3)
 
 while True:
     msg = radio.receive()
-    if msg == "ALARM":
-        display.show(Image.YES)
-        try:
-            import music
-            music.play(music.BA_DING)
-        except ImportError:
-            pass
-        sleep(1000)
-        display.clear()</code></pre>
+    if msg:
+        display.scroll(msg)</code></pre>
 
-      <div class="questions">
-        <strong>Spørsmål til naturfag</strong>
-        <ol>
-          <li>Hva må til for at akselerometeret skal «reagere»?</li>
-          <li>Nevn én reell situasjon der bevegelsessensor + trådløs varsling er nyttig.</li>
-        </ol>
+      <h3>Oppgave 4b – Toveis prat</h3>
+      <p>Programmer <strong>begge</strong> slik at A sender «HEI» og B sender «OK».</p>
+
+      <p class="code-label">Blokk (samme program på begge)</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+
+når knapp A trykkes
+    → radio send streng "HEI"
+
+når knapp B trykkes
+    → radio send streng "OK"
+
+på radio mottatt streng
+    → vis streng (mottatt streng)</code></pre>
+
+      <p class="code-label">Python (samme program på begge)</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3)
+
+while True:
+    if button_a.was_pressed():
+        radio.send("HEI")
+    if button_b.was_pressed():
+        radio.send("OK")
+
+    msg = radio.receive()
+    if msg:
+        display.scroll(msg)</code></pre>
+
+      <div class="activity science">
+        <span class="tag accent">Naturfag</span>
+        <p>Radioen bruker <strong>elektromagnetiske bølger</strong> (2,4&nbsp;GHz) – samme type som Wi‑Fi og Bluetooth. Usynlige, men de bærer informasjon.</p>
       </div>
     </section>
 
     <section>
-      <h2>Oppsummering og innlevering (10 min)</h2>
-      <h3>Lever dette (per gruppe)</h3>
+      <h2>Del 5 – Signalstyrke: hva påvirker? (20 min)</h2>
+      <p>Test systematisk hva som påvirker hvor godt signalet kommer fram.</p>
+
+      <h3>Oppsett</h3>
       <ol>
-        <li>Ferdig utfylte tabeller fra A og B</li>
-        <li>Korte svar på spørsmålene under hver aktivitet</li>
-        <li>Skjermbilde eller kopi av koden til <strong>én</strong> av aktivitetene</li>
-        <li>Svar på refleksjonen under</li>
+        <li>Én <strong>giver</strong> og én <strong>mottaker</strong></li>
+        <li>Giver sender når du trykker A</li>
+        <li>Mottaker viser <strong>signalstyrke</strong></li>
+        <li>Noter i tabellen under</li>
       </ol>
 
+      <p class="code-label">Blokk – giver</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+    → radio sett sendeeffekt 6     ← maks er ofte 7
+
+når knapp A trykkes
+    → radio send streng "PING"
+    → vis ikon (diamant)</code></pre>
+
+      <p class="code-label">Blokk – mottaker</p>
+<pre><code>ved start
+    → radio sett gruppe 3
+
+på radio mottatt streng
+    → vis tall (radio signalstyrke)</code></pre>
+
+      <p class="note">
+        Blokken <strong>«radio signalstyrke»</strong> finnes under Radio (avansert).
+        Tallene er typisk negative (f.eks. −42). <strong>Nærmere null = sterkere signal</strong> (−30 er sterkere enn −80).
+        Signalstyrke er enklest i MakeCode – bruk blokk til dette forsøket.
+      </p>
+
+      <p class="code-label">Python – giver</p>
+<pre><code>from microbit import *
+import radio
+
+radio.on()
+radio.config(group=3, power=6)  # power 0–7
+
+while True:
+    if button_a.was_pressed():
+        radio.send("PING")
+        display.show(Image.DIAMOND)
+        sleep(300)
+        display.clear()</code></pre>
+
+      <h3>Forsøk – fyll inn</h3>
+      <p>Hold giveren i ro. Endre <strong>én ting om gangen</strong>.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Hva gjør dere?</th>
+            <th>Signalstyrke</th>
+            <th>Kom melding fram?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="write-row"><td>1</td><td>1 m, fri sikt</td><td></td><td></td></tr>
+          <tr class="write-row"><td>2</td><td>5 m avstand</td><td></td><td></td></tr>
+          <tr class="write-row"><td>3</td><td>Bak vegg / dør</td><td></td><td></td></tr>
+          <tr class="write-row"><td>4</td><td>Person mellom</td><td></td><td></td></tr>
+          <tr class="write-row"><td>5</td><td>Lavere sendeeffekt (f.eks. 1)</td><td></td><td></td></tr>
+          <tr class="write-row"><td>6</td><td>Valgfritt: metall / vann mellom</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="questions">
+        <strong>Spørsmål til naturfag</strong>
+        <ol>
+          <li>Hva skjedde med signalstyrken når avstanden økte? Hvorfor?</li>
+          <li>Hvilket hinder reduserte signalet mest?</li>
+          <li>Elektromagnetiske bølger dempes av materialer og avstand. Nevn én likhet med <strong>lys</strong> eller <strong>lyd</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="activity science">
+        <span class="tag accent">Kort forklaring</span>
+        <ul>
+          <li><strong>Avstand:</strong> Energien fordeles over større område → svakere signal.</li>
+          <li><strong>Hindre:</strong> Vegger, kropp og metall kan absorbere eller reflektere bølger.</li>
+          <li><strong>Sendeeffekt:</strong> Lavere effekt = mindre energi = kortere rekkevidde.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Innlevering</h2>
+      <ol>
+        <li>Skjermbilde eller kort beskrivelse av giver- og mottaker-programmet</li>
+        <li>Ferdig tabell fra signalstyrke-forsøket</li>
+        <li>Svar på de tre naturfagspørsmålene</li>
+      </ol>
       <div class="reflect">
-        <h3 style="margin-top:0">Refleksjon (individuelt, 3–5 setninger)</h3>
-        <p>Hvordan kan sensorer og programmering hjelpe oss å forstå naturfag bedre enn bare å lese i læreboka? Bruk minst ett eksempel fra dagens økt (temperatur, lys eller bevegelse).</p>
+        <h3 style="margin-top:0">Refleksjon (individuelt, 2–3 setninger)</h3>
+        <p>Hva lærte du om hvordan usynlige bølger oppfører seg – og hvordan ligner det på noe annet dere har hatt i naturfag?</p>
         <table>
           <tbody>
-            <tr class="write-row"><td></td></tr>
             <tr class="write-row"><td></td></tr>
             <tr class="write-row"><td></td></tr>
             <tr class="write-row"><td></td></tr>
@@ -615,17 +684,18 @@ while True:
           <tr><th>Problem</th><th>Løsning</th></tr>
         </thead>
         <tbody>
-          <tr><td>Koden lastes ikke ned</td><td>Sjekk USB-kabel, last ned .hex på nytt, prøv annen port</td></tr>
-          <tr><td>Radio virker ikke</td><td>Samme group-nummer? Begge har radio på?</td></tr>
-          <tr><td>Temperatur virker «feil»</td><td>Fingre/USB-varme påvirker – vent litt</td></tr>
-          <tr><td>Lys er alltid lav</td><td>Ikke dekk LED-skjermen</td></tr>
-          <tr><td>Python: ImportError radio</td><td>Sjekk MicroPython-firmware, eller bruk MakeCode</td></tr>
+          <tr><td>Finner ikke MakeCode</td><td><a href="https://makecode.microbit.org">makecode.microbit.org</a></td></tr>
+          <tr><td>Program lastes ikke</td><td>USB-kabel, last ned .hex på nytt, annen port</td></tr>
+          <tr><td>Radio virker ikke</td><td>Samme gruppenummer? Begge har «radio sett gruppe»?</td></tr>
+          <tr><td>Mange grupper forstyrrer</td><td>Bruk unikt gruppenummer (1–255)</td></tr>
+          <tr><td>Ser ikke signalstyrke</td><td>MakeCode → Radio → avansert → «signalstyrke»</td></tr>
+          <tr><td>Simulator vs. ekte</td><td>Radio og signalstyrke må testes på fysiske micro:bitter</td></tr>
         </tbody>
       </table>
     </section>
 
     <footer>
-      Materiell til naturfag påbygg · Micro:bit · 90 minutter
+      Materiell til naturfag påbygg · Micro:bit · Microsoft MakeCode · 90 minutter
     </footer>
   </div>
 </body>
